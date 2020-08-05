@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "185594503625",
+    "firebase_url": "https://beel-6e17a.firebaseio.com",
+    "project_id": "beel-6e17a",
+    "storage_bucket": "beel-6e17a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185594503625:android:2117f123e4e8b0919cc818",
+        "android_client_info": {
+          "package_name": "com.example.loyal_bee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185594503625-v4phe67hffdb14ckksdcsrg8q1fcsl3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYYTJud7WvbvDpfOm5il8iKZJp8i-BT6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "185594503625-v4phe67hffdb14ckksdcsrg8q1fcsl3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:185594503625:android:122f65fedd0b57199cc818",
+        "android_client_info": {
+          "package_name": "com.example.loyalbee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "185594503625-v4phe67hffdb14ckksdcsrg8q1fcsl3q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYYTJud7WvbvDpfOm5il8iKZJp8i-BT6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "185594503625-v4phe67hffdb14ckksdcsrg8q1fcsl3q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

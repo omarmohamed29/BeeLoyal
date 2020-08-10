@@ -1,16 +1,12 @@
-# loyalbee
+# Bee Loyal - Loyalty Program Application
+![GitHub Logo](assets/images/beel.png)
 
-A new Flutter application.
+A flutter application that integrates the power of e-commerce with the loyalty program from now on you will be able to use your owned points online 
+using "online shopping" or you can use it offline "generated vouchers".
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+the application provides a new and great integrated capablilities to market such as 
+- "Sentiment analysis" on comments and rates.
+- fully management of point system shopping items.
+- scan your reciept any where no more waiting lines.
+- only scan the verified reciepts qr codes.
+- see all the history of transactions and more.

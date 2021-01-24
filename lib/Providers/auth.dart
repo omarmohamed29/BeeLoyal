@@ -116,9 +116,8 @@ class Auth with ChangeNotifier {
       _authTimer.cancel();
       _authTimer = null;
     }
+    await DBProvider.db.dropTable();
     notifyListeners();
-    final prefs = await SharedPreferences.getInstance();
-    prefs.clear();
   }
 
   void _autoLogout() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'ContinueToLog.dart';
 import 'package:provider/provider.dart';
 
@@ -86,7 +87,7 @@ class _SignUpState extends State<SignUp> {
     ScreenUtil.instance =
         ScreenUtil(width: 750, height: 1334, allowFontScaling: true);
     return new Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       resizeToAvoidBottomPadding: true,
       body: Form(
         key: _formKey,
@@ -112,7 +113,7 @@ class _SignUpState extends State<SignUp> {
                       width: double.infinity,
                       height: ScreenUtil.getInstance().setHeight(650),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).backgroundColor,
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
@@ -124,7 +125,7 @@ class _SignUpState extends State<SignUp> {
                                 style: TextStyle(
                                     fontSize:
                                         ScreenUtil.getInstance().setSp(45),
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).textTheme.headline2.color,
                                     fontFamily: "Montserrat-Bold",
                                     letterSpacing: .6)),
                             SizedBox(
@@ -132,104 +133,122 @@ class _SignUpState extends State<SignUp> {
                             ),
                             Text("Email",
                                 style: TextStyle(
+                                  color: Theme.of(context).textTheme.headline2.color,
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
                                     fontSize:
                                         ScreenUtil.getInstance().setSp(35))),
-                            TextFormField(
-                              keyboardType: TextInputType.emailAddress,
-                              style: TextStyle(
-                                fontFamily: "Montserrat-Light",
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
                               ),
-                              validator: (value) {
-                                if (value.isEmpty || !value.contains('@')) {
-                                  return 'Invalid Email ';
-                                }
-                                return null;
-                              },
-                              onSaved: (input) {
-                                _authData['email'] = input;
-                              },
-                              decoration: InputDecoration(
-                                  hintText: "Give us your email please",
-                                  hintStyle: TextStyle(
-                                      fontFamily: "Montserrat-Light",
-                                      color: Colors.grey,
-                                      fontSize: 12.0)),
+                              child: TextFormField(
+                                keyboardType: TextInputType.emailAddress,
+                                style: TextStyle(
+                                  fontFamily: "Montserrat-Light",
+                                ),
+                                validator: (value) {
+                                  if (value.isEmpty || !value.contains('@')) {
+                                    return 'Invalid Email ';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (input) {
+                                  _authData['email'] = input;
+                                },
+                                decoration: InputDecoration(
+                                    hintText: "Give us your email please",
+                                    hintStyle: TextStyle(
+                                        fontFamily: "Montserrat-Light",
+                                        color: Colors.grey,
+                                        fontSize: 12.0)),
+                              ),
                             ),
                             SizedBox(
                               height: ScreenUtil.getInstance().setHeight(50),
                             ),
                             Text("Password",
                                 style: TextStyle(
+                                  color: Theme.of(context).textTheme.headline2.color,
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
                                     fontSize:
                                         ScreenUtil.getInstance().setSp(35))),
-                            TextFormField(
-                              style: TextStyle(
-                                fontFamily: "Montserrat-Light",
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
                               ),
-                              controller: _passwordController,
-                              // ignore: missing_return
-                              validator: (value) {
-                                if (value.isEmpty || value.length < 5) {
-                                  return 'Password is too short !';
-                                }
-                              },
-                              onSaved: (input) {
-                                _authData['password'] = input;
-                              },
-                              obscureText: _passLook,
-                              decoration: InputDecoration(
-                                  suffixIcon: GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _passLook = !_passLook;
-                                      });
-                                    },
-                                    child: Icon(
-                                      _passLook
-                                          ? Icons.visibility
-                                          : Icons.visibility_off,
-                                      size: 20,
+                              child: TextFormField(
+                                style: TextStyle(
+                                  fontFamily: "Montserrat-Light",
+                                ),
+                                controller: _passwordController,
+                                // ignore: missing_return
+                                validator: (value) {
+                                  if (value.isEmpty || value.length < 5) {
+                                    return 'Password is too short !';
+                                  }
+                                },
+                                onSaved: (input) {
+                                  _authData['password'] = input;
+                                },
+                                obscureText: _passLook,
+                                decoration: InputDecoration(
+                                    suffixIcon: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _passLook = !_passLook;
+                                        });
+                                      },
+                                      child: Icon(
+                                        _passLook
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        size: 20,
+                                      ),
                                     ),
-                                  ),
-                                  hintText:
-                                      "Your password is hidden we won't sneak ",
-                                  hintStyle: TextStyle(
-                                      fontFamily: "Montserrat-Light",
-                                      color: Colors.grey,
-                                      fontSize: 12.0)),
+                                    hintText:
+                                        "Your password is hidden we won't sneak ",
+                                    hintStyle: TextStyle(
+                                        fontFamily: "Montserrat-Light",
+                                        color: Colors.grey,
+                                        fontSize: 12.0)),
+                              ),
                             ),
                             SizedBox(
                               height: ScreenUtil.getInstance().setHeight(50),
                             ),
                             Text("Confirm Password",
                                 style: TextStyle(
+                                  color: Theme.of(context).textTheme.headline2.color,
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
                                     fontSize:
                                         ScreenUtil.getInstance().setSp(35))),
-                            TextFormField(
-                              style: TextStyle(
-                                fontFamily: "Montserrat-Light",
+                            Container(
+                              decoration: BoxDecoration(
+                                  border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
                               ),
-                              // ignore: missing_return
-                              validator: (value) {
-                                // ignore: unrelated_type_equality_checks
-                                if (value != _passwordController.text) {
-                                  return 'Password do not match !';
-                                }
-                              },
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                  hintText: "Confirm your password",
-                                  hintStyle: TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 12.0,
-                                    fontFamily: "Montserrat-Light",
-                                  )),
+                              child: TextFormField(
+                                style: TextStyle(
+                                  fontFamily: "Montserrat-Light",
+                                ),
+                                // ignore: missing_return
+                                validator: (value) {
+                                  // ignore: unrelated_type_equality_checks
+                                  if (value != _passwordController.text) {
+                                    return 'Password do not match !';
+                                  }
+                                },
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                    hintText: "Confirm your password",
+                                    hintStyle: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12.0,
+                                      fontFamily: "Montserrat-Light",
+                                    )),
+                              ),
                             ),
                           ],
                         ),
@@ -246,19 +265,17 @@ class _SignUpState extends State<SignUp> {
                             height: ScreenUtil.getInstance().setHeight(100),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(6.0),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Color(0xFF6078ea).withOpacity(.3),
-                                      offset: Offset(0.0, 8.0),
-                                      blurRadius: 8.0)
-                                ]),
+                               ),
                             child: Material(
-                              color: Colors.transparent,
+                              color: Color(0xFFFFCB5F),
                               child: InkWell(
                                 onTap: _submit,
                                 child: _isLoading
                                     ? Center(
-                                        child: CircularProgressIndicator(),
+                                        child: SpinKitCircle(
+                                          color: Colors.white,
+                                          size: 22,
+                                        ),
                                       )
                                     : Center(
                                         child: Row(
@@ -296,6 +313,7 @@ class _SignUpState extends State<SignUp> {
                           "Already a user ?   ",
                           style: TextStyle(
                             fontFamily: "Montserrat-Light",
+                            color: Theme.of(context).textTheme.headline2.color
                           ),
                         ),
                         InkWell(
@@ -304,6 +322,7 @@ class _SignUpState extends State<SignUp> {
                           },
                           child: Text("SignIn",
                               style: TextStyle(
+                                color: Color(0xFFFFCB5F),
                                 fontFamily: "Montserrat-Light",
                               )),
                         )

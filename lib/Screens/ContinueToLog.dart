@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 import '../Providers/Users.dart';
@@ -22,8 +23,7 @@ class _ContinueToLogState extends State<ContinueToLog> {
   };
 
   var _currentSelected = 'Cairo';
-  var _cities = ['Cairo' , 'Giza' , 'Other'];
-
+  var _cities = ['Cairo', 'Giza', 'Other'];
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -81,7 +81,7 @@ class _ContinueToLogState extends State<ContinueToLog> {
     ScreenUtil.instance =
         ScreenUtil(width: 750, height: 1300, allowFontScaling: true);
     return new Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       resizeToAvoidBottomPadding: true,
       body: Form(
         key: _formKey,
@@ -94,7 +94,11 @@ class _ContinueToLogState extends State<ContinueToLog> {
                 Expanded(
                   child: Container(),
                 ),
-                Image.asset("assets/images/Login2.png")
+                Opacity(
+                    opacity: 0.5,
+                    child: Image.asset("assets/images/Login2.png" ,),
+
+                )
               ],
             ),
             SingleChildScrollView(
@@ -111,9 +115,9 @@ class _ContinueToLogState extends State<ContinueToLog> {
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
                         width: double.infinity,
-                        height: MediaQuery.of(context).size.height-210,
+                        height: MediaQuery.of(context).size.height - 210,
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                             borderRadius: BorderRadius.circular(8.0),
                             boxShadow: [
                               BoxShadow(
@@ -126,8 +130,8 @@ class _ContinueToLogState extends State<ContinueToLog> {
                                   blurRadius: 10.0),
                             ]),
                         child: Padding(
-                          padding:
-                              EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                          padding: EdgeInsets.only(
+                              left: 16.0, right: 16.0, top: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -145,21 +149,32 @@ class _ContinueToLogState extends State<ContinueToLog> {
                                       fontFamily: "Poppins-Medium",
                                       fontSize:
                                           ScreenUtil.getInstance().setSp(26))),
-                              TextFormField(
-                                keyboardType: TextInputType.text,
-                                validator: (value) {
-                                  if (value.isEmpty || value.contains('@')) {
-                                    return 'Invalid Name ';
-                                  }
-                                  return null;
-                                },
-                                onSaved: (input) {
-                                  _userData['Name'] = input;
-                                },
-                                decoration: InputDecoration(
-                                    hintText: "Name",
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey, fontSize: 12.0)),
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                  bottom: BorderSide(
+                                      width: 0.5,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color),
+                                )),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.text,
+                                  validator: (value) {
+                                    if (value.isEmpty || value.contains('@')) {
+                                      return 'Invalid Name ';
+                                    }
+                                    return null;
+                                  },
+                                  onSaved: (input) {
+                                    _userData['Name'] = input;
+                                  },
+                                  decoration: InputDecoration(
+                                      hintText: "Name",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey, fontSize: 12.0)),
+                                ),
                               ),
                               SizedBox(
                                 height: ScreenUtil.getInstance().setHeight(30),
@@ -169,20 +184,31 @@ class _ContinueToLogState extends State<ContinueToLog> {
                                       fontFamily: "Poppins-Medium",
                                       fontSize:
                                           ScreenUtil.getInstance().setSp(26))),
-                              TextFormField(
-                                // ignore: missing_return
-                                validator: (value) {
-                                  if (value.isEmpty || value.length < 5) {
-                                    return 'Please give a full address';
-                                  }
-                                },
-                                onSaved: (input) {
-                                  _userData['Address'] = input;
-                                },
-                                decoration: InputDecoration(
-                                    hintText: "Address",
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey, fontSize: 12.0)),
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                  bottom: BorderSide(
+                                      width: 0.5,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color),
+                                )),
+                                child: TextFormField(
+                                  // ignore: missing_return
+                                  validator: (value) {
+                                    if (value.isEmpty || value.length < 5) {
+                                      return 'Please give a full address';
+                                    }
+                                  },
+                                  onSaved: (input) {
+                                    _userData['Address'] = input;
+                                  },
+                                  decoration: InputDecoration(
+                                      hintText: "Address",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey, fontSize: 12.0)),
+                                ),
                               ),
 
                               SizedBox(
@@ -193,48 +219,61 @@ class _ContinueToLogState extends State<ContinueToLog> {
                                   style: TextStyle(
                                       fontFamily: "Poppins-Medium",
                                       fontSize:
-                                      ScreenUtil.getInstance().setSp(26))),
-                              TextFormField(
-                                keyboardType: TextInputType.phone,
-                                // ignore: missing_return
-                                validator: (value) {
-                                  if (value.isEmpty || value.contains('#') || value.length < 11) {
-                                    return 'Invalid number ';
-                                  }
-                                  return null;
-                                },
-                                decoration: InputDecoration(
-                                    hintText: "Mobile Number",
-                                    hintStyle: TextStyle(
-                                        color: Colors.grey, fontSize: 12.0)),
-                                onSaved: (input) {
-                                  _userData['number'] = input.toUpperCase();
-                                },
+                                          ScreenUtil.getInstance().setSp(26))),
+                              Container(
+                                decoration: BoxDecoration(
+                                    border: Border(
+                                  bottom: BorderSide(
+                                      width: 0.5,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color),
+                                )),
+                                child: TextFormField(
+                                  keyboardType: TextInputType.phone,
+                                  // ignore: missing_return
+                                  validator: (value) {
+                                    if (value.isEmpty ||
+                                        value.contains('#') ||
+                                        value.length < 11) {
+                                      return 'Invalid number ';
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                      hintText: "Mobile Number",
+                                      hintStyle: TextStyle(
+                                          color: Colors.grey, fontSize: 12.0)),
+                                  onSaved: (input) {
+                                    _userData['number'] = input.toUpperCase();
+                                  },
+                                ),
                               ),
                               SizedBox(
                                 height: ScreenUtil.getInstance().setHeight(30),
                               ),
 
-                          Text("City",
-                              style: TextStyle(
-                                   fontFamily: "Poppins-Medium",
-                                    fontSize:
-                                     ScreenUtil.getInstance().setSp(26))),
-                            DropdownButton(
-                              isExpanded: true,
-                              items: _cities.map((String dropDownStringItem){
-                                return DropdownMenuItem<String>(
-                                  value: dropDownStringItem,
-                                  child: Text(dropDownStringItem),
-                                );
-                              }).toList(),
-                              onChanged: (String newValue){
-                                setState(() {
-                                  this._currentSelected = newValue;
-                                });
-                              },
-                              value: _currentSelected,
-                            ),
+                              Text("City",
+                                  style: TextStyle(
+                                      fontFamily: "Poppins-Medium",
+                                      fontSize:
+                                          ScreenUtil.getInstance().setSp(26))),
+                              DropdownButton(
+                                isExpanded: true,
+                                items: _cities.map((String dropDownStringItem) {
+                                  return DropdownMenuItem<String>(
+                                    value: dropDownStringItem,
+                                    child: Text(dropDownStringItem),
+                                  );
+                                }).toList(),
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    this._currentSelected = newValue;
+                                  });
+                                },
+                                value: _currentSelected,
+                              ),
                               SizedBox(
                                 height: ScreenUtil.getInstance().setHeight(26),
                               ),
@@ -242,16 +281,18 @@ class _ContinueToLogState extends State<ContinueToLog> {
                               // end of the form container /
 
                               SizedBox(
-                                  height: ScreenUtil.getInstance().setHeight(40)),
+                                  height:
+                                      ScreenUtil.getInstance().setHeight(40)),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: <Widget>[
                                   InkWell(
                                     child: Container(
-                                      width:
-                                          ScreenUtil.getInstance().setWidth(330),
-                                      height:
-                                          ScreenUtil.getInstance().setHeight(100),
+                                      width: ScreenUtil.getInstance()
+                                          .setWidth(330),
+                                      height: ScreenUtil.getInstance()
+                                          .setHeight(100),
                                       decoration: BoxDecoration(
                                           gradient: LinearGradient(colors: [
                                             Color(0xFFFFE235),
@@ -259,22 +300,17 @@ class _ContinueToLogState extends State<ContinueToLog> {
                                           ]),
                                           borderRadius:
                                               BorderRadius.circular(6.0),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Color(0xFF6078ea)
-                                                    .withOpacity(.3),
-                                                offset: Offset(0.0, 8.0),
-                                                blurRadius: 8.0)
-                                          ]),
+                                          ),
                                       child: Material(
                                         color: Colors.transparent,
                                         child: InkWell(
                                           onTap: _submit,
                                           child: _isLoading
                                               ? Center(
-                                                  child:
-                                                      CircularProgressIndicator(),
-                                                )
+                                                  child: SpinKitCircle(
+                                                  color: Colors.white,
+                                                  size: 22,
+                                                ))
                                               : Center(
                                                   child: Text("Continue",
                                                       style: TextStyle(

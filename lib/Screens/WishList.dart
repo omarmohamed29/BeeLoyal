@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../Providers/Products.dart';
-import '../models/Product.dart';
 
 class WishList extends StatefulWidget {
   static const routeName = '/wishList';
@@ -37,8 +36,9 @@ class _WishListState extends State<WishList> {
     final products = productsData.favouriteItems;
     return RefreshIndicator(
       onRefresh: refresh,
+      color: Color(0xFFFFCB5F),
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Column(
           children: <Widget>[
             Stack(
@@ -51,7 +51,7 @@ class _WishListState extends State<WishList> {
                         alignment: Alignment.topLeft,
                         icon: Icon(
                           Icons.arrow_back,
-                          color: Color(0xFF3F3C36),
+                          color: Theme.of(context).textTheme.headline2.color,
                         ),
                         onPressed: () {
                           Navigator.pop(context);
@@ -70,7 +70,7 @@ class _WishListState extends State<WishList> {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Montserrat-Bold",
                           fontSize: 40,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                   ),
                 ),
@@ -84,7 +84,7 @@ class _WishListState extends State<WishList> {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Montserrat-Light",
                           fontSize: 30,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                   ),
                 ),
@@ -110,14 +110,14 @@ class _WishListState extends State<WishList> {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Montserrat-Bold",
                           fontSize: 15,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                     subtitle: Text(
                       'price : ' + products[i].price.toString(),
                       style: TextStyle(
                           fontFamily: "Montserrat-Light",
                           fontSize: 13,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                     trailing: FlatButton(
                       child: Text(

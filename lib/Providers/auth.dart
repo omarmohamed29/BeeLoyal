@@ -3,6 +3,8 @@ import 'dart:async';
 
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
+import 'package:loyalbee/models/AuthUser.dart';
+import 'package:loyalbee/models/DataBase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/http_exception.dart';
@@ -60,15 +62,17 @@ class Auth with ChangeNotifier {
       );
       _autoLogout();
       notifyListeners();
-      final prefs = await SharedPreferences.getInstance();
-      final userData = json.encode(
-        {
-          'token': _token,
-          'userId': _userId,
-          'expiryDate': _expiryDate.toIso8601String(),
-        },
-      );
-      prefs.setString('userData', userData);
+//      final prefs = await SharedPreferences.getInstance();
+//      final userData = json.encode(
+//        {
+//          'token': _token,
+//          'userId': _userId,
+//          'expiryDate': _expiryDate.toIso8601String(),
+//        },
+//      );
+//      prefs.setString('userData', userData);
+    var newUser = UserAuth(email: email , password: password, token: _token , expiryDate: _expiryDate.toIso8601String() , userId: _userId);
+    DBProvider.db.newUser(newUser);
     } catch (error) {
       throw error;
     }
@@ -83,19 +87,22 @@ class Auth with ChangeNotifier {
   }
 
   Future<bool> tryAutoLogin() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (!prefs.containsKey('userData')) {
-      return false;
-    }
-    final extractedUserData = json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final expiryDate = DateTime.parse(extractedUserData['expiryDate']);
 
-    if (expiryDate.isBefore(DateTime.now())) {
+    final _userData = await DBProvider.db.getUsers();
+
+    Map<String , String> newUser = {};
+    if(!newUser.containsKey('token')){
+      newUser= Map<String , String >.from(_userData);
+    }
+    final expiryDate = DateTime.parse(newUser['expiryDate']);
+        if (expiryDate.isBefore(DateTime.now())) {
       return false;
     }
-    _token = extractedUserData['token'];
-    _userId = extractedUserData['userId'];
+
+    _token = newUser['token'];
+    _userId = newUser['userId'];
     _expiryDate = expiryDate;
+
     notifyListeners();
     _autoLogout();
     return true;

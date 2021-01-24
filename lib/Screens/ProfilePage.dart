@@ -44,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: RefreshIndicator(
           onRefresh: refresh,
           color: Color(0xFFFFCB5F),
@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage>
             shrinkWrap: true,
             children: <Widget>[
               Container(
-                color: Colors.white,
+                color: Theme.of(context).backgroundColor,
                 child: Padding(
                   padding:
                       const EdgeInsets.only(top: 20, left: 15.0, bottom: 20),
@@ -65,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage>
                           fontWeight: FontWeight.bold,
                           fontFamily: "Montserrat-Bold",
                           fontSize: 30,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                   ),
                 ),
@@ -106,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage>
                   height: 500,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      color: Colors.white,
+                      color: Theme.of(context).backgroundColor,
                       border: Border.all(color: Color(0xFFFFCB5F), width: 1)),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -137,7 +137,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   PointsToMoney.routeName,
                                   arguments: users.users[0].id);
                             },
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -150,7 +150,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding: EdgeInsets.only(top: 5),
                                         child: Icon(
                                           Profile.pointsconvert,
-                                          color: Color(0xFF3F3C36),
+                                          color: Theme.of(context).iconTheme.color,
                                           size: 30,
                                         ),
                                       ),
@@ -158,7 +158,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding:
                                             const EdgeInsets.only(left: 8.0),
                                         child: Container(
-                                          color: Colors.black54,
+                                          color: Theme.of(context).iconTheme.color,
                                           height: 40,
                                           width: 1,
                                         ),
@@ -172,14 +172,14 @@ class _ProfilePageState extends State<ProfilePage>
                                               fontFamily: "Montserrat-Light",
                                               fontWeight: FontWeight.bold,
                                               fontSize: 15,
-                                              color: Color(0xFF3F3C36)),
+                                              color:Theme.of(context).textTheme.headline2.color),
                                         ),
                                       ),
                                     ],
                                   ),
                                   Icon(
                                     Icons.keyboard_arrow_right,
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).iconTheme.color,
                                   )
                                 ],
                               ),
@@ -201,7 +201,7 @@ class _ProfilePageState extends State<ProfilePage>
                                   VoucherPage.routeName,
                                   arguments: users.users[0].name);
                             },
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -214,7 +214,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding: EdgeInsets.only(top: 5),
                                         child: Icon(
                                           Profile.vouchers,
-                                          color: Color(0xFF3F3C36),
+                                          color: Theme.of(context).iconTheme.color,
                                           size: 30,
                                         ),
                                       ),
@@ -222,7 +222,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding:
                                             const EdgeInsets.only(left: 8.0),
                                         child: Container(
-                                          color: Colors.black54,
+                                          color: Theme.of(context).iconTheme.color,
                                           height: 40,
                                           width: 1,
                                         ),
@@ -236,14 +236,14 @@ class _ProfilePageState extends State<ProfilePage>
                                               fontWeight: FontWeight.bold,
                                               fontFamily: "Montserrat-Light",
                                               fontSize: 15,
-                                              color: Color(0xFF3F3C36)),
+                                              color: Theme.of(context).textTheme.headline2.color),
                                         ),
                                       ),
                                     ],
                                   ),
                                   Icon(
                                     Icons.keyboard_arrow_right,
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).iconTheme.color,
                                   )
                                 ],
                               ),
@@ -262,7 +262,7 @@ class _ProfilePageState extends State<ProfilePage>
                               Navigator.of(context)
                                   .pushNamed(WalletPage.routeName);
                             },
-                            color: Colors.white,
+                            color:Theme.of(context).backgroundColor,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -275,7 +275,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding: EdgeInsets.only(top: 5),
                                         child: Icon(
                                           Profile.wallet,
-                                          color: Color(0xFF3F3C36),
+                                          color: Theme.of(context).iconTheme.color,
                                           size: 30,
                                         ),
                                       ),
@@ -283,7 +283,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding:
                                             const EdgeInsets.only(left: 8.0),
                                         child: Container(
-                                          color: Colors.black54,
+                                          color: Theme.of(context).iconTheme.color,
                                           height: 40,
                                           width: 1,
                                         ),
@@ -297,14 +297,14 @@ class _ProfilePageState extends State<ProfilePage>
                                               fontWeight: FontWeight.bold,
                                               fontFamily: "Montserrat-Light",
                                               fontSize: 15,
-                                              color: Color(0xFF3F3C36)),
+                                              color: Theme.of(context).textTheme.headline2.color),
                                         ),
                                       ),
                                     ],
                                   ),
                                   Icon(
                                     Icons.keyboard_arrow_right,
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).iconTheme.color,
                                   )
                                 ],
                               ),
@@ -323,7 +323,7 @@ class _ProfilePageState extends State<ProfilePage>
                               Navigator.of(context)
                                   .pushNamed(MessagesPage.routeName);
                             },
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -336,7 +336,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding: EdgeInsets.only(top: 5),
                                         child: Icon(
                                           Profile.notification,
-                                          color: Color(0xFF3F3C36),
+                                          color: Theme.of(context).iconTheme.color,
                                           size: 30,
                                         ),
                                       ),
@@ -344,7 +344,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding:
                                             const EdgeInsets.only(left: 8.0),
                                         child: Container(
-                                          color: Colors.black54,
+                                          color: Theme.of(context).iconTheme.color,
                                           height: 40,
                                           width: 1,
                                         ),
@@ -358,14 +358,14 @@ class _ProfilePageState extends State<ProfilePage>
                                               fontWeight: FontWeight.bold,
                                               fontFamily: "Montserrat-Light",
                                               fontSize: 15,
-                                              color: Color(0xFF3F3C36)),
+                                              color: Theme.of(context).textTheme.headline2.color),
                                         ),
                                       ),
                                     ],
                                   ),
                                   Icon(
                                     Icons.keyboard_arrow_right,
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).iconTheme.color,
                                   )
                                 ],
                               ),
@@ -383,7 +383,7 @@ class _ProfilePageState extends State<ProfilePage>
                             onPressed: () {
                               Navigator.pushNamed(context, WishList.routeName);
                             },
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -396,7 +396,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding: EdgeInsets.only(top: 5),
                                         child: Icon(
                                           Icons.favorite_border,
-                                          color: Color(0xFF3F3C36),
+                                          color: Theme.of(context).iconTheme.color,
                                           size: 30,
                                         ),
                                       ),
@@ -404,7 +404,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding:
                                             const EdgeInsets.only(left: 8.0),
                                         child: Container(
-                                          color: Colors.black54,
+                                          color: Theme.of(context).iconTheme.color,
                                           height: 40,
                                           width: 1,
                                         ),
@@ -418,14 +418,14 @@ class _ProfilePageState extends State<ProfilePage>
                                               fontWeight: FontWeight.bold,
                                               fontFamily: "Montserrat-Light",
                                               fontSize: 15,
-                                              color: Color(0xFF3F3C36)),
+                                              color: Theme.of(context).textTheme.headline2.color),
                                         ),
                                       ),
                                     ],
                                   ),
                                   Icon(
                                     Icons.keyboard_arrow_right,
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).iconTheme.color,
                                   )
                                 ],
                               ),
@@ -443,7 +443,7 @@ class _ProfilePageState extends State<ProfilePage>
                               Navigator.of(context)
                                   .pushNamed(EditProfilePage.routeName);
                             },
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
@@ -456,7 +456,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding: EdgeInsets.only(top: 5),
                                         child: Icon(
                                           Icons.mode_edit,
-                                          color: Color(0xFF3F3C36),
+                                          color: Theme.of(context).iconTheme.color,
                                           size: 30,
                                         ),
                                       ),
@@ -464,7 +464,7 @@ class _ProfilePageState extends State<ProfilePage>
                                         padding:
                                             const EdgeInsets.only(left: 8.0),
                                         child: Container(
-                                          color: Colors.black54,
+                                          color: Theme.of(context).iconTheme.color,
                                           height: 40,
                                           width: 1,
                                         ),
@@ -478,14 +478,14 @@ class _ProfilePageState extends State<ProfilePage>
                                               fontWeight: FontWeight.bold,
                                               fontFamily: "Montserrat-Light",
                                               fontSize: 15,
-                                              color: Color(0xFF3F3C36)),
+                                              color: Theme.of(context).textTheme.headline2.color),
                                         ),
                                       ),
                                     ],
                                   ),
                                   Icon(
                                     Icons.keyboard_arrow_right,
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).iconTheme.color,
                                   )
                                 ],
                               ),

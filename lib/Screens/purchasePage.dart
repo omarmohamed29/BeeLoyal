@@ -9,9 +9,9 @@ class PurchasePage extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).backgroundColor,
           elevation: 0,
           centerTitle: true,
           title: Text(
@@ -20,7 +20,7 @@ class PurchasePage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 fontFamily: "Montserrat-Bold",
                 fontSize: 30,
-                color: Color(0xFF3F3C36)),
+                color: Theme.of(context).textTheme.headline2.color),
           ),
           bottom: TabBar(
             indicatorColor: Color(0xFFFFCB5F),
@@ -33,7 +33,7 @@ class PurchasePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
               Tab(
@@ -43,7 +43,7 @@ class PurchasePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
               Tab(
@@ -53,7 +53,7 @@ class PurchasePage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
             ],

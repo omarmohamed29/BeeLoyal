@@ -33,17 +33,17 @@ class _AllCommentsState extends State<AllComments> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         title: Text(
           "Comments And Reviews",
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: "Montserrat-Light",
               fontSize: 20,
-              color: Color(0xFF3F3C36)),
+              color: Theme.of(context).textTheme.headline2.color),
         ),
         centerTitle: true,
       ),
@@ -88,7 +88,7 @@ class _AllCommentsState extends State<AllComments> {
                                         fontWeight: FontWeight.bold,
                                         fontSize: 32,
                                         color:
-                                        Color(0xFF3F3C36))),
+                                        Theme.of(context).textTheme.headline2.color)),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 4),
                                   child: RatingBarIndicator(
@@ -124,7 +124,7 @@ class _AllCommentsState extends State<AllComments> {
                                                 "Montserrat-Light",
                                                 fontSize: 10,
                                                 color:
-                                                Color(0xFF3F3C36))),
+                                                Theme.of(context).textTheme.headline2.color)),
                                       ),
                                       Container(
                                         width: MediaQuery.of(context).size.width-150,
@@ -148,7 +148,7 @@ class _AllCommentsState extends State<AllComments> {
                                                 "Montserrat-Light",
                                                 fontSize: 10,
                                                 color:
-                                                Color(0xFF3F3C36))),
+                                                Theme.of(context).textTheme.headline2.color)),
                                       ),
                                       Container(
                                         width: MediaQuery.of(context).size.width-150,
@@ -172,7 +172,7 @@ class _AllCommentsState extends State<AllComments> {
                                                 "Montserrat-Light",
                                                 fontSize: 10,
                                                 color:
-                                                Color(0xFF3F3C36))),
+                                                Theme.of(context).textTheme.headline2.color)),
                                       ),
                                       Container(
                                         width: MediaQuery.of(context).size.width-150,
@@ -196,7 +196,7 @@ class _AllCommentsState extends State<AllComments> {
                                                 "Montserrat-Light",
                                                 fontSize: 10,
                                                 color:
-                                                Color(0xFF3F3C36))),
+                                                Theme.of(context).textTheme.headline2.color)),
                                       ),
                                       Container(
                                         width: MediaQuery.of(context).size.width-150,
@@ -255,12 +255,12 @@ class _AllCommentsState extends State<AllComments> {
                                             4
                                             ? Icon(
                                                 Icons.sentiment_very_satisfied,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 size: 20,
                                               )
                                             : Icon(
                                                 Icons.sentiment_dissatisfied,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 size: 20,
                                               ),
                                         title: Row(
@@ -273,7 +273,7 @@ class _AllCommentsState extends State<AllComments> {
                                                 fontSize: 14,
                                                 fontFamily: "Montserrat-Light",
                                                 fontWeight: FontWeight.bold,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                               ),
                                             ),
                                             Consumer<Rating>(
@@ -298,7 +298,7 @@ class _AllCommentsState extends State<AllComments> {
                                           style: TextStyle(
                                             fontFamily: "Montserrat-Light",
                                             color:
-                                                Color(0xFF3F3C36).withOpacity(0.7),
+                                            Theme.of(context).textTheme.headline2.color.withOpacity(0.7),
                                           ),
                                         ),
                                       ))
@@ -326,7 +326,7 @@ class _AllCommentsState extends State<AllComments> {
                                             fontFamily: "Montserrat-Light",
                                             fontSize: 10,
                                             color:
-                                                Color(0xFF3F3C36).withOpacity(0.4),
+                                            Theme.of(context).textTheme.headline2.color.withOpacity(0.4),
                                           ),
                                         )
                                       ],
@@ -355,7 +355,7 @@ class _AllCommentsState extends State<AllComments> {
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Montserrat-Light",
                                 fontSize: 10,
-                                color: Color(0xFF3F3C36).withOpacity(0.4),
+                                color: Theme.of(context).textTheme.headline2.color.withOpacity(0.4),
                               ),
                             )
                           ],

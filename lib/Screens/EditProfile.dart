@@ -49,7 +49,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     return Form(
       key: _formKey,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(
           children: <Widget>[
             Positioned(
@@ -61,7 +61,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     alignment: Alignment.topLeft,
                     icon: Icon(
                       Icons.arrow_back,
-                      color: Color(0xFF3F3C36),
+                      color:Theme.of(context).textTheme.headline2.color,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -81,7 +81,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Bold",
                       fontSize: 40,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
             ),
@@ -95,7 +95,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                   style: TextStyle(
                       fontFamily: "Montserrat-Light",
                       fontSize: 40,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
             ),
@@ -112,10 +112,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: TextStyle(
                             fontFamily: "Montserrat-Light",
                             fontSize: 12,
-                            color: Color(0xFF3F3C36)),
+                            color: Colors.grey),
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
+                      ),
                       width: MediaQuery.of(context).size.width,
                       child: TextFormField(
                         initialValue: oldUserInfo[0].name,
@@ -141,14 +144,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
-                        'Change Adress',
+                        'Change Address',
                         style: TextStyle(
                             fontFamily: "Montserrat-Light",
                             fontSize: 12,
-                            color: Color(0xFF3F3C36)),
+                            color: Colors.grey),
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
+                      ),
                       width: MediaQuery.of(context).size.width,
                       child: TextFormField(
                         initialValue: oldUserInfo[0].address,
@@ -178,10 +184,13 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: TextStyle(
                             fontFamily: "Montserrat-Light",
                             fontSize: 12,
-                            color: Color(0xFF3F3C36)),
+                            color: Colors.grey),
                       ),
                     ),
                     Container(
+                      decoration: BoxDecoration(
+                          border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
+                      ),
                       width: MediaQuery.of(context).size.width,
                       child:
                       TextFormField(
@@ -213,7 +222,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         style: TextStyle(
                             fontFamily: "Montserrat-Light",
                             fontSize: 12,
-                            color: Color(0xFF3F3C36)),
+                            color: Colors.grey),
                       ),
                     ),
                     Container(
@@ -254,7 +263,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   fontFamily: "Montserrat-Light",
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF3F3C36))),
+                                  color: Theme.of(context).textTheme.headline2.color)),
                     )
                   ],
                 )),

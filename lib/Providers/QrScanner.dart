@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:loyalbee/models/DataBase.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../models/QrScan.dart';
@@ -13,11 +13,13 @@ class GetPoints with ChangeNotifier {
   }
 
   Future<void> scanForPoints(int points) async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-    json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
-    final uid = prefUserData['userId'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final uid = newUser['userId'];
+
     final timestamp = DateTime.now();
     final url =
         'https://beel-6e17a.firebaseio.com/ScannerHistory/$uid.json?auth=$token';
@@ -34,11 +36,13 @@ class GetPoints with ChangeNotifier {
   }
 
   Future<void> retrieveQrs() async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-    json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
-    final uid = prefUserData['userId'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final uid = newUser['userId'];
+
 
     try {
       final url =
@@ -62,11 +66,13 @@ class GetPoints with ChangeNotifier {
   }
 
   Future<void> updatePoints(int money , String id , int points) async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-    json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
-    final uid = prefUserData['userId'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final uid = newUser['userId'];
+
     try {
       final url =
           'https://beel-6e17a.firebaseio.com/Wallet/$uid/$id.json?auth=$token';

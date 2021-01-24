@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loyalbee/models/notifications.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -31,6 +32,7 @@ import 'Screens/Welcome.dart';
 import 'Screens/ShoppingCart.dart';
 
 import 'models/Product.dart';
+import 'models/ThemeChanger.dart';
 import 'models/User.dart';
 
 import 'widgets/BottomBar.dart';
@@ -81,94 +83,102 @@ class _MyAppState extends State<MyApp> {
   update(String token){
     print(token);
     DatabaseReference databaseReference = new FirebaseDatabase().reference();
-    databaseReference.child('fcm-token/${token}').set({"token" : token}); 
+    databaseReference.child('fcm-token/${token}').set({"token" : token});
     textValue = token;
     setState(() {
-      
+
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider.value(
-            value: Auth(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Products(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Cart(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Users(),
-          ),
-          ChangeNotifierProvider.value(
-            value: User(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Orders(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Comments(),
-          ),
-          ChangeNotifierProvider.value(
-            value: WalletManager(),
-          ),
-          ChangeNotifierProvider.value(
-            value: GetPoints(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Product(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Offers(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Vouchers(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Rating(),
-          ),
-          ChangeNotifierProvider.value(
-            value: Messages(),
-          ),
-        ],
-        child: Consumer<Auth>(
-          builder: (ctx, auth, _) => MaterialApp(
-            title: 'Bee Loyal',
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: Colors.Mycol,
-              accentColor: Colors.white,
+    return ChangeNotifierProvider(
+        create: (_) => ThemeNotifier(),
+    child:Consumer<ThemeNotifier>(
+    builder: (context , ThemeNotifier notifier , child){
+      return  MultiProvider(
+          providers: [
+            ChangeNotifierProvider.value(
+              value: Auth(),
             ),
-            routes: <String, WidgetBuilder>{
-              '/welcome': (BuildContext context) => new Welcome(),
-              ShoppingCart.routeName: (ctx) => ShoppingCart(),
-              ProfilePage.routeName: (ctx) => ProfilePage(),
-              '/signup': (BuildContext context) => SignUp(),
-              '/bottombar': (BuildContext context) => BottomBar(),
-              '/login': (BuildContext context) => Login(),
-              '/PointsToMoney': (BuildContext context) => PointsToMoney(),
-              '/WalletPage': (BuildContext context) => WalletPage(),
-              '/Licence': (BuildContext context) => Licence(),
-              '/VoucherPage': (BuildContext context) => VoucherPage(),
-              '/MessagesPage': (BuildContext context) => MessagesPage(),
-              '/EditProfilePage': (BuildContext context) => EditProfilePage(),
-              '/wishList': (BuildContext context) => WishList(),
-            },
-            home: auth.isAuth
-                ? BottomBar()
-                : FutureBuilder(
-                    future: auth.tryAutoLogin(),
-                    builder: (ctx, authResultSnapshot) =>
-                        authResultSnapshot.connectionState ==
-                                ConnectionState.waiting
-                            ? SplashScreen()
-                            : Login(),
-                  ),
-          ),
-        ));
+            ChangeNotifierProvider.value(
+              value: Products(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Cart(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Users(),
+            ),
+            ChangeNotifierProvider.value(
+              value: User(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Orders(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Comments(),
+            ),
+            ChangeNotifierProvider.value(
+              value: WalletManager(),
+            ),
+            ChangeNotifierProvider.value(
+              value: GetPoints(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Product(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Offers(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Vouchers(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Rating(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Messages(),
+            ),
+            ChangeNotifierProvider.value(
+              value: Notifications(),
+            ),
+
+          ],
+          child: Consumer<Auth>(
+            builder: (ctx, auth, _) => MaterialApp(
+              title: 'Bee Loyal',
+              debugShowCheckedModeBanner: false,
+              theme:  notifier.darkTheme
+                  ? AppTheme().myDarkTheme
+                  : AppTheme().myLightTheme,
+              routes: <String, WidgetBuilder>{
+                '/welcome': (BuildContext context) => new Welcome(),
+                ShoppingCart.routeName: (ctx) => ShoppingCart(),
+                ProfilePage.routeName: (ctx) => ProfilePage(),
+                '/signup': (BuildContext context) => SignUp(),
+                '/bottombar': (BuildContext context) => BottomBar(),
+                '/login': (BuildContext context) => Login(),
+                '/PointsToMoney': (BuildContext context) => PointsToMoney(),
+                '/WalletPage': (BuildContext context) => WalletPage(),
+                '/Licence': (BuildContext context) => Licence(),
+                '/VoucherPage': (BuildContext context) => VoucherPage(),
+                '/MessagesPage': (BuildContext context) => MessagesPage(),
+                '/EditProfilePage': (BuildContext context) => EditProfilePage(),
+                '/wishList': (BuildContext context) => WishList(),
+              },
+              home: auth.isAuth
+                  ? BottomBar()
+                  : FutureBuilder(
+                future: auth.tryAutoLogin(),
+                builder: (ctx, authResultSnapshot) =>
+                authResultSnapshot.connectionState ==
+                    ConnectionState.waiting
+                    ? SplashScreen()
+                    : Login(),
+              ),
+            ),
+          ));
+    }));
   }
 }

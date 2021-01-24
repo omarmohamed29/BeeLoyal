@@ -30,7 +30,7 @@ class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Stack(
         children: <Widget>[
           Positioned(
@@ -42,7 +42,7 @@ class _WalletPageState extends State<WalletPage> {
                   alignment: Alignment.topLeft,
                   icon: Icon(
                     Icons.arrow_back,
-                    color: Color(0xFF3F3C36),
+                    color: Theme.of(context).textTheme.headline2.color,
                   ),
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -62,7 +62,7 @@ class _WalletPageState extends State<WalletPage> {
                     fontWeight: FontWeight.bold,
                     fontFamily: "Montserrat-Bold",
                     fontSize: 40,
-                    color: Color(0xFF3F3C36)),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
           ),
@@ -76,7 +76,7 @@ class _WalletPageState extends State<WalletPage> {
                 style: TextStyle(
                     fontFamily: "Montserrat-Light",
                     fontSize: 40,
-                    color: Color(0xFF3F3C36)),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
           ),
@@ -117,7 +117,7 @@ class _WalletPageState extends State<WalletPage> {
                                     style: TextStyle(
                                         fontFamily: "Montserrat-Light",
                                         fontSize: 20,
-                                        color: Color(0xFF3F3C36)),
+                                        color: Theme.of(context).textTheme.headline2.color),
                                   ),
                                 ),
                                 Padding(
@@ -130,7 +130,7 @@ class _WalletPageState extends State<WalletPage> {
                                         children: <Widget>[
                                           Icon(
                                             Profile.cash,
-                                            color: Color(0xFF3F3C36),
+                                            color: Theme.of(context).textTheme.headline2.color,
                                             size: 20,
                                           ),
                                           Padding(
@@ -142,7 +142,7 @@ class _WalletPageState extends State<WalletPage> {
                                               style: TextStyle(
                                                   fontFamily: "Montserrat-Light",
                                                   fontSize: 20,
-                                                  color: Color(0xFF3F3C36)),
+                                                  color: Theme.of(context).textTheme.headline2.color),
                                             ),
                                           ),
                                         ],
@@ -151,7 +151,7 @@ class _WalletPageState extends State<WalletPage> {
                                         children: <Widget>[
                                           Icon(
                                             Icons.star,
-                                            color: Color(0xFF3F3C36),
+                                            color: Theme.of(context).textTheme.headline2.color,
                                             size: 20,
                                           ),
                                           Padding(
@@ -163,7 +163,7 @@ class _WalletPageState extends State<WalletPage> {
                                               style: TextStyle(
                                                   fontFamily: "Montserrat-Light",
                                                   fontSize: 20,
-                                                  color: Color(0xFF3F3C36)),
+                                                  color: Theme.of(context).textTheme.headline2.color),
                                             ),
                                           ),
                                         ],
@@ -179,7 +179,7 @@ class _WalletPageState extends State<WalletPage> {
                                     style: TextStyle(
                                         fontFamily: "Montserrat-Light",
                                         fontSize: 5,
-                                        color: Color(0xFF3F3C36)),
+                                        color: Theme.of(context).textTheme.headline2.color),
                                   ),
                                 ),
                                 Padding(
@@ -190,7 +190,7 @@ class _WalletPageState extends State<WalletPage> {
                                     style: TextStyle(
                                         fontFamily: "Montserrat-Light",
                                         fontSize: 8,
-                                        color: Color(0xFF3F3C36)),
+                                        color: Theme.of(context).textTheme.headline2.color),
                                   ),
                                 ),
                               ],
@@ -241,7 +241,7 @@ class _WalletPageState extends State<WalletPage> {
                     fontFamily: "Montserrat-Light",
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Color(0xFF3F3C36)),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
           ),
@@ -258,7 +258,7 @@ class _WalletPageState extends State<WalletPage> {
                         fontWeight: FontWeight.bold,
                         fontFamily: "Montserrat-Bold",
                         fontSize: 10,
-                        color: Color(0xFF3F3C36).withOpacity(0.4)),
+                        color: Colors.grey),
                   ),
                   trailing: Text(
                     "City",
@@ -266,7 +266,7 @@ class _WalletPageState extends State<WalletPage> {
                         fontWeight: FontWeight.bold,
                         fontFamily: "Montserrat-Bold",
                         fontSize: 10,
-                        color: Color(0xFF3F3C36).withOpacity(0.4)),
+                        color:Colors.grey),
                   ),
                 )
               ],
@@ -311,7 +311,7 @@ class _WalletPageState extends State<WalletPage> {
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Montserrat-Bold",
                                       fontSize: 10,
-                                      color: Color(0xFF3F3C36)),
+                                      color: Theme.of(context).textTheme.headline2.color),
                                 ),
                                 subtitle:Text(
                                   DateFormat('dd/MM/yyy')
@@ -320,7 +320,7 @@ class _WalletPageState extends State<WalletPage> {
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Montserrat-Bold",
                                       fontSize: 10,
-                                      color: Color(0xFF3F3C36).withOpacity(0.7)),
+                                      color: Theme.of(context).textTheme.headline2.color.withOpacity(0.7)),
                                 ),
                                 trailing: Text(
                                   item.orders[i].city,
@@ -328,7 +328,7 @@ class _WalletPageState extends State<WalletPage> {
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Montserrat-Bold",
                                       fontSize: 10,
-                                      color: Color(0xFF3F3C36)),
+                                      color: Theme.of(context).textTheme.headline2.color),
                                 ),
                               )),
                         ),

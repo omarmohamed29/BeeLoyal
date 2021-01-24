@@ -47,11 +47,12 @@ class _ShoppingCartState extends State<ShoppingCart> {
   void noEnoughMoney() {
     final snackbar = SnackBar(
       content: Text(
-          "you don't have enough points please scan QR to get points"),
+          "you don't have enough points please scan QR to get points" ,style: TextStyle(color: Theme.of(context).textTheme.headline2.color),),
       duration: Duration(seconds: 3),
       backgroundColor: Colors.black,
       action: SnackBarAction(
         label: "Got it",
+        textColor: Theme.of(context).textTheme.headline2.color,
         onPressed: () {
           Navigator.of(context).pop();
         },
@@ -69,9 +70,9 @@ class _ShoppingCartState extends State<ShoppingCart> {
     userData.city.toLowerCase() == 'cairo' || userData
         .city.toLowerCase() == 'giza' ? Delivery = 30.0 : Delivery = 60.0 ;
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       key: _scaffoldKey,
       body: Container(
-        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
@@ -85,7 +86,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                         alignment: Alignment.topLeft,
                         icon: Icon(
                           Icons.arrow_back,
-                          color: Color(0xFF3F3C36),
+                          color: Theme.of(context).textTheme.headline2.color,
                         ),
                         onPressed: () {
                           Navigator.pop(context);
@@ -104,7 +105,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Montserrat-Bold",
                           fontSize: 40,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                   ),
                 ),
@@ -118,7 +119,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Montserrat-Light",
                           fontSize: 30,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                   ),
                 ),
@@ -151,7 +152,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           style: TextStyle(
                               fontFamily: "Montserrat-Light",
                               fontSize: 20,
-                              color: Color(0xFF3F3C36)),
+                              color: Theme.of(context).textTheme.headline2.color),
                         ),
                         Text(
                           Delivery.toStringAsFixed(2) + 'EGP',
@@ -159,7 +160,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                               fontWeight: FontWeight.bold,
                               fontFamily: "Montserrat-Bold",
                               fontSize: 20,
-                              color: Color(0xFF3F3C36)),
+                              color: Theme.of(context).textTheme.headline2.color),
                         )
                       ],
                     ),
@@ -171,7 +172,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                           style: TextStyle(
                               fontFamily: "Montserrat-Light",
                               fontSize: 20,
-                              color: Color(0xFF3F3C36)),
+                              color: Theme.of(context).textTheme.headline2.color),
                         ),
                         Text(
                           cart.totalCash <= 0 ? cart.totalCash.toStringAsFixed(2) + 'EGP' : (cart.totalCash + Delivery).toStringAsFixed(2) +
@@ -180,7 +181,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                               fontWeight: FontWeight.bold,
                               fontFamily: "Montserrat-Bold",
                               fontSize: 20,
-                              color: Color(0xFF3F3C36)),
+                              color: Theme.of(context).textTheme.headline2.color),
                         )
                       ],
                     ),
@@ -194,7 +195,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                             style: TextStyle(
                                 fontFamily: "Montserrat-Light",
                                 fontSize: 20,
-                                color: Color(0xFF3F3C36)),
+                                color: Theme.of(context).textTheme.headline2.color),
                           ),
                           FutureBuilder(
                             future: Provider.of<WalletManager>(context,
@@ -205,7 +206,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                   ConnectionState.waiting) {
                                 return Center(
                                     child: SpinKitDoubleBounce(
-                                      color: Color(0xFF3F3C36),
+                                      color:Theme.of(context).textTheme.headline2.color,
                                       size: 12,
                                     ));
                               } else {
@@ -223,7 +224,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                               fontWeight: FontWeight.bold,
                                               fontFamily: "Montserrat-Bold",
                                               fontSize: 20,
-                                              color: Color(0xFF3F3C36)),
+                                              color: Theme.of(context).textTheme.headline2.color),
                                         ),);
                                 }
                                 return Text(
@@ -232,7 +233,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Montserrat-Bold",
                                       fontSize: 20,
-                                      color: Color(0xFF3F3C36)),
+                                      color: Theme.of(context).textTheme.headline2.color),
                                 );
                               }
                             },
@@ -269,7 +270,7 @@ class _ShoppingCartState extends State<ShoppingCart> {
                             padding: EdgeInsets.only(
                                 top: 9, left: 9, right: 9, bottom: 15),
                             child: RaisedButton(
-                              color: Colors.amber,
+                              color: Color(0xFFFFCB5F),
                               textColor: Colors.white,
                               child: Padding(
                                 padding: EdgeInsets.all(15),

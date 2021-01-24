@@ -18,7 +18,6 @@ class PurchaseCard extends StatefulWidget {
 
 class _PurchaseCardState extends State<PurchaseCard>
     with AutomaticKeepAliveClientMixin<PurchaseCard> {
-  var _expanded = false;
   Future _orderFuture;
 
   @override
@@ -53,10 +52,10 @@ class _PurchaseCardState extends State<PurchaseCard>
                     padding: const EdgeInsets.all(10.0),
                     child: Center(
                         child: SpinKitWave(
-                          color: Colors.amberAccent,
-                          type: SpinKitWaveType.start,
-                          size: 20,
-                        )),
+                      color: Colors.amberAccent,
+                      type: SpinKitWaveType.start,
+                      size: 20,
+                    )),
                   );
                 } else {
                   if (dataSnapshot.error != null) {
@@ -66,18 +65,17 @@ class _PurchaseCardState extends State<PurchaseCard>
                   } else {
                     return Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.only(topRight: Radius.circular(15) , topLeft: Radius.circular(15)),
+                          color: Theme.of(context).backgroundColor,
+                          borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(15),
+                              topLeft: Radius.circular(15)),
                           boxShadow: [
                             BoxShadow(
-                                blurRadius: 10,
-                                color: Colors.grey[300],
-                                spreadRadius: 5)
+                                blurRadius: 2,
+                                color: Colors.grey[300].withOpacity(0.5),
+                                spreadRadius: 2)
                           ]),
-                      height: MediaQuery
-                          .of(context)
-                          .size
-                          .height * 45 / 100,
+                      height: MediaQuery.of(context).size.height * 45 / 100,
                       child: Padding(
                         padding: const EdgeInsets.only(
                             left: 15.0, right: 15, top: 5),
@@ -93,7 +91,7 @@ class _PurchaseCardState extends State<PurchaseCard>
                                   style: TextStyle(
                                       fontFamily: "Montserrat-bold",
                                       fontSize: 20,
-                                      color: Color(0xFF3F3C36)),
+                                      color: Theme.of(context).textTheme.headline2.color),
                                 ),
                               ),
                             ),
@@ -101,7 +99,7 @@ class _PurchaseCardState extends State<PurchaseCard>
                               child: Stepper(
                                 controlsBuilder: (BuildContext context,
                                     {VoidCallback onStepContinue,
-                                      VoidCallback onStepCancel}) {
+                                    VoidCallback onStepCancel}) {
                                   return Container();
                                 },
                                 steps: [
@@ -110,19 +108,28 @@ class _PurchaseCardState extends State<PurchaseCard>
                                       "Order Placed on  " +
                                           DateFormat('dd/MM/yyy')
                                               .format(ordersData.datetime),
+                                      style: TextStyle(
+                                        color: Theme.of(context).textTheme.headline2.color
+                                      ),
                                     ),
                                     content: Text(""),
                                     isActive: true,
                                     state: StepState.complete,
                                   ),
                                   Step(
-                                    title: Text("Order is on it's way "),
+                                    title: Text("Order is on it's way ",
+                                      style: TextStyle(
+                                        color: Theme.of(context).textTheme.headline2.color
+                                    ),) ,
                                     content: Text(""),
                                     isActive: true,
                                     state: StepState.complete,
                                   ),
                                   Step(
-                                    title: Text("Order Delivered"),
+                                    title: Text("Order Delivered" ,
+                                      style: TextStyle(
+                                          color: Theme.of(context).textTheme.headline2.color
+                                      ),),
                                     content: Text(""),
                                     isActive: ordersData.status == true
                                         ? true
@@ -132,27 +139,28 @@ class _PurchaseCardState extends State<PurchaseCard>
                                         : StepState.error,
                                   )
                                 ],
-                                currentStep:
-                                ordersData.status == true ? 2 : 1,
+                                currentStep: ordersData.status == true ? 2 : 1,
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 25 , right: 25),
+                              padding:
+                                  const EdgeInsets.only(left: 25, right: 25),
                               child: MaterialButton(
                                   color: Color(0xFFFFCB5F),
                                   padding: EdgeInsets.all(5),
-                                  child: Text("Done !",
+                                  child: Text(
+                                    "Done !",
                                     style: TextStyle(
-                                      fontSize: 10,
-                                      color:Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Montserrat-bold"),),
-                                  shape:RoundedRectangleBorder(
+                                        fontSize: 15,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Montserrat-Light"),
+                                  ),
+                                  shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(5)),
                                   onPressed: () async {
                                     Navigator.pop(context);
-                                  }
-                              ),
+                                  }),
                             )
                           ],
                         ),
@@ -168,14 +176,12 @@ class _PurchaseCardState extends State<PurchaseCard>
   @override
   // ignore: must_call_super
   Widget build(BuildContext context) {
-    List orders = Provider
-        .of<Orders>(context)
-        .orders;
+    List orders = Provider.of<Orders>(context).orders;
     widget.status == false
         ? orders = orders.where((x) => x.status == false).toList()
         : widget.status == true
-        ? orders = orders.where((x) => x.status == true).toList()
-        : orders = orders;
+            ? orders = orders.where((x) => x.status == true).toList()
+            : orders = orders;
     return RefreshIndicator(
       onRefresh: refresh,
       color: Color(0xFFFFCB5F),
@@ -187,10 +193,10 @@ class _PurchaseCardState extends State<PurchaseCard>
               padding: const EdgeInsets.all(10.0),
               child: Center(
                   child: SpinKitWave(
-                    color: Colors.amberAccent,
-                    type: SpinKitWaveType.start,
-                    size: 20,
-                  )),
+                color: Colors.amberAccent,
+                type: SpinKitWaveType.start,
+                size: 20,
+              )),
             );
           } else {
             if (dataSnapshot.error != null) {
@@ -200,93 +206,99 @@ class _PurchaseCardState extends State<PurchaseCard>
             } else {
               return orders.length != 0
                   ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: orders.length,
-                  itemBuilder: (ctx, i) =>
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Color(0xFF3F3C36), width: 0.5),
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        margin: EdgeInsets.all(10),
-                        child: ListTile(
-                          onLongPress: () {
-                            _onButtonPressed(orders[i].id);
-                          },
-                          onTap: () =>
-                              Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          OrderDetails(orders[i].id))),
-                          dense: true,
-                          selected: true,
-                          leading: orders[i].status == false
-                              ? Icon(Icons.clear)
-                              : Icon(Icons.check),
-                          title: Text(orders[i].amount.toString() + ' EGP',
+                      padding: const EdgeInsets.all(8.0),
+                      child: ListView.builder(
+                        scrollDirection: Axis.vertical,
+                        shrinkWrap: true,
+                        itemCount: orders.length,
+                        itemBuilder: (ctx, i) => Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                                color:
+                                    Theme.of(context).textTheme.headline2.color,
+                                width: 0.5),
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          margin: EdgeInsets.all(10),
+                          child: ListTile(
+                            onLongPress: () {
+                              _onButtonPressed(orders[i].id);
+                            },
+                            onTap: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        OrderDetails(orders[i].id))),
+                            dense: true,
+                            selected: true,
+                            leading: orders[i].status == false
+                                ? Icon(
+                                    Icons.clear,
+                                    color: Colors.redAccent,
+                                  )
+                                : Icon(Icons.check, color: Color(0xFFFFCB5F)),
+                            title: Text(orders[i].amount.toString() + ' EGP',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "Montserrat-bold",
+                                    fontSize: 14,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color)),
+                            trailing: Text(
+                              DateFormat('dd MM yyy hh:mm')
+                                  .format(orders[i].datetime),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontFamily: "Montserrat-bold",
-                                  fontSize: 14,
-                                  color: Color(0xFF3F3C36))),
-                          trailing: Text(
-                            DateFormat('dd MM yyy hh:mm')
-                                .format(orders[i].datetime),
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Montserrat-Light",
-                                fontSize: 10,
-                                color: Color(0xFF3F3C36)),
-                          ),
-                          subtitle: Text(
-                            orders[i].phoneNumber,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Montserrat-Light",
-                                fontSize: 10,
-                                color: Color(0xFF3F3C36)),
+                                  fontFamily: "Montserrat-Light",
+                                  fontSize: 10,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .color),
+                            ),
+                            subtitle: Text(
+                              orders[i].phoneNumber,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Montserrat-Light",
+                                  fontSize: 10,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .color),
+                            ),
                           ),
                         ),
                       ),
-                ),
-              )
+                    )
                   : Padding(
-                padding: const EdgeInsets.only(top: 100.0),
-                child: Center(
-                  child: Column(
-                    children: <Widget>[
-                      Opacity(
-                        opacity: 0.7,
-                        child: Image.asset(
-                          "assets/images/empty-cart.png",
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width - 300,
-                          height:
-                          MediaQuery
-                              .of(context)
-                              .size
-                              .height - 700,
+                      padding: const EdgeInsets.only(top: 100.0),
+                      child: Center(
+                        child: Column(
+                          children: <Widget>[
+                            Opacity(
+                              opacity: 0.7,
+                              child: Image.asset(
+                                "assets/images/empty-cart.png",
+                                width: MediaQuery.of(context).size.width - 300,
+                                height:
+                                    MediaQuery.of(context).size.height - 700,
+                              ),
+                            ),
+                            Text(
+                              "you haven't purchased anything yet ! ",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Montserrat-Light",
+                                fontSize: 12,
+                                color: Theme.of(context).textTheme.headline2.color,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      Text(
-                        "you haven't purchased anything yet ! ",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontFamily: "Montserrat-Light",
-                          fontSize: 12,
-                          color: Color(0xFF3F3C36),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              );
+                    );
             }
           }
           return Padding(
@@ -297,7 +309,7 @@ class _PurchaseCardState extends State<PurchaseCard>
                   "You have no orders try to buy something from our store",
                   style: TextStyle(
                       fontSize: 18,
-                      color: Colors.black54,
+                      color: Theme.of(context).textTheme.headline2.color,
                       fontFamily: "Montserrat-Light"),
                 ),
               ),

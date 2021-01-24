@@ -45,9 +45,9 @@ class _AllVouchersState extends State<AllVouchers> {
             fontFamily: "Montserrat-Light",
             fontWeight: FontWeight.bold,
             fontSize: 20,
-            color: Color(0xFF3F3C36)),
+            color: Theme.of(context).textTheme.headline2.color),
       ),
-          myVoucher.vouchers.length != 0 && myVoucher.vouchers.length != null ?
+          myVoucher.vouchers.isNotEmpty != null ?
       Padding(
         padding: const EdgeInsets.only(top:8.0),
         child: Row(
@@ -98,12 +98,12 @@ class _AllVouchersState extends State<AllVouchers> {
                                     fontFamily: "Montserrat-bold",
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
-                                    color: Color(0xFF3F3C36))),
+                                    color: Theme.of(context).textTheme.headline2.color)),
                               Text( DateFormat('dd/MM/yyy').format(myVoucher.vouchers[i].expiryDate),
                                   style: TextStyle(
                                       fontFamily: "Montserrat-Light",
                                       fontSize: 13,
-                                      color: Color(0xFF3F3C36))),
+                                      color: Theme.of(context).textTheme.headline2.color)),
                           ],),
                         )
                   ) : Padding(
@@ -132,7 +132,7 @@ class _AllVouchersState extends State<AllVouchers> {
                             fontWeight: FontWeight.bold,
                             fontFamily: "Montserrat-Light",
                             fontSize: 12,
-                            color: Color(0xFF3F3C36),
+                            color: Theme.of(context).textTheme.headline2.color,
                           ),
                         )
                       ],
@@ -168,7 +168,7 @@ class _AllVouchersState extends State<AllVouchers> {
                             fontWeight: FontWeight.bold,
                             fontFamily: "Montserrat-Light",
                             fontSize: 12,
-                            color: Color(0xFF3F3C36),
+                            color:Theme.of(context).textTheme.headline2.color,
                           ),
                         )
                       ],

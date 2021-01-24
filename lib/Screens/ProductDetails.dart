@@ -44,11 +44,12 @@ class _ProductDetailsState extends State<ProductDetails> {
     final snackbar = SnackBar(
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      content: Text("Item Added to card"),
+      content: Text("Item Added to card" , style: TextStyle(color: Theme.of(context).textTheme.headline2.color),),
       duration: Duration(seconds: 3),
       backgroundColor: Colors.black.withOpacity(0.9),
       action: SnackBarAction(
         label: "undo",
+        textColor: Theme.of(context).textTheme.headline2.color,
         onPressed: () {
           cart.removeSingleItem(loadedId);
         },
@@ -68,7 +69,7 @@ class _ProductDetailsState extends State<ProductDetails> {
 
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -86,7 +87,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             delegate: SliverChildListDelegate(
               [
                 Container(
-                  color: Colors.white,
+                  color: Theme.of(context).backgroundColor,
                   height: 50,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -104,7 +105,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       fontSize: 22,
                                       fontFamily: "Montserrat-Light",
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xFF3F3C36)),
+                                      color: Theme.of(context).textTheme.headline2.color),
                                 ),
                               ),
                             ),
@@ -175,8 +176,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                           fontSize: 15,
                                                           fontFamily:
                                                           "Montserrat-Light",
-                                                          color: Color(
-                                                              0xFF3F3C36)),
+                                                          color: Theme.of(context).textTheme.headline2.color),
                                                     ),
                                                   ),
                                                   Padding(
@@ -195,8 +195,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                           fontSize: 22,
                                                           fontFamily:
                                                           "Montserrat-Light",
-                                                          color: Color(
-                                                              0xFF3F3C36)),
+                                                          color: Theme.of(context).textTheme.headline2.color),
                                                     ),
                                                   ),
                                                 ],
@@ -212,8 +211,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       fontSize: 22,
                                                       fontFamily:
                                                       "Montserrat-Light",
-                                                      color: Color(
-                                                          0xFF3F3C36)),
+                                                      color: Theme.of(context).textTheme.headline2.color),
                                                 ),
                                               ),
                                             );
@@ -226,7 +224,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                   fontSize: 22,
                                                   fontFamily:
                                                   "Montserrat-Light",
-                                                  color: Color(0xFF3F3C36)),
+                                                  color: Theme.of(context).textTheme.headline2.color),
                                             ),
                                           );
                                         }
@@ -289,8 +287,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                     fontFamily:
                                                     "Montserrat-Light",
                                                     fontSize: 10,
-                                                    color: Color(
-                                                        0xFF3F3C36))),
+                                                    color: Theme.of(context).textTheme.headline2.color)),
                                           )
                                         ],
                                       )
@@ -312,7 +309,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontFamily: "Montserrat-Light",
-                                      color: Color(0xFF3F3C36)),
+                                      color: Theme.of(context).textTheme.headline2.color),
                                 ),
                               ],
                             ),
@@ -338,7 +335,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Text(
                                     loadedProducts.color,
                                     style: TextStyle(
-                                      color: Color(0xFF3F3C36),
+                                      color:Theme.of(context).textTheme.headline2.color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -360,7 +357,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Text(
                                     loadedProducts.brand,
                                     style: TextStyle(
-                                      color: Color(0xFF3F3C36),
+                                      color: Theme.of(context).textTheme.headline2.color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -382,7 +379,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Text(
                                     loadedProducts.category,
                                     style: TextStyle(
-                                      color: Color(0xFF3F3C36),
+                                      color: Theme.of(context).textTheme.headline2.color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -410,7 +407,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         :
                                     Text(loadedProducts.inStock.toString(),
                                     style: TextStyle(
-                                      color: Color(0xFF3F3C36),
+                                      color:Theme.of(context).textTheme.headline2.color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -436,7 +433,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         fontSize: 15,
                                         fontFamily: "Montserrat-Light",
                                         fontWeight: FontWeight.bold,
-                                        color: Color(0xFF3F3C36)),
+                                        color: Theme.of(context).textTheme.headline2.color),
                                   ),
                                   MakeComment(productId),
                                 ],
@@ -468,7 +465,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     fontSize: 15,
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
-                                    color: Color(0xFF3F3C36)),
+                                    color: Theme.of(context).textTheme.headline2.color),
                                 textAlign: TextAlign.left,
                               ),
                               Container(
@@ -596,21 +593,13 @@ class _ProductDetailsState extends State<ProductDetails> {
               onPressed:
               loadedProducts.inStock > 0 ?
                   () {
+
                 Scaffold.of(context).showBottomSheet(
                       (context) =>
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(15)),
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 10,
-                                    color: Colors.grey[300],
-                                    spreadRadius: 5)
-                              ]),
+
                           height: MediaQuery
                               .of(context)
                               .size
@@ -630,7 +619,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   style: TextStyle(
                                       fontFamily: "Montserrat-bold",
                                       fontSize: 20,
-                                      color: Color(0xFF3F3C36)),
+                                      color: Theme.of(context).textTheme.headline2.color),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(

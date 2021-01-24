@@ -144,29 +144,35 @@ class _MakeCommentState extends State<MakeComment> {
                                   SizedBox(
                                     height: 20,
                                   ),
-                                  TextFormField(
-                                    decoration: InputDecoration(
-                                        hintText: "Comment",
-                                        hintStyle: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 12.0,
-                                          fontFamily: "Montserrat-Light",
-                                        )),
-                                    keyboardType: TextInputType.text,
-                                    validator: (value) {
-                                      if (value.isEmpty) {
-                                        return 'Please enter a comment  ';
-                                      }
-                                      return null;
-                                    },
-                                    onSaved: (input) {
-                                      _commentData['body'] = input;
-                                      _commentData['name'] =
-                                          users.users[0].name;
-                                      _commentData['email'] =
-                                          users.users[0].email;
-                                      _commentData['prodid'] = widget.productId;
-                                    },
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
+                                    ),
+                                    child: TextFormField(
+                                      decoration: InputDecoration(
+                                          hintText: "Comment",
+                                          hintStyle: TextStyle(
+                                            color: Colors.grey,
+                                            fontSize: 12.0,
+                                            fontFamily: "Montserrat-Light",
+                                          )),
+                                      keyboardType: TextInputType.text,
+
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Please enter a comment  ';
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (input) {
+                                        _commentData['body'] = input;
+                                        _commentData['name'] =
+                                            users.users[0].name;
+                                        _commentData['email'] =
+                                            users.users[0].email;
+                                        _commentData['prodid'] = widget.productId;
+                                      },
+                                    ),
                                   ),
                                   Center(
                                     child: Container(

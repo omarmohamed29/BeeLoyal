@@ -47,9 +47,9 @@ class _AllProductsState extends State<AllProducts> {
     return DefaultTabController(
       length: 6,
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).backgroundColor,
           elevation: 0,
           centerTitle: true,
           title: Text(
@@ -58,14 +58,14 @@ class _AllProductsState extends State<AllProducts> {
                 fontWeight: FontWeight.bold,
                 fontFamily: "Montserrat-Bold",
                 fontSize: 30,
-                color: Color(0xFF3F3C36)),
+                color:Theme.of(context).textTheme.headline2.color,),
           ),
           actions: <Widget>[
             Builder(
               builder: (context) => IconButton(
-                icon: Icon(Icons.search),
+                icon: Icon(Icons.search , color:Theme.of(context).iconTheme.color),
                 onPressed: () async {
-                  final Products result = await showSearch(
+                 await showSearch(
                       context: context, delegate: ProductSearch());
                 },
               ),
@@ -82,7 +82,7 @@ class _AllProductsState extends State<AllProducts> {
               },
               icon: Icon(
                 Icons.more_vert,
-                color: Colors.black54,
+                color:Theme.of(context).iconTheme.color,
                 size: 25,
               ),
               itemBuilder: (_) => [
@@ -109,7 +109,7 @@ class _AllProductsState extends State<AllProducts> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
               Tab(
@@ -119,7 +119,7 @@ class _AllProductsState extends State<AllProducts> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
               Tab(
@@ -129,7 +129,7 @@ class _AllProductsState extends State<AllProducts> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
               Tab(
@@ -139,7 +139,7 @@ class _AllProductsState extends State<AllProducts> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
               Tab(
@@ -149,7 +149,7 @@ class _AllProductsState extends State<AllProducts> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
               Tab(
@@ -159,7 +159,7 @@ class _AllProductsState extends State<AllProducts> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 15,
-                      color: Color(0xFF3F3C36)),
+                      color: Theme.of(context).textTheme.headline2.color),
                 ),
               ),
             ],
@@ -343,6 +343,11 @@ class _AllProductsState extends State<AllProducts> {
 }
 
 class ProductSearch extends SearchDelegate<Products> {
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return Theme.of(context);
+  }
+
   @override
   List<Widget> buildActions(BuildContext context) {
     return [

@@ -54,14 +54,14 @@ class _OfferCardState extends State<OfferCard> {
                           children: <Widget>[
                             Icon(
                               Profile.offers,
-                              color: Color(0xFF3F3C36),
+                              color: Color(0xFFFFCB5F),
                               size: 25,
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 5),
                               child: Text(offer.offers[0].title,
                                   style: TextStyle(
-                                    color: Color(0xFF3F3C36),
+                                    color:  Color(0xFFFFCB5F),
                                     fontFamily: "Montserrat-Light",
                                     fontSize: 10,
                                   )),
@@ -69,7 +69,7 @@ class _OfferCardState extends State<OfferCard> {
                             Text(
                               offer.offers[0].description,
                               style: TextStyle(
-                                color: Color(0xFF3F3C36),
+                                color: Theme.of(context).textTheme.headline2.color,
                                 fontFamily: "Montserrat-Light",
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12,
@@ -82,7 +82,7 @@ class _OfferCardState extends State<OfferCard> {
                                       DateFormat('dd/MM/yyy')
                                           .format(offer.offers[0].dueDate),
                                   style: TextStyle(
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).textTheme.headline2.color,
                                     fontFamily: "Montserrat-Light",
                                     fontSize: 10,
                                   )),

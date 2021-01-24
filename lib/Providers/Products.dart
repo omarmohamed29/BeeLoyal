@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:loyalbee/models/DataBase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/Sizes.dart';
 import 'package:flutter/material.dart';
@@ -9,17 +10,18 @@ class Products with ChangeNotifier {
   List<Product> _items = [];
 
   Future<void> fetchProducts() async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-        json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final userId = newUser['userId'];
+
     final url = 'https://beel-6e17a.firebaseio.com/Products.json?auth=$token';
     try {
-      final uid = prefUserData['userId'];
+      final uid = userId;
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
-      final cat = "wallets";
-      final catt = "watches";
       final favUrl =
           'https://beel-6e17a.firebaseio.com/userFavourites/$uid.json?auth=$token';
       final favouriteResponse = await http.get(favUrl);
@@ -119,7 +121,7 @@ class Products with ChangeNotifier {
     final url =
         'https://beel-6e17a.firebaseio.com/userFavourites/$uid/$id.json?auth=$token';
     try {
-      final response = await http.put(url, body: jsonEncode(status));
+      await http.put(url, body: jsonEncode(status));
     } catch (error) {
       notifyListeners();
     }

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:loyalbee/models/Sizes.dart';
 import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
+
+import 'DataBase.dart';
 
 class Product with ChangeNotifier {
   final String id;
@@ -36,11 +37,13 @@ class Product with ChangeNotifier {
   });
 
   Future<void> toggleFavouriteStatus() async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-        json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
-    final uid = prefUserData['userId'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final uid = newUser['userId'];
+
     final oldStatus = isFavourite;
     isFavourite = !isFavourite;
     notifyListeners();

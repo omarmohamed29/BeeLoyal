@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Container(
         child: FutureBuilder(
             future: _usersFuture,
@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   );
                 } else {}
               }
-              return null;
+              return Container();
             }),
       ),
     );

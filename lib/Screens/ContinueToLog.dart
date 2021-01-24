@@ -22,7 +22,7 @@ class _ContinueToLogState extends State<ContinueToLog> {
   };
 
   var _currentSelected = 'Cairo';
-  var _Cities = ['Cairo' , 'Giza' , 'Other'];
+  var _cities = ['Cairo' , 'Giza' , 'Other'];
 
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -77,7 +77,6 @@ class _ContinueToLogState extends State<ContinueToLog> {
 
   @override
   Widget build(BuildContext context) {
-    final email = widget.email;
     ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     ScreenUtil.instance =
         ScreenUtil(width: 750, height: 1300, allowFontScaling: true);
@@ -223,7 +222,7 @@ class _ContinueToLogState extends State<ContinueToLog> {
                                      ScreenUtil.getInstance().setSp(26))),
                             DropdownButton(
                               isExpanded: true,
-                              items: _Cities.map((String dropDownStringItem){
+                              items: _cities.map((String dropDownStringItem){
                                 return DropdownMenuItem<String>(
                                   value: dropDownStringItem,
                                   child: Text(dropDownStringItem),

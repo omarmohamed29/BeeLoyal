@@ -11,7 +11,7 @@ class Licence extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFF2F2F2),
+      backgroundColor: Theme.of(context).backgroundColor,
       body: ListView(
         children: <Widget>[
           Padding(
@@ -23,7 +23,7 @@ class Licence extends StatelessWidget {
                 style: TextStyle(
                     fontFamily: "Montserrat-Bold",
                     fontSize: 30,
-                    color: Colors.black),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
           ),
@@ -38,7 +38,7 @@ class Licence extends StatelessWidget {
                         'Copyright 2020 The Bee Loyal Authors. All rights reserved.',
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black54.withOpacity(0.6),
+                      color: Theme.of(context).textTheme.headline2.color.withOpacity(0.6),
                       fontFamily: "Montserrat-light",
                     ),
                   ),
@@ -47,7 +47,7 @@ class Licence extends StatelessWidget {
                         'Welcome to Bee  loyal app you are about to get a Signup Gift of 100 POINTS use them wisely',
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black54.withOpacity(0.6),
+                      color: Theme.of(context).textTheme.headline2.color.withOpacity(0.6),
                       fontFamily: "Montserrat-light",
                     ),
                   ),

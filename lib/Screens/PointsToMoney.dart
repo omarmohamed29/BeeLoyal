@@ -68,7 +68,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
   Widget build(BuildContext context) {
     userId = ModalRoute.of(context).settings.arguments as String;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       key: _scaffoldKey,
       body: Stack(
         children: <Widget>[
@@ -81,7 +81,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                   alignment: Alignment.topLeft,
                   icon: Icon(
                     Icons.arrow_back,
-                    color: Color(0xFF3F3C36),
+                    color: Theme.of(context).textTheme.headline2.color,
                   ),
                   onPressed: () {
                     Navigator.pop(context);
@@ -101,7 +101,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                     fontWeight: FontWeight.bold,
                     fontFamily: "Montserrat-Bold",
                     fontSize: 40,
-                    color: Color(0xFF3F3C36)),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
           ),
@@ -115,7 +115,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                 style: TextStyle(
                     fontFamily: "Montserrat-Light",
                     fontSize: 40,
-                    color: Color(0xFF3F3C36)),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
           ),
@@ -128,7 +128,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
               style: TextStyle(
                   fontFamily: "Montserrat-Light",
                   fontSize: 8,
-                  color: Color(0xFF3F3C36)),
+                  color: Theme.of(context).textTheme.headline2.color),
               textAlign: TextAlign.center,
             ),
           ),
@@ -147,7 +147,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                           ConnectionState.waiting) {
                         return Center(
                             child: SpinKitWave(
-                          color: Color(0xFF3F3C36),
+                          color: Theme.of(context).textTheme.headline2.color,
                           type: SpinKitWaveType.start,
                           size: 12,
                         ));
@@ -182,7 +182,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                               style: TextStyle(
                                                   fontFamily: "Montserrat-Bold",
                                                   fontSize: 20,
-                                                  color: Color(0xFF3F3C36)),
+                                                  color: Theme.of(context).textTheme.headline2.color),
                                             ),
                                             description: Text(
                                                 "You're about to Convert 100 of your POINTS into 100 EGP , are you sure ! ",
@@ -190,7 +190,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                                     fontFamily:
                                                         "Montserrat-Light",
                                                     fontSize: 15,
-                                                    color: Color(0xFF3F3C36)),
+                                                    color:Theme.of(context).textTheme.headline2.color),
                                                 textAlign: TextAlign.center),
                                             entryAnimation:
                                                 EntryAnimation.BOTTOM,
@@ -214,12 +214,12 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                             "Bronze level",
                                             style: TextStyle(
                                                 fontSize: 22,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 fontFamily: "Montserrat-Light"),
                                           ),
                                           Icon(
                                             Icons.star_border,
-                                            color:  Color(0xFFFFCB5F),
+                                            color:   Color(0xFFFFCB5F),
                                             size: 30,
                                           ),
                                         ],
@@ -242,15 +242,14 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                               fit: BoxFit.cover,
                                             ),
                                             buttonOkColor: Color(0xFFFFCB5F),
-                                            buttonCancelColor:
-                                                Color(0xFF3F3C36),
+                                            buttonCancelColor: Color(0xFF3F3C36),
                                             title: Text(
                                               "Silver level",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontFamily: "Montserrat-Bold",
                                                   fontSize: 20,
-                                                  color: Color(0xFF3F3C36)),
+                                                  color:Theme.of(context).textTheme.headline2.color),
                                             ),
                                             description: Text(
                                                 "You're about to Convert 300 of your POINTS into 300 EGP , are you sure ! ",
@@ -258,7 +257,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                                     fontFamily:
                                                         "Montserrat-Light",
                                                     fontSize: 15,
-                                                    color: Color(0xFF3F3C36)),
+                                                    color: Theme.of(context).textTheme.headline2.color),
                                                 textAlign: TextAlign.center),
                                             entryAnimation:
                                                 EntryAnimation.BOTTOM,
@@ -281,7 +280,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                             "Silver level",
                                             style: TextStyle(
                                                 fontSize: 22,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 fontFamily: "Montserrat-Light"),
                                           ),
                                           Icon(
@@ -310,14 +309,14 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                             ),
                                             buttonOkColor: Color(0xFFFFCB5F),
                                             buttonCancelColor:
-                                                Color(0xFF3F3C36),
+                                            Color(0xFF3F3C36),
                                             title: Text(
                                               "Gold level",
                                               textAlign: TextAlign.center,
                                               style: TextStyle(
                                                   fontFamily: "Montserrat-Bold",
                                                   fontSize: 20,
-                                                  color: Color(0xFF3F3C36)),
+                                                  color: Theme.of(context).textTheme.headline2.color),
                                             ),
                                             description: Text(
                                                 "You're about to Convert 500 of your POINTS into 500 EGP , are you sure ! ",
@@ -325,7 +324,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                                     fontFamily:
                                                         "Montserrat-Light",
                                                     fontSize: 15,
-                                                    color: Color(0xFF3F3C36)),
+                                                    color: Theme.of(context).textTheme.headline2.color),
                                                 textAlign: TextAlign.center),
                                             entryAnimation:
                                                 EntryAnimation.BOTTOM,
@@ -348,7 +347,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                             "Gold level",
                                             style: TextStyle(
                                                 fontSize: 22,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 fontFamily: "Montserrat-Light"),
                                           ),
                                           Icon(
@@ -366,6 +365,9 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 20),
                                   child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
+                                    ),
                                     width:100.0,
                                     child: TextField(
                                       textAlign: TextAlign.center,
@@ -405,7 +407,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                               ),
                                               buttonOkColor: Color(0xFFFFCB5F),
                                               buttonCancelColor:
-                                                  Color(0xFF3F3C36),
+                                              Color(0xFF3F3C36),
                                               title: Text(
                                                 "Loyal level",
                                                 textAlign: TextAlign.center,
@@ -413,7 +415,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                                     fontFamily:
                                                         "Montserrat-Bold",
                                                     fontSize: 20,
-                                                    color: Color(0xFF3F3C36)),
+                                                    color: Theme.of(context).textTheme.headline2.color),
                                               ),
                                               description: Text(
                                                   "You're about to Convert $amount of your POINTS into $amount EGP , are you sure ! ",
@@ -421,7 +423,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                                       fontFamily:
                                                           "Montserrat-Light",
                                                       fontSize: 15,
-                                                      color: Color(0xFF3F3C36)),
+                                                      color: Theme.of(context).textTheme.headline2.color),
                                                   textAlign: TextAlign.center),
                                               entryAnimation:
                                                   EntryAnimation.BOTTOM,
@@ -444,7 +446,7 @@ class _PointsToMoneyState extends State<PointsToMoney> {
                                               "Loyal level",
                                               style: TextStyle(
                                                   fontSize: 22,
-                                                  color: Color(0xFF3F3C36),
+                                                  color: Theme.of(context).textTheme.headline2.color,
                                                   fontFamily:
                                                       "Montserrat-Light"),
                                             ),

@@ -73,8 +73,8 @@ class _HomePageState extends State<HomePage>
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
                     color: Color(0xFFFFCB5F),
-                    height: 4,
-                    width: 150,
+                    height: 3,
+                    width: 110,
                   ),
                 ),
                 Padding(
@@ -101,7 +101,7 @@ class _HomePageState extends State<HomePage>
                   child: Text(
                     "Scan QR code",
                     style: TextStyle(
-                      color: Color(0xFF3F3C36),
+                      color: Theme.of(context).textTheme.headline2.color,
                       fontFamily: "Montserrat-Light",
                     ),
                   ),
@@ -116,14 +116,14 @@ class _HomePageState extends State<HomePage>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         title: Image.asset(
           "assets/images/beel.png",
           width: 100,
           height: 60,
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         elevation: 0.0,
         actions: <Widget>[
           Consumer<Cart>(
@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage>
               child: Padding(
                 padding: const EdgeInsets.only(right: 2.0),
                 child: IconButton(
-                  icon: Icon(NavBarIcon.shoppingcart),
+                  icon: Icon(NavBarIcon.shoppingcart , color: Theme.of(context).iconTheme.color,),
                   color: Colors.black54,
                   iconSize: 20,
                   onPressed: () {
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage>
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-          icon: Icon(Icons.add),
+          icon: Icon(Icons.add , color:  Theme.of(context).textTheme.headline2.color,),
           onPressed: () {
             _onButtonPressed();
           },
@@ -156,6 +156,7 @@ class _HomePageState extends State<HomePage>
             "More",
             style: TextStyle(
               fontFamily: "Montserrat-Bold",
+              color: Theme.of(context).textTheme.headline2.color
             ),
           )),
       body: RefreshIndicator(
@@ -187,7 +188,7 @@ class _HomePageState extends State<HomePage>
                       //The Top Section
                       Container(
                         decoration: BoxDecoration(
-                            color: Colors.white,
+                            color:Theme.of(context).backgroundColor,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20.0),
                                 bottomRight: Radius.circular(20.0))),
@@ -204,7 +205,7 @@ class _HomePageState extends State<HomePage>
                                         child: Text(
                                       "Hello there , ",
                                       style: TextStyle(
-                                        color: Color(0xFF3F3C36),
+                                        color: Theme.of(context).textTheme.headline2.color,
                                         fontFamily: "Montserrat-Light",
                                         fontWeight: FontWeight.bold,
                                         fontSize: 18,
@@ -214,7 +215,7 @@ class _HomePageState extends State<HomePage>
                                         child: Text(
                                       "Explore our latest products and get fashioned ! ",
                                       style: TextStyle(
-                                        color: Color(0xFF3F3C36),
+                                        color: Theme.of(context).textTheme.headline2.color,
                                         fontFamily: "Montserrat-Light",
                                         fontWeight: FontWeight.bold,
                                         fontSize: 12,
@@ -229,7 +230,7 @@ class _HomePageState extends State<HomePage>
                               child: Container(
                                 width: 350,
                                 height: 1,
-                                color: Colors.black54.withOpacity(0.3),
+                                color: Theme.of(context).textTheme.headline2.color,
                               ),
                             ),
                             Column(
@@ -238,13 +239,13 @@ class _HomePageState extends State<HomePage>
                                   padding: const EdgeInsets.all(8.0),
                                   child: Icon(
                                     Profile.wallet,
-                                    color: Color(0xFF3F3C36),
+                                    color: Theme.of(context).textTheme.headline2.color,
                                     size: 30,
                                   ),
                                 ),
                                 Text("In your wallet you have",
                                     style: TextStyle(
-                                      color: Color(0xFF3F3C36),
+                                      color: Theme.of(context).textTheme.headline2.color,
                                       fontFamily: "Montserrat-Light",
                                       fontSize: 10,
                                     )),
@@ -263,7 +264,7 @@ class _HomePageState extends State<HomePage>
                                                   right: 8),
                                               child: Icon(
                                                 Profile.cash,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 size: 25,
                                               ),
                                             ),
@@ -272,7 +273,7 @@ class _HomePageState extends State<HomePage>
                                                       .toString() +
                                                   " EGP",
                                               style: TextStyle(
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 fontFamily: "Montserrat-Light",
                                                 fontSize: 22,
                                               ),
@@ -286,7 +287,7 @@ class _HomePageState extends State<HomePage>
                                                   right: 8),
                                               child: Icon(
                                                 Icons.star,
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 size: 25,
                                               ),
                                             ),
@@ -295,7 +296,7 @@ class _HomePageState extends State<HomePage>
                                                       .toString() +
                                                   " Points",
                                               style: TextStyle(
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 fontFamily: "Montserrat-Light",
                                                 fontSize: 22,
                                               ),
@@ -336,7 +337,7 @@ class _HomePageState extends State<HomePage>
                                 child: Text(
                                   "Featured Products",
                                   style: TextStyle(
-                                    color: Color(0xFF251F13),
+                                    color: Theme.of(context).textTheme.headline2.color,
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
@@ -359,7 +360,7 @@ class _HomePageState extends State<HomePage>
                             borderRadius: BorderRadius.circular(10),
                             border:
                                 Border.all(color: Color(0xFFFFCB5F), width: 1),
-                            color: Colors.white,
+                            color: Theme.of(context).backgroundColor,
                           ),
                           height: 570,
                           child: Column(
@@ -375,7 +376,7 @@ class _HomePageState extends State<HomePage>
                                       child: Text(
                                         "Our Products",
                                         style: TextStyle(
-                                          color: Color(0xFF3F3C36),
+                                          color: Theme.of(context).textTheme.headline2.color,
                                           fontFamily: "Montserrat-Light",
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,

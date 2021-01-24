@@ -58,16 +58,11 @@ class _MessagesPageState extends State<MessagesPage> {
                   } else {
                     return Container(
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Theme.of(context).backgroundColor,
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(15),
                               topLeft: Radius.circular(15)),
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 10,
-                                color: Colors.grey[300],
-                                spreadRadius: 5)
-                          ]),
+                        ),
                       height: MediaQuery.of(context).size.height * 45 / 100,
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -85,7 +80,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                   style: TextStyle(
                                       fontFamily: "Montserrat-bold",
                                       fontSize: 20,
-                                      color: Color(0xFF3F3C36)),
+                                      color:Theme.of(context).textTheme.headline2.color),
                                 ),
                               ),
                             ),
@@ -93,21 +88,21 @@ class _MessagesPageState extends State<MessagesPage> {
                               padding: const EdgeInsets.only(
                                 top: 10 , bottom: 20),
                               child: Column(
-
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text(
                                     "Title : " + message.title,
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        color: Color(0xFF3F3C36),
+                                        fontSize: 20,
+                                        color: Theme.of(context).textTheme.headline2.color,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "Montserrat-bold"),
                                   ),
                                   Text(
                                     "Content : " + message.content,
                                     style: TextStyle(
-                                        fontSize: 10,
-                                        color: Color(0xFF3F3C36),
+                                        fontSize:13,
+                                        color: Theme.of(context).textTheme.headline2.color,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "Montserrat-light"),
                                   )
@@ -123,7 +118,7 @@ class _MessagesPageState extends State<MessagesPage> {
                                   child: Text(
                                     "Done !",
                                     style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 15,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: "Montserrat-bold"),
@@ -149,9 +144,9 @@ class _MessagesPageState extends State<MessagesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         elevation: 0.0,
         title: Row(
           children: <Widget>[
@@ -161,14 +156,14 @@ class _MessagesPageState extends State<MessagesPage> {
                   fontWeight: FontWeight.bold,
                   fontFamily: "Montserrat-Bold",
                   fontSize: 20,
-                  color: Color(0xFF3F3C36)),
+                  color: Theme.of(context).textTheme.headline2.color),
             ),
             Text(
               'Messages',
               style: TextStyle(
                   fontFamily: "Montserrat-Light",
                   fontSize: 20,
-                  color: Color(0xFF3F3C36)),
+                  color: Theme.of(context).textTheme.headline2.color),
             ),
           ],
         ),
@@ -193,37 +188,40 @@ class _MessagesPageState extends State<MessagesPage> {
                   child: Text('An error occured'),
                 );
               } else {
-                return Consumer<Messages>(
-                  builder: (_, item, ch) => ListView.builder(
-                    itemCount: item.messages.length,
-                    itemBuilder: (ctx, i) => Container(
-                      decoration: BoxDecoration(
-                        border:
-                            Border.all(color: Color(0xFF3F3C36), width: 0.5),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      margin: EdgeInsets.all(10),
-                      child: ListTile(
-                        onTap: ()=>_onButtonPressed(item.messages[i].id),
-                        leading: Text("${i + 1}",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Montserrat-bold",
-                                fontSize: 14,
-                                color: Color(0xFF3F3C36))),
-                        title: Text(item.messages[i].title,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Montserrat-bold",
-                                fontSize: 14,
-                                color: Color(0xFF3F3C36))),
-                        subtitle: Text(item.messages[i].content,
-                            overflow: TextOverflow.fade,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Montserrat-Light",
-                                fontSize: 10,
-                                color: Color(0xFF3F3C36))),
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Consumer<Messages>(
+                    builder: (_, item, ch) => ListView.builder(
+                      itemCount: item.messages.length,
+                      itemBuilder: (ctx, i) => Container(
+                        decoration: BoxDecoration(
+                          border:
+                              Border.all(color: Color(0xFFFFCB5F), width: 0.5),
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        margin: EdgeInsets.all(10),
+                        child: ListTile(
+                          onTap: ()=>_onButtonPressed(item.messages[i].id),
+                          trailing: Text("${i + 1}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Montserrat-bold",
+                                  fontSize: 14,
+                                  color: Theme.of(context).textTheme.headline2.color)),
+                          title: Text(item.messages[i].title,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Montserrat-bold",
+                                  fontSize: 14,
+                                  color: Theme.of(context).textTheme.headline2.color)),
+                          subtitle: Text(item.messages[i].content,
+                              overflow: TextOverflow.fade,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Montserrat-Light",
+                                  fontSize: 10,
+                                  color: Theme.of(context).textTheme.headline2.color)),
+                        ),
                       ),
                     ),
                   ),

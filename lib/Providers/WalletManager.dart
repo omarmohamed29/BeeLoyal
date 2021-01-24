@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:loyalbee/models/DataBase.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
@@ -30,11 +30,13 @@ class WalletManager with ChangeNotifier {
   }
 
   Future<void> addToWallet(int money, int points) async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-        json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
-    final uid = prefUserData['userId'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final uid = newUser['userId'];
+
 
     final url =
         'https://beel-6e17a.firebaseio.com/Wallet/$uid.json?auth=$token';
@@ -48,11 +50,16 @@ class WalletManager with ChangeNotifier {
   }
 
   Future<void> retrieveWallet() async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-        json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
-    final uid = prefUserData['userId'];
+
+
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final uid = newUser['userId'];
+
+
     try {
       final url =
           'https://beel-6e17a.firebaseio.com/Wallet/$uid.json?auth=$token';
@@ -76,11 +83,13 @@ class WalletManager with ChangeNotifier {
   }
 
   Future<void> updateWallet(String id) async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-        json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
-    final uid = prefUserData['userId'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+    final uid = newUser['userId'];
+
 
     try {
       final url =

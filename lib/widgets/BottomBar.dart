@@ -39,40 +39,33 @@ class _BottomBar extends State<BottomBar> {
         controller: _pageController,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         type: BottomNavigationBarType.fixed,
         selectedFontSize: 14,
         unselectedFontSize: 13,
         fixedColor: Color(0xFFFFCB5F),
         iconSize: 25,
+        selectedLabelStyle:  TextStyle(fontFamily: 'Montserrat-Light'),
+        unselectedLabelStyle: TextStyle(fontFamily: 'Montserrat-Light'),
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(NavBarIcon.home),
-            title: Text(
+            label:
               'Home',
-              style: TextStyle(fontFamily: 'Montserrat-Light'),
-            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(NavBarIcon.user),
-            title: Text(
+            label:
               'Profile',
-              style: TextStyle(fontFamily: 'Montserrat-Light'),
-            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(NavBarIcon.order),
-            title: Text(
-              'Orders',
-              style: TextStyle(fontFamily: 'Montserrat-Light'),
-            ),
+            label: 'Orders',
           ),
           BottomNavigationBarItem(
             icon: Icon(NavBarIcon.settings),
-            title: Text(
+            label:
               'Setting',
-              style: TextStyle(fontFamily: 'Montserrat-Light'),
-            ),
           ),
         ],
         currentIndex: widget._selectedIndex,

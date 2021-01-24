@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:loyalbee/models/ThemeChanger.dart';
+import 'package:loyalbee/models/notifications.dart';
 import 'package:provider/provider.dart';
 import '../widgets/setting_icons.dart';
 import '../Providers/auth.dart';
@@ -12,7 +14,7 @@ class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(
           children: <Widget>[
             Positioned(
@@ -28,15 +30,15 @@ class _SettingPageState extends State<SettingPage> {
                           fontWeight: FontWeight.bold,
                           fontFamily: "Montserrat-Bold",
                           fontSize: 30,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                   ),
                 ),
               ),
             ),
             Positioned(
-              top: 10,
-              left: 10 ,
+              top: 50,
+              left: 10,
               right: 10,
               child: Container(
                 height: MediaQuery.of(context).size.height,
@@ -44,109 +46,230 @@ class _SettingPageState extends State<SettingPage> {
                 child: Column(
                   children: <Widget>[
                     Padding(
-                      padding: const EdgeInsets.all(25.0),
-                      child: Center(
-                        child: Container(
-                          color: Colors.white,
-                          width: 100,
-                          height: 2,
-                        ),
-                      ),
-                    ),Padding(
-                      padding: const EdgeInsets.only(left: 15.0 , top: 80),
+                      padding: const EdgeInsets.only(left: 15.0, top: 80),
                       child: Align(
                         alignment: Alignment.topLeft,
                         child: Text(
-                          "Customize your experince",
+                          "Customize your experience",
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontFamily: "Montserrat-Bold",
                               fontSize: 18,
-                              color: Color(0xFF3F3C36)),
+                              color:
+                                  Theme.of(context).textTheme.headline2.color),
+                        ),
+                      ),
+                    ),
+                    Consumer<ThemeNotifier>(
+                      builder: (context, ThemeNotifier notifier, child) =>
+                          SwitchListTile(
+                              activeColor: Color(0xFFFFCB5F),
+                              contentPadding:
+                                  EdgeInsets.only(left: 10, top: 10, right: 10),
+                              title: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 15),
+                                    child: Icon(
+                                      Icons.wb_sunny_outlined,
+                                      color: Theme.of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color,
+                                      size: 25,
+                                    ),
+                                  ),
+                                  Text(
+                                    "Dark Mode",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontFamily: "Montserrat-Light",
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .headline2
+                                            .color,
+                                        fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                              subtitle: Text(
+                                "Note : the app will restart after changing the theme directly",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "Montserrat-Light",
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color,
+                                    fontSize: 8),
+                              ),
+                              value: notifier.darkTheme,
+                              onChanged: (val) async {
+                                await notifier.toggleTheme();
+                              }),
+                    ),
+                    Divider(
+                      thickness: 1.0,
+                      height: 8,
+                    ),
+                    Consumer<Notifications>(
+                      builder: (context, Notifications notifier, child) =>
+                          SwitchListTile(
+                        activeColor: Color(0xFFFFCB5F),
+                        contentPadding:
+                            EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                        title: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15),
+                              child: Icon(
+                                Icons.notifications_off_outlined,
+                                color:
+                                    Theme.of(context).textTheme.headline2.color,
+                                size: 25,
+                              ),
+                            ),
+                            Text(
+                              "Mute Notifications",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "Montserrat-Light",
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .color,
+                                  fontSize: 18),
+                            ),
+                          ],
+                        ),
+                        value: notifier.muteNotification,
+                        onChanged: (val) async {
+                          await notifier.toggleNotifications();
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 15.0, top: 30),
+                      child: Align(
+                        alignment: Alignment.topLeft,
+                        child: Text(
+                          "More",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Montserrat-Bold",
+                              fontSize: 18,
+                              color:
+                                  Theme.of(context).textTheme.headline2.color),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top:0),
+                      padding: const EdgeInsets.only(top: 0),
                       child: ListView(
                         shrinkWrap: true,
                         children: <Widget>[
-                          FlatButton(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top:20.0 , bottom: 20.0),
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(Setting.rateus , color: Color(0xFF3F3C36),size: 30,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left : 15.0),
-                                    child: Text("Rate us" , style: TextStyle(
-                                        fontFamily: "Montserrat-Light",
-                                        fontSize: 25,
-                                        color: Color(0xFF3F3C36))),
-                                  ),
-                                ],
-                              ),
+                          ListTile(
+                            leading: Icon(
+                              Setting.rateus,
+                              color: Theme.of(context).iconTheme.color,
+                              size: 30,
                             ),
-                            onPressed: (){},
+                            title: Text("Rate us",
+                                style: TextStyle(
+                                    fontFamily: "Montserrat-Light",
+                                    fontSize: 25,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color)),
+                            trailing: Icon(
+                              Icons.chevron_right,
+                              color:
+                                  Theme.of(context).textTheme.headline2.color,
+                              size: 25,
+                            ),
                           ),
-
-                          FlatButton(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top:20.0 , bottom: 20.0),
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(Setting.socialize, color: Color(0xFF3F3C36),size: 30,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left : 15.0),
-                                    child: Text("Contact us" , style: TextStyle(
-                                        fontFamily: "Montserrat-Light",
-                                        fontSize: 25,
-                                        color: Color(0xFF3F3C36))),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            onPressed: (){},
+                          Divider(
+                            thickness: 1.0,
+                            height: 8,
                           ),
-
-                          FlatButton(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top:20.0 , bottom: 20.0),
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(Setting.licence , color: Color(0xFF3F3C36),size: 30,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left : 15.0),
-                                    child: Text("License" , style: TextStyle(
-                                        fontFamily: "Montserrat-Light",
-                                        fontSize: 25,
-                                        color: Color(0xFF3F3C36))),
-                                  ),
-                                ],
-                              ),
+                          ListTile(
+                            leading: Icon(
+                              Setting.socialize,
+                              color: Theme.of(context).iconTheme.color,
+                              size: 30,
                             ),
-                            onPressed: (){},
+                            title: Text("Contact us",
+                                style: TextStyle(
+                                    fontFamily: "Montserrat-Light",
+                                    fontSize: 25,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color)),
+                            trailing: Icon(
+                              Icons.chevron_right,
+                              color:
+                                  Theme.of(context).textTheme.headline2.color,
+                              size: 25,
+                            ),
                           ),
-
-                          FlatButton(
-                            child: Padding(
-                              padding: const EdgeInsets.only(top:20.0 , bottom: 20.0),
-                              child: Row(
-                                children: <Widget>[
-                                  Icon(Setting.logout , color: Color(0xFF3F3C36),size: 30,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left : 15.0),
-                                    child: Text("Logout" , style: TextStyle(
-                                        fontFamily: "Montserrat-Light",
-                                        fontSize: 25,
-                                        color: Color(0xFF3F3C36))),
-                                  ),
-                                ],
-                              ),
+                          Divider(
+                            thickness: 1.0,
+                            height: 8,
+                          ),
+                          ListTile(
+                            leading: Icon(
+                              Setting.licence,
+                              color: Theme.of(context).iconTheme.color,
+                              size: 30,
                             ),
-                            onPressed: (){
-                             Provider.of<Auth>(context , listen: false).logout();
+                            title: Text("License",
+                                style: TextStyle(
+                                    fontFamily: "Montserrat-Light",
+                                    fontSize: 25,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color)),
+                            trailing: Icon(
+                              Icons.chevron_right,
+                              color:
+                                  Theme.of(context).textTheme.headline2.color,
+                              size: 25,
+                            ),
+                          ),
+                          Divider(
+                            thickness: 1.0,
+                            height: 8,
+                          ),
+                          ListTile(
+                            onTap: () {
+                              Provider.of<Auth>(context, listen: false)
+                                  .logout();
                             },
+                            leading: Icon(
+                              Setting.logout,
+                              color: Theme.of(context).iconTheme.color,
+                              size: 30,
+                            ),
+                            title: Text("Logout",
+                                style: TextStyle(
+                                    fontFamily: "Montserrat-Light",
+                                    fontSize: 25,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color)),
+                            trailing: Icon(
+                              Icons.chevron_right,
+                              color:
+                                  Theme.of(context).textTheme.headline2.color,
+                              size: 25,
+                            ),
                           ),
                         ],
                       ),

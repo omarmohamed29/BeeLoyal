@@ -20,7 +20,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
     return Container(
-      decoration: BoxDecoration(
+      decoration:Theme.of(context).backgroundColor ==  Color(0xFF111111) ? null :  BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: Color.fromARGB(62, 168, 174, 201),

@@ -245,7 +245,6 @@ class _SignUpState extends State<SignUp> {
                             width: ScreenUtil.getInstance().setWidth(630),
                             height: ScreenUtil.getInstance().setHeight(100),
                             decoration: BoxDecoration(
-                                color: Colors.Mycol,
                                 borderRadius: BorderRadius.circular(6.0),
                                 boxShadow: [
                                   BoxShadow(
@@ -305,7 +304,6 @@ class _SignUpState extends State<SignUp> {
                           },
                           child: Text("SignIn",
                               style: TextStyle(
-                                color: Colors.Mycol,
                                 fontFamily: "Montserrat-Light",
                               )),
                         )

@@ -65,12 +65,12 @@ class _CommentsListState extends State<CommentsList> {
                                       4
                                   ? Icon(
                                       Icons.sentiment_very_satisfied,
-                                      color: Color(0xFF3F3C36),
+                                      color:Theme.of(context).textTheme.headline2.color,
                                       size: 20,
                                     )
                                   : Icon(
                                       Icons.sentiment_dissatisfied,
-                                      color: Color(0xFF3F3C36),
+                                      color: Theme.of(context).textTheme.headline2.color,
                                       size: 20,
                                     ),
                           title: Row(
@@ -82,7 +82,7 @@ class _CommentsListState extends State<CommentsList> {
                                   fontSize: 14,
                                   fontFamily: "Montserrat-Light",
                                   fontWeight: FontWeight.bold,
-                                  color: Color(0xFF3F3C36),
+                                  color: Theme.of(context).textTheme.headline2.color,
                                 ),
                               ),
                               Consumer<Rating>(
@@ -103,7 +103,7 @@ class _CommentsListState extends State<CommentsList> {
                             getcomments.comments[i].body,
                             style: TextStyle(
                               fontFamily: "Montserrat-Light",
-                              color: Color(0xFF3F3C36).withOpacity(0.7),
+                              color:Theme.of(context).textTheme.headline2.color.withOpacity(0.7),
                             ),
                           ),
                         )
@@ -129,7 +129,7 @@ class _CommentsListState extends State<CommentsList> {
                             fontWeight: FontWeight.bold,
                             fontFamily: "Montserrat-Light",
                             fontSize: 10,
-                            color: Color(0xFF3F3C36).withOpacity(0.4),
+                            color: Theme.of(context).textTheme.headline2.color.withOpacity(0.4),
                           ),
                         )
                       ],
@@ -158,7 +158,7 @@ class _CommentsListState extends State<CommentsList> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Light",
                       fontSize: 10,
-                      color: Color(0xFF3F3C36).withOpacity(0.4),
+                      color: Theme.of(context).textTheme.headline2.color.withOpacity(0.4),
                     ),
                   )
                 ],

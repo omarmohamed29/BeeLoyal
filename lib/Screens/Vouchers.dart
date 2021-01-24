@@ -57,6 +57,7 @@ class _VoucherPageState extends State<VoucherPage> {
       _voucherFuture = getVoucher();
       _walletFuture = getWallet();
     });
+    return  "done";
   }
 
   void noPoints() {
@@ -85,7 +86,7 @@ class _VoucherPageState extends State<VoucherPage> {
     pdf.addPage(pw.MultiPage(
         pageFormat: PdfPageFormat.letter,
         margin: const pw.EdgeInsets.only(left: 25, right: 25, top: 20),
-        build: (pw.Context context) {
+        build: (pw.Context context ) {
           return <pw.Widget>[
             pw.Header(level: 0, child: pw.Text("Bee Loyal App Voucher")),
             pw.Paragraph(
@@ -151,7 +152,7 @@ class _VoucherPageState extends State<VoucherPage> {
         Provider.of<WalletManager>(context, listen: false).wallet[0];
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(30),
         child: ListView(
@@ -164,7 +165,7 @@ class _VoucherPageState extends State<VoucherPage> {
                 padding: EdgeInsets.all(0),
                 icon: Icon(
                   Icons.arrow_back,
-                  color: Color(0xFF3F3C36),
+                  color:Theme.of(context).textTheme.headline2.color,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -179,7 +180,7 @@ class _VoucherPageState extends State<VoucherPage> {
                     fontWeight: FontWeight.bold,
                     fontFamily: "Montserrat-Bold",
                     fontSize: 40,
-                    color: Color(0xFF3F3C36)),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
             Align(
@@ -189,7 +190,7 @@ class _VoucherPageState extends State<VoucherPage> {
                 style: TextStyle(
                     fontFamily: "Montserrat-Light",
                     fontSize: 40,
-                    color: Color(0xFF3F3C36)),
+                    color: Theme.of(context).textTheme.headline2.color),
               ),
             ),
             Padding(

@@ -77,6 +77,7 @@ class _QrScanState extends State<QrScan> {
   Widget build(BuildContext context) {
     return Scaffold(
         key: _scaffoldKey,
+        backgroundColor: Theme.of(context).backgroundColor,
         body: Stack(
       children: <Widget>[
         Positioned(
@@ -88,7 +89,7 @@ class _QrScanState extends State<QrScan> {
                 alignment: Alignment.topLeft,
                 icon: Icon(
                   Icons.arrow_back,
-                  color: Color(0xFF3F3C36),
+                  color: Theme.of(context).textTheme.headline2.color,
                 ),
                 onPressed: () {
                   Navigator.pop(context);
@@ -108,7 +109,7 @@ class _QrScanState extends State<QrScan> {
                   fontWeight: FontWeight.bold,
                   fontFamily: "Montserrat-Bold",
                   fontSize: 40,
-                  color: Color(0xFF3F3C36)),
+                  color: Theme.of(context).textTheme.headline2.color),
             ),
           ),
         ),
@@ -122,7 +123,7 @@ class _QrScanState extends State<QrScan> {
               style: TextStyle(
                   fontFamily: "Montserrat-Light",
                   fontSize: 40,
-                  color: Color(0xFF3F3C36)),
+                  color: Theme.of(context).textTheme.headline2.color),
             ),
           ),
         ),
@@ -145,11 +146,11 @@ class _QrScanState extends State<QrScan> {
                       style: TextStyle(
                           fontFamily: "Montserrat-Light",
                           fontSize: 20,
-                          color: Color(0xFF3F3C36)),
+                          color: Theme.of(context).textTheme.headline2.color),
                     ),
                     Icon(
                       Icons.camera,
-                      color: Color(0xFF3F3C36),
+                      color: Theme.of(context).textTheme.headline2.color,
                       size: 20,
                     )
                   ],
@@ -173,7 +174,7 @@ class _QrScanState extends State<QrScan> {
                       style: TextStyle(
                           fontFamily: "Montserrat-Light",
                           fontSize: 25,
-                          color: Color(0xFF3F3C36),
+                          color: Theme.of(context).textTheme.headline2.color,
                           fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left),
                 ),
@@ -220,7 +221,7 @@ class _QrScanState extends State<QrScan> {
                                                       fontFamily:
                                                           "Montserrat-Light",
                                                       fontSize: 18,
-                                                      color: Color(0xFF3F3C36),
+                                                      color: Theme.of(context).textTheme.headline2.color,
                                                     ),
                                                   ),
                                                   Text(
@@ -233,7 +234,7 @@ class _QrScanState extends State<QrScan> {
                                                       fontFamily:
                                                           "Montserrat-Light",
                                                       fontSize: 15,
-                                                      color: Color(0xFF3F3C36),
+                                                      color: Theme.of(context).textTheme.headline2.color,
                                                     ),
                                                   ),
                                                 ],
@@ -243,7 +244,7 @@ class _QrScanState extends State<QrScan> {
                                               padding:
                                                   const EdgeInsets.all(8.0),
                                               child: Container(
-                                                color: Color(0xFF3F3C36),
+                                                color: Theme.of(context).textTheme.headline2.color,
                                                 height: 1,
                                                 width: 150,
                                               ),
@@ -256,7 +257,7 @@ class _QrScanState extends State<QrScan> {
                           child: Center(
                             child: Text(
                               "You don't have any scans yet ",
-                              style: TextStyle(fontFamily: "Montserrat-Light"),
+                              style: TextStyle(fontFamily: "Montserrat-Light",color: Theme.of(context).textTheme.headline2.color),
                             ),
                           ),
                         );

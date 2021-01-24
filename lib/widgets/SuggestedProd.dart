@@ -22,7 +22,6 @@ class _SuggestedState extends State<Suggested> {
         .where((prodItem) => prodItem.subCategory.toLowerCase() == widget.related.toLowerCase())
         .toList();
 
-    final prodData = Provider.of<Products>(context, listen: true);
     return ListView.builder(
         scrollDirection: Axis.horizontal,
         shrinkWrap: true,

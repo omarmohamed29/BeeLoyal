@@ -10,7 +10,7 @@ class ProfileData extends StatelessWidget {
     final users = Provider.of<Users>(context, listen: false);
     return Container(
       width: MediaQuery.of(context).size.width,
-      color: Colors.white,
+      color: Theme.of(context).backgroundColor,
       child: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15, bottom: 10),
         child: Column(
@@ -28,7 +28,7 @@ class ProfileData extends StatelessWidget {
                           fontSize: 20,
                           fontFamily: "Montserrat-Light",
                           fontWeight: FontWeight.bold,
-                          color: Color(0xFF3F3C36),
+                          color: Theme.of(context).textTheme.headline2.color,
                         ),
                       ),
                     ],
@@ -45,7 +45,7 @@ class ProfileData extends StatelessWidget {
                             fontSize: 8,
                             fontFamily: "Montserrat-Light",
                             fontWeight: FontWeight.bold,
-                            color: Color(0xFF3F3C36),
+                            color: Theme.of(context).textTheme.headline2.color,
                           ),
                         ),
                       ],
@@ -64,7 +64,7 @@ class ProfileData extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 16,
                         fontFamily: "Montserrat-Light",
-                        color: Colors.black26,
+                        color: Theme.of(context).textTheme.headline6.color,
                       ),
                     ),
                   ],
@@ -79,7 +79,7 @@ class ProfileData extends StatelessWidget {
                   Row(
                     children: <Widget>[
                       Icon(Icons.location_on,
-                          size: 23, color: Color(0xFF3F3C36)),
+                          size: 23, color:Theme.of(context).iconTheme.color),
                       Padding(
                           padding: const EdgeInsets.only(right: 80),
                           child: Container(
@@ -93,7 +93,7 @@ class ProfileData extends StatelessWidget {
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                                 fontFamily: "Montserrat-Light",
-                                color: Colors.black26,
+                                color: Theme.of(context).textTheme.headline6.color,
                               ),
                             ),
                           )),
@@ -122,7 +122,7 @@ class ProfileData extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(right: 10.0),
                                   child: Icon(Icons.stars,
-                                      size: 30, color: Color(0xFF3F3C36)),
+                                      size: 30, color:Theme.of(context).iconTheme.color),
                                 ),
                                 RichText(
                                   text: TextSpan(
@@ -134,7 +134,7 @@ class ProfileData extends StatelessWidget {
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: "Montserrat-Light",
-                                          color: Colors.black26,
+                                          color: Theme.of(context).textTheme.headline6.color,
                                         ),
                                       ),
                                     ],
@@ -150,7 +150,7 @@ class ProfileData extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black26,
+                          color: Theme.of(context).textTheme.headline6.color,
                         ),
                       );
                     },

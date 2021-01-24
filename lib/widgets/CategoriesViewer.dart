@@ -36,7 +36,7 @@ class _CategoriesViewerState extends State<CategoriesViewer> {
       itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
         value: products[i],
         child: Container(
-          decoration: BoxDecoration(
+          decoration: Theme.of(context).backgroundColor ==  Color(0xFF111111) ? null : BoxDecoration(
             boxShadow: [
               BoxShadow(
                 color: Color.fromARGB(62, 168, 174, 201),

@@ -85,20 +85,20 @@ class CartItem extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                   fontFamily: "Montserrat-Bold",
                   fontSize: 15,
-                  color: Color(0xFF3F3C36)),
+                  color: Theme.of(context).textTheme.headline2.color),
             ),
             subtitle: Text('Total : \$${(price * quantity)}' ,
               style: TextStyle(
                   fontFamily: "Montserrat-Light",
                   fontSize: 13,
-                  color: Color(0xFF3F3C36)),),
+                  color: Theme.of(context).textTheme.headline2.color),),
             trailing: Text(
               '$quantity x',
                 style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: "Montserrat-Bold",
                 fontSize: 10,
-                color: Color(0xFF3F3C36)),
+                color: Theme.of(context).textTheme.headline2.color),
             ),
           ),
         ),

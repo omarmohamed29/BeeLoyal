@@ -43,8 +43,8 @@ class AppTheme {
 
     accentIconTheme: IconThemeData(color: Colors.white),
     hoverColor: Colors.white.withOpacity(0.1),
-    cursorColor: Colors.pinkAccent,
-    textSelectionColor: Colors.pinkAccent,
+    cursorColor: Color(0xFFFFCB5F),
+    textSelectionColor: Color(0xFFFFCB5F),
   );
 
   get myLightTheme => ThemeData(
@@ -80,9 +80,9 @@ class AppTheme {
           headline6: TextStyle(color: Colors.black26)),
       accentIconTheme: IconThemeData(color: Colors.black),
       hoverColor: Color(0xFFF2F5FA),
-      cursorColor: Colors.pinkAccent,
-      textSelectionColor: Colors.pinkAccent,
-      accentColor: Colors.pinkAccent);
+      cursorColor: Color(0xFFFFCB5F),
+      textSelectionColor: Color(0xFFFFCB5F),
+  );
 }
 
 class ThemeNotifier with ChangeNotifier {
@@ -108,9 +108,11 @@ class ThemeNotifier with ChangeNotifier {
 
   _loadFromPrefs() async {
     prefs = await SharedPreferences.getInstance();
-    final prefUserData = await json.decode(prefs.getString('userExperience'))
-    as Map<String, Object>;
-    _darkTheme = prefUserData['theme'] == "true" ? true : false;
+    if(prefs.containsKey('theme')) {
+      final prefUserData = await json.decode(prefs.getString('userExperience'))
+      as Map<String, Object>;
+      _darkTheme = prefUserData['theme'] == "true" ? true : false;
+    }
 //    print("current theme is " + _darkTheme.toString());
 //    print("saved one is " +
 //        bool.fromEnvironment(prefUserData['theme']).toString());

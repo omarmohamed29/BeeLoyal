@@ -62,15 +62,6 @@ class Auth with ChangeNotifier {
       );
       _autoLogout();
       notifyListeners();
-//      final prefs = await SharedPreferences.getInstance();
-//      final userData = json.encode(
-//        {
-//          'token': _token,
-//          'userId': _userId,
-//          'expiryDate': _expiryDate.toIso8601String(),
-//        },
-//      );
-//      prefs.setString('userData', userData);
     var newUser = UserAuth(email: email , password: password, token: _token , expiryDate: _expiryDate.toIso8601String() , userId: _userId);
     DBProvider.db.newUser(newUser);
     } catch (error) {
@@ -87,15 +78,16 @@ class Auth with ChangeNotifier {
   }
 
   Future<bool> tryAutoLogin() async {
-
-    final _userData = await DBProvider.db.getUsers();
-
+    final _userData = await DBProvider.db.getUsers() ;
     Map<String , String> newUser = {};
-    if(!newUser.containsKey('token')){
+    if(!newUser.containsKey('token') && _userData != null ){
       newUser= Map<String , String >.from(_userData);
     }
+    else return false;
+
     final expiryDate = DateTime.parse(newUser['expiryDate']);
-        if (expiryDate.isBefore(DateTime.now())) {
+    print("exp = " + expiryDate.toString());
+    if (expiryDate.isBefore(DateTime.now()) || expiryDate == null) {
       return false;
     }
 
@@ -109,6 +101,7 @@ class Auth with ChangeNotifier {
   }
 
   Future<void> logout() async {
+    await DBProvider.db.dropTable(userId);
     _token = null;
     _userId = null;
     _expiryDate = null;
@@ -116,8 +109,8 @@ class Auth with ChangeNotifier {
       _authTimer.cancel();
       _authTimer = null;
     }
-    await DBProvider.db.dropTable();
     notifyListeners();
+
   }
 
   void _autoLogout() {

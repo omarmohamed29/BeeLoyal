@@ -38,18 +38,35 @@ class _ProductDetailsState extends State<ProductDetails> {
     super.initState();
   }
 
+  bool offerCheck() {
+    final offer = Provider.of<Offers>(context, listen: false);
+    if (offer.offers[0] != null && offer.offers[0].dueDate.day - DateTime.now().day > 0 && offer.offers[0].dueDate.month == DateTime.now().month &&
+        offer.offers[0].dueDate.year == DateTime.now().year){
+      return true ;
+    }
+    return false;
+  }
+
   void itemAdded() {
     final String loadedId = widget.id;
     final cart = Provider.of<Cart>(context, listen: false);
     final snackbar = SnackBar(
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-      content: Text("Item Added to card" , style: TextStyle(color: Theme.of(context).textTheme.headline2.color),),
+      content: Text("Item Added to card", style: TextStyle(color: Theme
+          .of(context)
+          .textTheme
+          .headline2
+          .color),),
       duration: Duration(seconds: 3),
       backgroundColor: Colors.black.withOpacity(0.9),
       action: SnackBarAction(
         label: "undo",
-        textColor: Theme.of(context).textTheme.headline2.color,
+        textColor: Theme
+            .of(context)
+            .textTheme
+            .headline2
+            .color,
         onPressed: () {
           cart.removeSingleItem(loadedId);
         },
@@ -69,7 +86,9 @@ class _ProductDetailsState extends State<ProductDetails> {
 
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme
+          .of(context)
+          .backgroundColor,
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
@@ -87,7 +106,9 @@ class _ProductDetailsState extends State<ProductDetails> {
             delegate: SliverChildListDelegate(
               [
                 Container(
-                  color: Theme.of(context).backgroundColor,
+                  color: Theme
+                      .of(context)
+                      .backgroundColor,
                   height: 50,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -105,10 +126,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       fontSize: 22,
                                       fontFamily: "Montserrat-Light",
                                       fontWeight: FontWeight.bold,
-                                      color: Theme.of(context).textTheme.headline2.color),
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color),
                                 ),
                               ),
                             ),
+
+
+                            //offers section
                             Padding(
                               padding:
                               const EdgeInsets.only(top: 15.0, right: 15),
@@ -139,25 +167,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           } else {
                                             return Consumer<Offers>(
                                               builder: (_, offer, ch) =>
-                                              offer
-                                                  .offers[0] !=
-                                                  null &&
-                                                  offer.offers[0].dueDate
-                                                      .day -
-                                                      DateTime
-                                                          .now()
-                                                          .day >
-                                                      0 &&
-                                                  offer.offers[0].dueDate
-                                                      .month ==
-                                                      DateTime
-                                                          .now()
-                                                          .month &&
-                                                  offer.offers[0].dueDate
-                                                      .year ==
-                                                      DateTime
-                                                          .now()
-                                                          .year
+                                             offerCheck()
                                                   ? Row(
                                                 children: <Widget>[
                                                   Padding(
@@ -176,7 +186,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                           fontSize: 15,
                                                           fontFamily:
                                                           "Montserrat-Light",
-                                                          color: Theme.of(context).textTheme.headline2.color),
+                                                          color: Theme
+                                                              .of(context)
+                                                              .textTheme
+                                                              .headline2
+                                                              .color),
                                                     ),
                                                   ),
                                                   Padding(
@@ -195,7 +209,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                           fontSize: 22,
                                                           fontFamily:
                                                           "Montserrat-Light",
-                                                          color: Theme.of(context).textTheme.headline2.color),
+                                                          color: Theme
+                                                              .of(context)
+                                                              .textTheme
+                                                              .headline2
+                                                              .color),
                                                     ),
                                                   ),
                                                 ],
@@ -211,7 +229,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                       fontSize: 22,
                                                       fontFamily:
                                                       "Montserrat-Light",
-                                                      color: Theme.of(context).textTheme.headline2.color),
+                                                      color: Theme
+                                                          .of(context)
+                                                          .textTheme
+                                                          .headline2
+                                                          .color),
                                                 ),
                                               ),
                                             );
@@ -224,7 +246,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                   fontSize: 22,
                                                   fontFamily:
                                                   "Montserrat-Light",
-                                                  color: Theme.of(context).textTheme.headline2.color),
+                                                  color: Theme
+                                                      .of(context)
+                                                      .textTheme
+                                                      .headline2
+                                                      .color),
                                             ),
                                           );
                                         }
@@ -234,6 +260,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                             ),
                           ],
                         ),
+
+
+                        //Rating bar
                         Padding(
                           padding: const EdgeInsets.only(top: 3.0, left: 15),
                           child: FutureBuilder(
@@ -287,7 +316,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                     fontFamily:
                                                     "Montserrat-Light",
                                                     fontSize: 10,
-                                                    color: Theme.of(context).textTheme.headline2.color)),
+                                                    color: Theme
+                                                        .of(context)
+                                                        .textTheme
+                                                        .headline2
+                                                        .color)),
                                           )
                                         ],
                                       )
@@ -309,7 +342,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   style: TextStyle(
                                       fontSize: 16,
                                       fontFamily: "Montserrat-Light",
-                                      color: Theme.of(context).textTheme.headline2.color),
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color),
                                 ),
                               ],
                             ),
@@ -335,7 +372,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Text(
                                     loadedProducts.color,
                                     style: TextStyle(
-                                      color:Theme.of(context).textTheme.headline2.color,
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -357,7 +398,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Text(
                                     loadedProducts.brand,
                                     style: TextStyle(
-                                      color: Theme.of(context).textTheme.headline2.color,
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -379,7 +424,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   Text(
                                     loadedProducts.category,
                                     style: TextStyle(
-                                      color: Theme.of(context).textTheme.headline2.color,
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -398,16 +447,20 @@ class _ProductDetailsState extends State<ProductDetails> {
                                       fontFamily: "Montserrat-Light",
                                     ),
                                   ),
-                                    loadedProducts.inStock == 0 ?
-                                    Text("Out of Stock", style: TextStyle(
-                                      color: Colors.redAccent,
-                                      fontSize: 15,
-                                      fontFamily: "Montserrat-Light",
-                                    ),)
-                                        :
-                                    Text(loadedProducts.inStock.toString(),
+                                  loadedProducts.inStock == 0 ?
+                                  Text("Out of Stock", style: TextStyle(
+                                    color: Colors.redAccent,
+                                    fontSize: 15,
+                                    fontFamily: "Montserrat-Light",
+                                  ),)
+                                      :
+                                  Text(loadedProducts.inStock.toString(),
                                     style: TextStyle(
-                                      color:Theme.of(context).textTheme.headline2.color,
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color,
                                       fontSize: 15,
                                       fontFamily: "Montserrat-Light",
                                     ),
@@ -433,7 +486,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                         fontSize: 15,
                                         fontFamily: "Montserrat-Light",
                                         fontWeight: FontWeight.bold,
-                                        color: Theme.of(context).textTheme.headline2.color),
+                                        color: Theme
+                                            .of(context)
+                                            .textTheme
+                                            .headline2
+                                            .color),
                                   ),
                                   MakeComment(productId),
                                 ],
@@ -465,7 +522,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                     fontSize: 15,
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
-                                    color: Theme.of(context).textTheme.headline2.color),
+                                    color: Theme
+                                        .of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color),
                                 textAlign: TextAlign.left,
                               ),
                               Container(
@@ -528,18 +589,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 final offer = Provider.of<Offers>(context, listen: false);
                 cart.addItem(
                     loadedProducts.id,
-                    offer.offers[0] != null &&
-                        offer.offers[0].dueDate.day - DateTime
-                            .now()
-                            .day >
-                            0 &&
-                        offer.offers[0].dueDate.month ==
-                            DateTime
-                                .now()
-                                .month &&
-                        offer.offers[0].dueDate.year == DateTime
-                            .now()
-                            .year &&
+                    offerCheck() &&
                         offer.offerCalculate(loadedProducts.price) != null
                         ? offer.offerCalculate(loadedProducts.price)
                         : loadedProducts.price,
@@ -556,7 +606,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                     loadedProducts.category,
                     loadedProducts.subCategory,
                     loadedProducts.hits + 1,
-                    loadedProducts.inStock-1);
+                    loadedProducts.inStock - 1);
                 itemAdded();
               } : null
           ) : RaisedButton(
@@ -593,13 +643,11 @@ class _ProductDetailsState extends State<ProductDetails> {
               onPressed:
               loadedProducts.inStock > 0 ?
                   () {
-
                 Scaffold.of(context).showBottomSheet(
                       (context) =>
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-
                           height: MediaQuery
                               .of(context)
                               .size
@@ -619,7 +667,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                                   style: TextStyle(
                                       fontFamily: "Montserrat-bold",
                                       fontSize: 20,
-                                      color: Theme.of(context).textTheme.headline2.color),
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(
@@ -652,33 +704,8 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 listen: false);
                                             cart.addItem(
                                                 loadedProducts.id,
-                                                offer.offers[0] != null &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .day -
-                                                        DateTime
-                                                            .now()
-                                                            .day >
-                                                        0 &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .month ==
-                                                        DateTime
-                                                            .now()
-                                                            .month &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .year ==
-                                                        DateTime
-                                                            .now()
-                                                            .year &&
-                                                    offer.offerCalculate(
-                                                        loadedProducts
-                                                            .price) !=
-                                                        null
+                                                offerCheck() &&
+                                                    offer.offerCalculate(loadedProducts.price) != null
                                                     ? offer.offerCalculate(
                                                     loadedProducts.price)
                                                     : loadedProducts.price,
@@ -700,7 +727,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 loadedProducts
                                                     .subCategory,
                                                 loadedProducts.hits + 1,
-                                                loadedProducts.inStock-1);
+                                                loadedProducts.inStock - 1);
+                                            await Future.delayed(
+                                                Duration(milliseconds: 100));
                                             Navigator.of(context).pop();
                                             itemAdded();
                                             // Navigator.push(context,MaterialPageRoute(builder: (BuildContext context)=>ShoppingCart()));
@@ -732,29 +761,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 listen: false);
                                             cart.addItem(
                                                 loadedProducts.id,
-                                                offer.offers[0] != null &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .day -
-                                                        DateTime
-                                                            .now()
-                                                            .day >
-                                                        0 &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .month ==
-                                                        DateTime
-                                                            .now()
-                                                            .month &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .year ==
-                                                        DateTime
-                                                            .now()
-                                                            .year &&
+                                                offerCheck() &&
                                                     offer.offerCalculate(
                                                         loadedProducts
                                                             .price) !=
@@ -814,29 +821,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 listen: false);
                                             cart.addItem(
                                                 loadedProducts.id,
-                                                offer.offers[0] != null &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .day -
-                                                        DateTime
-                                                            .now()
-                                                            .day >
-                                                        0 &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .month ==
-                                                        DateTime
-                                                            .now()
-                                                            .month &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .year ==
-                                                        DateTime
-                                                            .now()
-                                                            .year &&
+                                                offerCheck() &&
                                                     offer.offerCalculate(
                                                         loadedProducts
                                                             .price) !=
@@ -895,29 +880,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                                 listen: false);
                                             cart.addItem(
                                                 loadedProducts.id,
-                                                offer.offers[0] != null &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .day -
-                                                        DateTime
-                                                            .now()
-                                                            .day >
-                                                        0 &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .month ==
-                                                        DateTime
-                                                            .now()
-                                                            .month &&
-                                                    offer
-                                                        .offers[0]
-                                                        .dueDate
-                                                        .year ==
-                                                        DateTime
-                                                            .now()
-                                                            .year &&
+                                                offerCheck() &&
                                                     offer.offerCalculate(
                                                         loadedProducts
                                                             .price) !=

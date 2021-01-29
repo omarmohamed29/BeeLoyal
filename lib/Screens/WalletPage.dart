@@ -249,31 +249,27 @@ class _WalletPageState extends State<WalletPage> {
             top: 420,
             left: 30,
             right: 30,
-            child: Column(
-              children: <Widget>[
-                ListTile(
-                  title: Text(
-                    "Payed/date",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Montserrat-Bold",
-                        fontSize: 10,
-                        color: Colors.grey),
-                  ),
-                  trailing: Text(
-                    "City",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: "Montserrat-Bold",
-                        fontSize: 10,
-                        color:Colors.grey),
-                  ),
-                )
-              ],
+            child: ListTile(
+              title: Text(
+                "Payed/date",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Montserrat-Bold",
+                    fontSize: 10,
+                    color: Colors.grey),
+              ),
+              trailing: Text(
+                "City",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Montserrat-Bold",
+                    fontSize: 10,
+                    color:Colors.grey),
+              ),
             ),
           ),
           Positioned(
-            top: 455,
+            top: 470,
             left: 30,
             right: 30,
             child: FutureBuilder(
@@ -298,19 +294,20 @@ class _WalletPageState extends State<WalletPage> {
                       return Consumer<Orders>(
                         builder: (_, item, ch) =>
                         Container(
-                          height: 400,
+                          height: item.orders.length.toDouble() + 400 ,
                           child: ListView.builder(
                               shrinkWrap: true,
                               scrollDirection: Axis.vertical,
                               itemCount: item.orders.length,
                               itemBuilder: (ctx, i) =>
                               ListTile(
+                                leading: Icon(Profile.wallet ,),
                                 title: Text(
                                   item.orders[i].amount.toString() + "EGP",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: "Montserrat-Bold",
-                                      fontSize: 10,
+                                      fontSize: 15,
                                       color: Theme.of(context).textTheme.headline2.color),
                                 ),
                                 subtitle:Text(

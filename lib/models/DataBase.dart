@@ -20,7 +20,7 @@ class DBProvider {
     return await openDatabase(
       join(await getDatabasesPath() , 'userData'),
       onCreate: (db , version) async {
-      await db.execute('''
+        await db.execute('''
       CREATE TABLE users(
       email TEXT  , password TEXT , token TEXT , expiryDate TEXT , userId TEXT 
       )
@@ -28,6 +28,7 @@ class DBProvider {
       },
       version: 1,
     );
+
   }
 
   newUser(UserAuth newUser) async{
@@ -53,18 +54,14 @@ class DBProvider {
     }
   }
 
-  dropTable() async{
+  dropTable(String id) async{
     final db = await database;
-    //here we execute a query to drop the table if exists which is called "tableName"
-    //and could be given as method's input parameter too
-    await db.execute("DROP TABLE IF EXISTS users");
-    //and finally here we recreate our beloved "tableName" again which needs
-    //some columns initialization
-    await db.execute('''
-      CREATE TABLE users(
-      email TEXT  , password TEXT , token TEXT , expiryDate TEXT , userId TEXT 
-      )
-      ''');
-
+    await db.delete(
+      'users',
+      // Use a `where` clause to delete a specific dog.
+      where: "userId = ?",
+      // Pass the Dog's id as a whereArg to prevent SQL injection.
+      whereArgs: [id],
+    );
   }
 }

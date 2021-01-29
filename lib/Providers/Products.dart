@@ -85,10 +85,12 @@ class Products with ChangeNotifier {
       String subCategory,
       int hits,
       int inStock) async {
-    final prefs = await SharedPreferences.getInstance();
-    final prefUserData =
-        json.decode(prefs.getString('userData')) as Map<String, Object>;
-    final token = prefUserData['token'];
+    final _userData = await DBProvider.db.getUsers();
+
+    final newUser= Map<String , String >.from(_userData);
+
+    final token = newUser['token'];
+
     try {
       final url =
           'https://beel-6e17a.firebaseio.com/Products/$prodId.json?auth=$token';

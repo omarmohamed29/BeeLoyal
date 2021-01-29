@@ -94,11 +94,17 @@ class _LoginState extends State<Login> {
                 padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 60.0),
                 child: Column(
                   children: <Widget>[
-                    Image.asset(
-                      "assets/images/beel.png",
-                      width: ScreenUtil.getInstance().setWidth(300),
-                      height: ScreenUtil.getInstance().setHeight(200),
-                    ),
+                    Theme.of(context).backgroundColor == Color(0xFF111111)
+                        ? Image.asset(
+                            "assets/images/beel2.png",
+                            width: ScreenUtil.getInstance().setWidth(300),
+                            height: ScreenUtil.getInstance().setHeight(200),
+                          )
+                        : Image.asset(
+                            "assets/images/beel.png",
+                            width: ScreenUtil.getInstance().setWidth(300),
+                            height: ScreenUtil.getInstance().setHeight(200),
+                          ),
                     SizedBox(
                       height: ScreenUtil.getInstance().setHeight(20),
                     ),
@@ -112,16 +118,18 @@ class _LoginState extends State<Login> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: Padding(
-                        padding:
-                        EdgeInsets.only(top: 16.0),
+                        padding: EdgeInsets.only(top: 16.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text("Sign-In",
                                 style: TextStyle(
                                     fontSize:
-                                    ScreenUtil.getInstance().setSp(45),
-                                    color: Theme.of(context).textTheme.headline2.color,
+                                        ScreenUtil.getInstance().setSp(45),
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color,
                                     fontFamily: "Montserrat-Bold",
                                     letterSpacing: .6)),
                             SizedBox(
@@ -132,11 +140,17 @@ class _LoginState extends State<Login> {
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
                                     fontSize:
-                                    ScreenUtil.getInstance().setSp(35))),
+                                        ScreenUtil.getInstance().setSp(35))),
                             Container(
                               decoration: BoxDecoration(
-                                  border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
-                              ),
+                                  border: Border(
+                                bottom: BorderSide(
+                                    width: 0.5,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color),
+                              )),
                               child: TextFormField(
                                 keyboardType: TextInputType.emailAddress,
                                 style: TextStyle(
@@ -155,7 +169,8 @@ class _LoginState extends State<Login> {
                                     hintText: "Give us your email please",
                                     hintStyle: TextStyle(
                                         fontFamily: "Montserrat-Light",
-                                        color: Colors.grey, fontSize: 12.0)),
+                                        color: Colors.grey,
+                                        fontSize: 12.0)),
                               ),
                             ),
                             SizedBox(
@@ -166,11 +181,17 @@ class _LoginState extends State<Login> {
                                     fontFamily: "Montserrat-Light",
                                     fontWeight: FontWeight.bold,
                                     fontSize:
-                                    ScreenUtil.getInstance().setSp(35))),
+                                        ScreenUtil.getInstance().setSp(35))),
                             Container(
                               decoration: BoxDecoration(
-                                border: Border(bottom: BorderSide(width: 0.5, color: Theme.of(context).textTheme.headline2.color),)
-                              ),
+                                  border: Border(
+                                bottom: BorderSide(
+                                    width: 0.5,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color),
+                              )),
                               child: TextFormField(
                                 style: TextStyle(
                                   fontFamily: "Montserrat-Light",
@@ -192,14 +213,20 @@ class _LoginState extends State<Login> {
                                           _passLook = !_passLook;
                                         });
                                       },
-                                      child: Icon(_passLook
-                                          ? Icons.visibility
-                                          : Icons.visibility_off  , size: 20, color: Color(0xFFFFCB5F),),
+                                      child: Icon(
+                                        _passLook
+                                            ? Icons.visibility
+                                            : Icons.visibility_off,
+                                        size: 20,
+                                        color: Color(0xFFFFCB5F),
+                                      ),
                                     ),
-                                    hintText: "Your password is hidden we won't sneak ",
+                                    hintText:
+                                        "Your password is hidden we won't sneak ",
                                     hintStyle: TextStyle(
                                         fontFamily: "Montserrat-Light",
-                                        color: Colors.grey, fontSize: 12.0)),
+                                        color: Colors.grey,
+                                        fontSize: 12.0)),
                               ),
                             ),
                           ],
@@ -208,42 +235,27 @@ class _LoginState extends State<Login> {
                     ),
                     // end of the form container /
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        InkWell(
-                          child: Container(
-                            width: ScreenUtil.getInstance().setWidth(630),
-                            height: ScreenUtil.getInstance().setHeight(100),
-                            decoration: BoxDecoration(
-
-                                borderRadius: BorderRadius.circular(6.0),
-                               ),
-                            child: Material(
-                              color:  Color(0xFFFFCB5F),
-                              child: InkWell(
-                                onTap: _submit,
-                                child: _isLoading
+                    FlatButton(
+                      height: 50,
+                      color: Color(0xFFFFCB5F),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      onPressed: _submit,
+                      child: Center(
+                      child: _isLoading
                                     ? Center(
-                                  child: SpinKitCircle(
-                                    color: Colors.white,
-                                    size: 22,
-                                  )
-                                )
-                                    : Center(
-                                  child: Text("Welcome to bee",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontFamily: "Montserrat-Bold",
-                                          fontSize: 18,
-                                          letterSpacing: 1.0)),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                                        child: SpinKitCircle(
+                                        color: Colors.white,
+                                        size: 22,
+                                      ))
+                                    :Text("Welcome to BEE",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontFamily: "Montserrat-Bold",
+                              fontSize: 18,
+                              letterSpacing: 1.0)),
                     ),
+                    ),
+
                     SizedBox(
                       height: ScreenUtil.getInstance().setHeight(60),
                     ),
@@ -252,16 +264,20 @@ class _LoginState extends State<Login> {
                       children: <Widget>[
                         Text(
                           "Don't have an account yet ?  ",
-                          style: TextStyle(fontFamily: "Montserrat-Light", color: Theme.of(context).textTheme.headline2.color),
+                          style: TextStyle(
+                              fontFamily: "Montserrat-Light",
+                              color:
+                                  Theme.of(context).textTheme.headline2.color),
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.of(context).pushNamed('/signup' );
+                            Navigator.of(context).pushNamed('/signup');
                           },
                           child: Text("SignUp",
                               style: TextStyle(
-                                color:  Color(0xFFFFCB5F),
-                                fontFamily: "Montserrat-Light",)),
+                                color: Color(0xFFFFCB5F),
+                                fontFamily: "Montserrat-Light",
+                              )),
                         )
                       ],
                     )

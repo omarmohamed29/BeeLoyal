@@ -99,7 +99,13 @@ class _SignUpState extends State<SignUp> {
                 padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 60.0),
                 child: Column(
                   children: <Widget>[
-                    Image.asset(
+                    Theme.of(context).backgroundColor == Color(0xFF111111)
+                        ? Image.asset(
+                      "assets/images/beel2.png",
+                      width: ScreenUtil.getInstance().setWidth(300),
+                      height: ScreenUtil.getInstance().setHeight(200),
+                    )
+                        : Image.asset(
                       "assets/images/beel.png",
                       width: ScreenUtil.getInstance().setWidth(300),
                       height: ScreenUtil.getInstance().setHeight(200),
@@ -256,53 +262,39 @@ class _SignUpState extends State<SignUp> {
                     ),
                     // end of the form container /
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        InkWell(
-                          child: Container(
-                            width: ScreenUtil.getInstance().setWidth(630),
-                            height: ScreenUtil.getInstance().setHeight(100),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(6.0),
-                               ),
-                            child: Material(
-                              color: Color(0xFFFFCB5F),
-                              child: InkWell(
-                                onTap: _submit,
-                                child: _isLoading
-                                    ? Center(
-                                        child: SpinKitCircle(
-                                          color: Colors.white,
-                                          size: 22,
-                                        ),
-                                      )
-                                    : Center(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: <Widget>[
-                                            Text("Complete your info...",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontFamily:
-                                                        "Montserrat-Bold",
-                                                    fontSize: 18,
-                                                    letterSpacing: 1.0)),
-                                            Icon(
-                                              Icons.arrow_forward,
-                                              color: Colors.white,
-                                              size: 25,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                              ),
+                    FlatButton(
+                      height: 50,
+                      color: Color(0xFFFFCB5F),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      onPressed: _submit,
+                      child: _isLoading
+                          ? Center(
+                          child: SpinKitCircle(
+                            color: Colors.white,
+                            size: 22,
+                          ))
+                          : Center(
+                        child: Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Text("Complete your info...",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily:
+                                    "Montserrat-Bold",
+                                    fontSize: 18,
+                                    letterSpacing: 1.0)),
+                            Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 25,
                             ),
-                          ),
-                        )
-                      ],
+                          ],
+                        ),
+                      ),
                     ),
+
                     SizedBox(
                       height: ScreenUtil.getInstance().setHeight(60),
                     ),

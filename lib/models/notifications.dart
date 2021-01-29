@@ -9,6 +9,7 @@ class Notifications with ChangeNotifier{
   SharedPreferences prefs;
 
   bool get muteNotification => _muteNotification;
+
   Notifications(){
     _muteNotification = false;
     _loadFromPrefs();
@@ -26,9 +27,13 @@ class Notifications with ChangeNotifier{
 
   _loadFromPrefs() async {
     prefs = await SharedPreferences.getInstance();
-    final prefUserData = await json.decode(prefs.getString('userExperience'))
-    as Map<String, Object>;
-    _muteNotification = prefUserData['notifications'] == "true" ? true : false;
+    if(prefs.containsKey('notification')) {
+      prefs = await SharedPreferences.getInstance();
+      final prefUserData = await json.decode(prefs.getString('userExperience'))
+      as Map<String, Object>;
+      _muteNotification =
+      prefUserData['notifications'] == "true" ? true : false;
+    }
 //    print("current theme is " + _darkTheme.toString());
 //    print("saved one is " +
 //        bool.fromEnvironment(prefUserData['theme']).toString());

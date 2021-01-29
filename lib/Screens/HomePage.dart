@@ -118,7 +118,14 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
-        title: Image.asset(
+        title:
+        Theme.of(context).backgroundColor == Color(0xFF111111)
+            ? Image.asset(
+          "assets/images/beel2.png",
+          width: 100,
+          height: 60,
+        )
+            : Image.asset(
           "assets/images/beel.png",
           width: 100,
           height: 60,

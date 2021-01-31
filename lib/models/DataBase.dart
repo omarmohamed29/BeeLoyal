@@ -56,12 +56,7 @@ class DBProvider {
 
   dropTable(String id) async{
     final db = await database;
-    await db.delete(
-      'users',
-      // Use a `where` clause to delete a specific dog.
-      where: "userId = ?",
-      // Pass the Dog's id as a whereArg to prevent SQL injection.
-      whereArgs: [id],
-    );
+   int res =  await db.delete("users");
+   return res;
   }
 }

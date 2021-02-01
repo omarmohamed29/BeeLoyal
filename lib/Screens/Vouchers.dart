@@ -155,9 +155,7 @@ class _VoucherPageState extends State<VoucherPage> {
       backgroundColor: Theme.of(context).backgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(30),
-        child: ListView(
-          scrollDirection: Axis.vertical,
-          shrinkWrap: true,
+        child: Column(
           children: <Widget>[
             Align(
               alignment: Alignment.topLeft,
@@ -180,7 +178,7 @@ class _VoucherPageState extends State<VoucherPage> {
                     fontWeight: FontWeight.bold,
                     fontFamily: "Montserrat-Bold",
                     fontSize: 40,
-                    color: Theme.of(context).textTheme.headline2.color),
+                    color: Color(0xFFFFCB5F)),
               ),
             ),
             Align(
@@ -336,6 +334,7 @@ class _VoucherPageState extends State<VoucherPage> {
                 ),
               ),
             ),
+            SizedBox(height: 10),
             AllVouchers(),
           ],
         ),

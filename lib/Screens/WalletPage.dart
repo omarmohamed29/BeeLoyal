@@ -62,7 +62,7 @@ class _WalletPageState extends State<WalletPage> {
                     fontWeight: FontWeight.bold,
                     fontFamily: "Montserrat-Bold",
                     fontSize: 40,
-                    color: Theme.of(context).textTheme.headline2.color),
+                    color: Color(0xFFFFCB5F)),
               ),
             ),
           ),
@@ -232,109 +232,107 @@ class _WalletPageState extends State<WalletPage> {
             top: 400,
             left: 30,
             right: 30,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Purchase History",
-                textAlign: TextAlign.left,
-                style: TextStyle(
-                    fontFamily: "Montserrat-Light",
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
-                    color: Theme.of(context).textTheme.headline2.color),
+            child: Card(
+              child: Container(
+                height: MediaQuery.of(context).size.height-430,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Purchase History",
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                            fontFamily: "Montserrat-Light",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: Theme.of(context).textTheme.headline2.color),
+                      ),
+                    ),
+                    ListTile(
+                      title: Text(
+                        "Payed/date",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Montserrat-Bold",
+                            fontSize: 10,
+                            color: Colors.grey),
+                      ),
+                      trailing: Text(
+                        "City",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "Montserrat-Bold",
+                            fontSize: 10,
+                            color:Colors.grey),
+                      ),
+                    ),
+                    FutureBuilder(
+                        future:
+                        Provider.of<Orders>(context, listen: false).fetchOrders(),
+                        builder: (ctx, dataSnapshot) {
+                          if (dataSnapshot.connectionState == ConnectionState.waiting) {
+                            return Center(
+                                child: SpinKitCircle(
+                                  color: Color(0xFFFFCB5F),
+                                  size: 12,
+                                ));
+                          } else {
+                            if (dataSnapshot.error != null) {
+                              Center(
+                                child: Text('An error occured'),
+                              );
+                            } else {
+                              return Consumer<Orders>(
+                                builder: (_, item, ch) =>
+                                    Container(
+                                      height:MediaQuery.of(context).size.height-530,
+                                      child: ListView.builder(
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.vertical,
+                                          itemCount: item.orders.length,
+                                          itemBuilder: (ctx, i) =>
+                                              ListTile(
+                                                leading: Icon(Profile.wallet ,),
+                                                title: Text(
+                                                  item.orders[i].amount.toString() + "EGP",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: "Montserrat-Bold",
+                                                      fontSize: 15,
+                                                      color: Theme.of(context).textTheme.headline2.color),
+                                                ),
+                                                subtitle:Text(
+                                                  DateFormat('dd/MM/yyy')
+                                                      .format (item.orders[i].datetime) ,
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: "Montserrat-Bold",
+                                                      fontSize: 10,
+                                                      color: Theme.of(context).textTheme.headline2.color.withOpacity(0.7)),
+                                                ),
+                                                trailing: Text(
+                                                  item.orders[i].city,
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.bold,
+                                                      fontFamily: "Montserrat-Bold",
+                                                      fontSize: 10,
+                                                      color: Theme.of(context).textTheme.headline2.color),
+                                                ),
+                                              )),
+                                    ),
+                              );
+                            }
+                          }
+                          return Container();
+                        }),
+                  ],
+                ),
               ),
             ),
           ),
-          Positioned(
-            top: 420,
-            left: 30,
-            right: 30,
-            child: ListTile(
-              title: Text(
-                "Payed/date",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Montserrat-Bold",
-                    fontSize: 10,
-                    color: Colors.grey),
-              ),
-              trailing: Text(
-                "City",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Montserrat-Bold",
-                    fontSize: 10,
-                    color:Colors.grey),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 470,
-            left: 30,
-            right: 30,
-            child: FutureBuilder(
-                future:
-                Provider.of<Orders>(context, listen: false).fetchOrders(),
-                builder: (ctx, dataSnapshot) {
-                  if (dataSnapshot.connectionState == ConnectionState.waiting) {
-                    return Padding(
-                      padding: const EdgeInsets.all(200),
-                      child: Center(
-                          child: SpinKitCircle(
-                            color: Color(0xFFFFCB5F),
-                            size: 12,
-                          )),
-                    );
-                  } else {
-                    if (dataSnapshot.error != null) {
-                      Center(
-                        child: Text('An error occured'),
-                      );
-                    } else {
-                      return Consumer<Orders>(
-                        builder: (_, item, ch) =>
-                        Container(
-                          height: item.orders.length.toDouble() + 400 ,
-                          child: ListView.builder(
-                              shrinkWrap: true,
-                              scrollDirection: Axis.vertical,
-                              itemCount: item.orders.length,
-                              itemBuilder: (ctx, i) =>
-                              ListTile(
-                                leading: Icon(Profile.wallet ,),
-                                title: Text(
-                                  item.orders[i].amount.toString() + "EGP",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Montserrat-Bold",
-                                      fontSize: 15,
-                                      color: Theme.of(context).textTheme.headline2.color),
-                                ),
-                                subtitle:Text(
-                                  DateFormat('dd/MM/yyy')
-                                      .format (item.orders[i].datetime) ,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Montserrat-Bold",
-                                      fontSize: 10,
-                                      color: Theme.of(context).textTheme.headline2.color.withOpacity(0.7)),
-                                ),
-                                trailing: Text(
-                                  item.orders[i].city,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "Montserrat-Bold",
-                                      fontSize: 10,
-                                      color: Theme.of(context).textTheme.headline2.color),
-                                ),
-                              )),
-                        ),
-                  );
-                  }
-                  }
-                  return Container();
-                }),
-          ),
+
+
         ],
       ),
     );

@@ -30,6 +30,7 @@ class _BottomBar extends State<BottomBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         children: _pages,
         onPageChanged: (index) {
           setState(() {
@@ -41,6 +42,7 @@ class _BottomBar extends State<BottomBar> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).backgroundColor,
         type: BottomNavigationBarType.fixed,
+
         selectedFontSize: 14,
         unselectedFontSize: 13,
         fixedColor: Color(0xFFFFCB5F),

@@ -1,7 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:path/path.dart';
-import 'AuthUser.dart';
 
 class DBProvider {
   DBProvider._();
@@ -17,33 +16,30 @@ class DBProvider {
   }
 
   initDB() async{
-    return await openDatabase(
-      join(await getDatabasesPath() , 'userData'),
+    var databasesPath = await getDatabasesPath();
+    String path = join(databasesPath, 'userData.db');
+    return await openDatabase(path , version: 1,
       onCreate: (db , version) async {
-        await db.execute('''
-      CREATE TABLE users(
-      email TEXT  , password TEXT , token TEXT , expiryDate TEXT , userId TEXT 
-      )
-      ''');
+        await db.execute(''' CREATE TABLE users(id TEXT , theme TEXT ) ''');
       },
-      version: 1,
+
     );
 
   }
 
-  newUser(UserAuth newUser) async{
+  setTheme(String theme) async{
     final db = await database;
 
     var res = await db.rawInsert('''
     INSERT INTO users (
-    email , password , token , expiryDate , userId
-    ) VALUES(? , ? , ? , ? , ?)
-    ''' , [newUser.email , newUser.password , newUser.token , newUser.expiryDate , newUser.userId]);
+    id ,theme 
+    ) VALUES(? , ?)
+    ''' , ['1', theme ]);
+    print(res);
     return res;
   }
 
   Future<dynamic> getUsers() async{
-
     final db = await database;
     var res = await db.query("users");
     if(res.length ==0 ){
@@ -54,9 +50,24 @@ class DBProvider {
     }
   }
 
-  dropTable(String id) async{
+  update(String theme) async{
     final db = await database;
-   int res =  await db.delete("users");
-   return res;
+    int count = await db.rawUpdate(
+        'UPDATE users SET theme = ? WHERE id = ?',
+        [theme, '1',]);
+
+    print('updated: $count');
+  }
+
+  printDB()async{
+    final db = await database;
+    final tables = await db.rawQuery('SELECT * FROM users ;');
+    print(tables);
+  }
+
+  dropTable(String id) async{
+    var databasesPath = await getDatabasesPath();
+    String path = join(databasesPath, 'userData.db');
+    await deleteDatabase(path);
   }
 }

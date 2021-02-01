@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:loyalbee/models/DataBase.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/Sizes.dart';
 import 'package:flutter/material.dart';
@@ -10,12 +9,11 @@ class Products with ChangeNotifier {
   List<Product> _items = [];
 
   Future<void> fetchProducts() async {
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
-    final userId = newUser['userId'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final userId = prefUserData['userId'];
+    final token = prefUserData['token'];
 
     final url = 'https://beel-6e17a.firebaseio.com/Products.json?auth=$token';
     try {
@@ -85,11 +83,10 @@ class Products with ChangeNotifier {
       String subCategory,
       int hits,
       int inStock) async {
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final token = prefUserData['token'];
 
     try {
       final url =

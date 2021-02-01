@@ -651,17 +651,26 @@ class _ProductDetailsState extends State<ProductDetails> {
                           height: MediaQuery
                               .of(context)
                               .size
-                              .height * 45 / 160,
+                              .height * 45 / 180,
                           width: MediaQuery
                               .of(context)
                               .size
                               .width,
                           child: Padding(
                             padding: const EdgeInsets.only(
-                                left: 15.0, top: 30, bottom: 15),
+                                left: 15.0, top: 5, bottom: 15),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Color(0xFFFFCB5F),
+                                  ),
+                                  height: 3,
+                                  width: 80,
+                                ),
+                                SizedBox(height: 10,),
                                 Text(
                                   "Select a size",
                                   style: TextStyle(
@@ -673,6 +682,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                                           .headline2
                                           .color),
                                 ),
+                                SizedBox(height: 10,),
                                 Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, left: 10, right: 10),

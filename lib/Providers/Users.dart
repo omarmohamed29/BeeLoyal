@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/User.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'package:loyalbee/models/DataBase.dart';
 
 
 class Users with ChangeNotifier {
@@ -10,14 +10,11 @@ class Users with ChangeNotifier {
   ];
 
   Future<void>addUser(String name , String address , String  email , String city , String phoneNumber) async{
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
-    final uid = newUser['userId'];
-
-
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final uid = prefUserData['userId'];
+    final token = prefUserData['token'];
 
     final url = 'https://beel-6e17a.firebaseio.com/Users/$uid.json?auth=$token';
      await http.post(
@@ -33,13 +30,11 @@ class Users with ChangeNotifier {
 
 
    Future<void>editUser(String name , String address , String id , String city , String phoneNumber) async{
-     final _userData = await DBProvider.db.getUsers();
-
-     final newUser= Map<String , String >.from(_userData);
-
-     final token = newUser['token'];
-     final uid = newUser['userId'];
-
+     final prefs = await SharedPreferences.getInstance();
+     final prefUserData =
+     json.decode(prefs.getString('userData')) as Map<String, Object>;
+     final uid = prefUserData['userId'];
+     final token = prefUserData['token'];
     final url = 'https://beel-6e17a.firebaseio.com/Users/$uid/$id.json?auth=$token';
      await http.patch(
       url , body: jsonEncode({
@@ -52,14 +47,11 @@ class Users with ChangeNotifier {
   }
 
   Future<void> retrieveUser() async{
-
-
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
-    final userId = newUser['userId'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final userId = prefUserData['userId'];
+    final token = prefUserData['token'];
 
     final url = 'https://beel-6e17a.firebaseio.com/Users/$userId.json?auth=$token';
 

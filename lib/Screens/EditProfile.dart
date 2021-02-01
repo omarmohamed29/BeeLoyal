@@ -81,7 +81,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: "Montserrat-Bold",
                       fontSize: 40,
-                      color: Theme.of(context).textTheme.headline2.color),
+                      color:  Color(0xFFFFCB5F)),
                 ),
               ),
             ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loyalbee/models/DataBase.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Voucher with ChangeNotifier {
   final bool status;
@@ -25,12 +25,11 @@ class Vouchers with ChangeNotifier {
 
 
   Future<void>addVoucher(bool status, int points , String userName ) async{
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
-    final uid = newUser['userId'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final uid = prefUserData['userId'];
+    final token = prefUserData['token'];
 
     final url = 'https://beel-6e17a.firebaseio.com/Vouchers/$uid.json?auth=$token';
     final expiryDate = DateTime.now().add(Duration(days: 7));
@@ -53,12 +52,11 @@ class Vouchers with ChangeNotifier {
   }
 
   Future<void> retrieveVoucher() async{
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
-    final uid = newUser['userId'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final uid = prefUserData['userId'];
+    final token = prefUserData['token'];
 
     final url = 'https://beel-6e17a.firebaseio.com/Vouchers/$uid.json?auth=$token';
 

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:loyalbee/models/DataBase.dart';
 import '../models/CartItem.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/Order.dart';
@@ -21,12 +20,11 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> fetchOrders() async {
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
-    final uid = newUser['userId'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final uid = prefUserData['userId'];
+    final token = prefUserData['token'];
 
 
     final url =

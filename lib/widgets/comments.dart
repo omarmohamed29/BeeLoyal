@@ -52,63 +52,64 @@ class _CommentsListState extends State<CommentsList> {
             } else {
               return Consumer<Comments>(
                 builder: (context, getcomments, child) =>getcomments.comments.length != 0
-                    ? ListView.builder(
+                    ? IgnorePointer(
+                      child: ListView.builder(
                   padding: EdgeInsets.all(0),
                   itemCount: getcomments.comments.length > 3
-                      ? 3
-                      : getcomments.comments.length,
-                  scrollDirection: Axis.vertical,
+                        ? 3
+                        : getcomments.comments.length,
                   shrinkWrap: true,
                   itemBuilder: (ctx, i) =>  ListTile(
-                          leading:
-                              int.parse(getcomments.comments[i].emotion) ==
-                                      4
-                                  ? Icon(
-                                      Icons.sentiment_very_satisfied,
-                                      color:Theme.of(context).textTheme.headline2.color,
-                                      size: 20,
-                                    )
-                                  : Icon(
-                                      Icons.sentiment_dissatisfied,
-                                      color: Theme.of(context).textTheme.headline2.color,
-                                      size: 20,
-                                    ),
-                          title: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                getcomments.comments[i].name,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: "Montserrat-Light",
-                                  fontWeight: FontWeight.bold,
-                                  color: Theme.of(context).textTheme.headline2.color,
-                                ),
-                              ),
-                              Consumer<Rating>(
-                                builder: (_, rate, ch) => RatingBarIndicator(
-                                  rating: double.parse(rate.rating[i].rate),
-                                  itemBuilder: (context, index) => Icon(
-                                    Icons.star,
-                                    color: Color(0xFFFFCB5F),
+                            leading:
+                                int.parse(getcomments.comments[i].emotion) ==
+                                        4
+                                    ? Icon(
+                                        Icons.sentiment_very_satisfied,
+                                        color:Theme.of(context).textTheme.headline2.color,
+                                        size: 20,
+                                      )
+                                    : Icon(
+                                        Icons.sentiment_dissatisfied,
+                                        color: Theme.of(context).textTheme.headline2.color,
+                                        size: 20,
+                                      ),
+                            title: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  getcomments.comments[i].name,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: "Montserrat-Light",
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).textTheme.headline2.color,
                                   ),
-                                  itemCount: 4,
-                                  itemSize: 10.0,
-                                  direction: Axis.horizontal,
                                 ),
-                              )
-                            ],
-                          ),
-                          subtitle: Text(
-                            getcomments.comments[i].body,
-                            style: TextStyle(
-                              fontFamily: "Montserrat-Light",
-                              color:Theme.of(context).textTheme.headline2.color.withOpacity(0.7),
+                                Consumer<Rating>(
+                                  builder: (_, rate, ch) => RatingBarIndicator(
+                                    rating: double.parse(rate.rating[i].rate),
+                                    itemBuilder: (context, index) => Icon(
+                                      Icons.star,
+                                      color: Color(0xFFFFCB5F),
+                                    ),
+                                    itemCount: 4,
+                                    itemSize: 10.0,
+                                    direction: Axis.horizontal,
+                                  ),
+                                )
+                              ],
                             ),
-                          ),
-                        )
+                            subtitle: Text(
+                              getcomments.comments[i].body,
+                              style: TextStyle(
+                                fontFamily: "Montserrat-Light",
+                                color:Theme.of(context).textTheme.headline2.color.withOpacity(0.7),
+                              ),
+                            ),
+                          )
 
-                ) : Padding(
+                ),
+                    ) : Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Center(
                     child: Column(

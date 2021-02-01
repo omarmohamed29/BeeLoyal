@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loyalbee/models/DataBase.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/Rate.dart';
 
 class Rating with ChangeNotifier{
@@ -27,11 +27,10 @@ class Rating with ChangeNotifier{
 
 
   Future<void> addRate(String rating , String prodId) async {
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final token = prefUserData['token'];
 
     final url =
         'https://beel-6e17a.firebaseio.com/Rate/$prodId.json?auth=$token';
@@ -46,17 +45,15 @@ class Rating with ChangeNotifier{
   }
 
   Future<void> retrieveRate(String prodId) async {
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final token = prefUserData['token'];
 
     final url =
         'https://beel-6e17a.firebaseio.com/Rate/$prodId.json?auth=$token';
     try {
       final response = await http.get(url);
-      // print(jsonDecode(response.body));
       final allRating = json.decode(response.body) as Map<String, dynamic>;
       final List<Rate> retrievedRate = [];
       allRating.forEach((ratetId, rateBody) {

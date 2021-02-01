@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import 'notifications.dart';
+import 'DataBase.dart';
 
 class AppTheme {
   get myDarkTheme => ThemeData(
@@ -19,17 +17,25 @@ class AppTheme {
       ),
     ),
     bottomSheetTheme: BottomSheetThemeData(
-      backgroundColor: Color(0xFF2F3136),
-      elevation: 2.0,
+      backgroundColor:Color(0xFF2D2D2D),
+      elevation: 3.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
       modalElevation: 2.2,
       modalBackgroundColor:  Color(0xFF121212),
+
+    ),
+    cardTheme: CardTheme(
+      color: Color(0xFF1E1E1E),
+      elevation: 3.0,
+      shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10),
+    ),
     ),
 
     brightness: Brightness.dark,
-    backgroundColor: Color(0xFF111111),
+    backgroundColor: Color(0xFF121212),
     iconTheme: IconThemeData(color: Colors.white),
     textTheme: TextTheme(
         headline2: TextStyle(color: Colors.white),
@@ -40,7 +46,7 @@ class AppTheme {
       border: InputBorder.none,
     ),
 
-
+    textSelectionHandleColor:Color(0xFFFFCB5F) ,
     accentIconTheme: IconThemeData(color: Colors.white),
     hoverColor: Colors.white.withOpacity(0.1),
     cursorColor: Color(0xFFFFCB5F),
@@ -66,6 +72,7 @@ class AppTheme {
         labelStyle: TextStyle(color: Colors.white),
       ),
       bottomSheetTheme: BottomSheetThemeData(
+        backgroundColor: Colors.white,
         elevation: 2.0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -87,7 +94,6 @@ class AppTheme {
 
 class ThemeNotifier with ChangeNotifier {
   bool _darkTheme;
-  SharedPreferences prefs;
 
   bool get darkTheme => _darkTheme;
 
@@ -102,31 +108,21 @@ class ThemeNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  _initPrefs() async {
-    if (prefs == null) prefs = await SharedPreferences.getInstance();
-  }
-
   _loadFromPrefs() async {
-    prefs = await SharedPreferences.getInstance();
-    if(prefs.containsKey('theme')) {
-      final prefUserData = await json.decode(prefs.getString('userExperience'))
-      as Map<String, Object>;
-      _darkTheme = prefUserData['theme'] == "true" ? true : false;
-    }
-//    print("current theme is " + _darkTheme.toString());
-//    print("saved one is " +
-//        bool.fromEnvironment(prefUserData['theme']).toString());
+    DBProvider.db.printDB();
+    final _userData = await DBProvider.db.getUsers();
+    Map<String, String> newUser = {};
+    if (!newUser.containsKey('theme') && _userData != null) {
+      newUser = Map<String, String>.from(_userData);
+      _darkTheme = newUser['theme'] == "true" ? true : false;
+    } else
+      _darkTheme = true;
   }
 
   _setPrefs() async {
-    _initPrefs();
-    final preferences = await SharedPreferences.getInstance();
-    final userExperience = json.encode(
-      {
-        'theme': _darkTheme.toString(),
-        'notifications' : Notifications().muteNotification.toString()
-      },
-    );
-    await prefs.setString('userExperience', userExperience);
+    final _userData = await DBProvider.db.getUsers();
+    _userData == null
+        ? await DBProvider.db.setTheme(_darkTheme.toString())
+        : await DBProvider.db.update(_darkTheme.toString());
   }
 }

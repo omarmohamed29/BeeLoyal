@@ -20,7 +20,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<Product>(context, listen: false);
     return Container(
-      decoration:Theme.of(context).backgroundColor ==  Color(0xFF111111) ? null :  BoxDecoration(
+      decoration:Theme.of(context).backgroundColor ==  Color(0xFF121212) ? null :  BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: Color.fromARGB(62, 168, 174, 201),
@@ -32,7 +32,7 @@ class ProductItem extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 5.0, left: 6.0, right: 6.0),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(10),
           child: GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>ProductDetails(id)));

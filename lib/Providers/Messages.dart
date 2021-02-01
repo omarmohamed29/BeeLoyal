@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:loyalbee/models/DataBase.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/Message.dart';
 
@@ -13,11 +13,10 @@ class Messages with ChangeNotifier {
   }
 
   Future<void> retrieveMessage() async{
-    final _userData = await DBProvider.db.getUsers();
-
-    final newUser= Map<String , String >.from(_userData);
-
-    final token = newUser['token'];
+    final prefs = await SharedPreferences.getInstance();
+    final prefUserData =
+    json.decode(prefs.getString('userData')) as Map<String, Object>;
+    final token = prefUserData['token'];
 
 
     final url = 'https://beel-6e17a.firebaseio.com/Messages.json?auth=$token';

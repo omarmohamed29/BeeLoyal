@@ -64,17 +64,6 @@ class _PurchaseCardState extends State<PurchaseCard>
                     );
                   } else {
                     return Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(15),
-                              topLeft: Radius.circular(15)),
-                          boxShadow: [
-                            BoxShadow(
-                                blurRadius: 2,
-                                color: Colors.grey[300].withOpacity(0.5),
-                                spreadRadius: 2)
-                          ]),
                       height: MediaQuery.of(context).size.height * 45 / 100,
                       child: Padding(
                         padding: const EdgeInsets.only(

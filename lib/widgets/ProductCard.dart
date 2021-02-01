@@ -21,20 +21,23 @@ class _ProductsGridState extends State<ProductsGrid> {
     final products =
         widget.showFavs ? productsData.favouriteItems : productsData.items;
 
-    return GridView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      padding: const EdgeInsets.all(10.0),
-      itemCount: widget.showAll ? products.length : 4 ,
-      itemBuilder: (ctx , i) =>ChangeNotifierProvider.value(
-        value: products[i],
-        child: ProductItem(products[i].id),
+    return IgnorePointer(
+      child: GridView.builder(
+        scrollDirection: Axis.vertical,
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        padding: const EdgeInsets.all(10.0),
+        itemCount: widget.showAll ? products.length : 4 ,
+        itemBuilder: (ctx , i) =>ChangeNotifierProvider.value(
+          value: products[i],
+          child: ProductItem(products[i].id),
+        ),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 4/5,
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10),
       ),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 4/5,
-          crossAxisSpacing: 10,
-          mainAxisSpacing: 10),
     );
   }
 }

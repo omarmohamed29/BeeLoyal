@@ -117,7 +117,7 @@ class _SettingPageState extends State<SettingPage> {
                           SwitchListTile(
                         activeColor: Color(0xFFFFCB5F),
                         contentPadding:
-                            EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                            EdgeInsets.only(left: 10, right: 10, ),
                         title: Row(
                           children: [
                             Padding(
@@ -142,14 +142,22 @@ class _SettingPageState extends State<SettingPage> {
                             ),
                           ],
                         ),
+                        subtitle:  Text(
+                          "Disable notification and keep stop the bee sound",
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "Montserrat-Light",
+                              color: Theme.of(context)
+                                  .textTheme
+                                  .headline2
+                                  .color,
+                              fontSize: 8)
+                        ),
                         value: notifier.muteNotification,
                         onChanged: (val) async {
                           await notifier.toggleNotifications();
                         },
                       ),
-                    ),
-                    SizedBox(
-                      height: 40,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 15.0, top: 30),
@@ -166,113 +174,109 @@ class _SettingPageState extends State<SettingPage> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 0),
-                      child: ListView(
-                        shrinkWrap: true,
-                        children: <Widget>[
-                          ListTile(
-                            leading: Icon(
-                              Setting.rateus,
-                              color: Theme.of(context).iconTheme.color,
-                              size: 30,
-                            ),
-                            title: Text("Rate us",
-                                style: TextStyle(
-                                    fontFamily: "Montserrat-Light",
-                                    fontSize: 25,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .headline2
-                                        .color)),
-                            trailing: Icon(
-                              Icons.chevron_right,
-                              color:
-                                  Theme.of(context).textTheme.headline2.color,
-                              size: 25,
-                            ),
+                    Column(
+                      children: <Widget>[
+                        ListTile(
+                          leading: Icon(
+                            Setting.rateus,
+                            color: Theme.of(context).iconTheme.color,
+                            size: 30,
                           ),
-                          Divider(
-                            thickness: 1.0,
-                            height: 8,
+                          title: Text("Rate us",
+                              style: TextStyle(
+                                  fontFamily: "Montserrat-Light",
+                                  fontSize: 25,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .color)),
+                          trailing: Icon(
+                            Icons.chevron_right,
+                            color:
+                                Theme.of(context).textTheme.headline2.color,
+                            size: 25,
                           ),
-                          ListTile(
-                            leading: Icon(
-                              Setting.socialize,
-                              color: Theme.of(context).iconTheme.color,
-                              size: 30,
-                            ),
-                            title: Text("Contact us",
-                                style: TextStyle(
-                                    fontFamily: "Montserrat-Light",
-                                    fontSize: 25,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .headline2
-                                        .color)),
-                            trailing: Icon(
-                              Icons.chevron_right,
-                              color:
-                                  Theme.of(context).textTheme.headline2.color,
-                              size: 25,
-                            ),
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          height: 8,
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Setting.socialize,
+                            color: Theme.of(context).iconTheme.color,
+                            size: 30,
                           ),
-                          Divider(
-                            thickness: 1.0,
-                            height: 8,
+                          title: Text("Contact us",
+                              style: TextStyle(
+                                  fontFamily: "Montserrat-Light",
+                                  fontSize: 25,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .color)),
+                          trailing: Icon(
+                            Icons.chevron_right,
+                            color:
+                                Theme.of(context).textTheme.headline2.color,
+                            size: 25,
                           ),
-                          ListTile(
-                            leading: Icon(
-                              Setting.licence,
-                              color: Theme.of(context).iconTheme.color,
-                              size: 30,
-                            ),
-                            title: Text("License",
-                                style: TextStyle(
-                                    fontFamily: "Montserrat-Light",
-                                    fontSize: 25,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .headline2
-                                        .color)),
-                            trailing: Icon(
-                              Icons.chevron_right,
-                              color:
-                                  Theme.of(context).textTheme.headline2.color,
-                              size: 25,
-                            ),
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          height: 8,
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Setting.licence,
+                            color: Theme.of(context).iconTheme.color,
+                            size: 30,
                           ),
-                          Divider(
-                            thickness: 1.0,
-                            height: 8,
+                          title: Text("License",
+                              style: TextStyle(
+                                  fontFamily: "Montserrat-Light",
+                                  fontSize: 25,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .color)),
+                          trailing: Icon(
+                            Icons.chevron_right,
+                            color:
+                                Theme.of(context).textTheme.headline2.color,
+                            size: 25,
                           ),
-                          ListTile(
-                            onTap: () {
-                              Provider.of<Auth>(context, listen: false)
-                                  .logout();
-                            },
-                            leading: Icon(
-                              Setting.logout,
-                              color: Theme.of(context).iconTheme.color,
-                              size: 30,
-                            ),
-                            title: Text("Logout",
-                                style: TextStyle(
-                                    fontFamily: "Montserrat-Light",
-                                    fontSize: 25,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .headline2
-                                        .color)),
-                            trailing: Icon(
-                              Icons.chevron_right,
-                              color:
-                                  Theme.of(context).textTheme.headline2.color,
-                              size: 25,
-                            ),
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          height: 8,
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Provider.of<Auth>(context, listen: false)
+                                .logout();
+                          },
+                          leading: Icon(
+                            Setting.logout,
+                            color: Theme.of(context).iconTheme.color,
+                            size: 30,
                           ),
-                        ],
-                      ),
+                          title: Text("Logout",
+                              style: TextStyle(
+                                  fontFamily: "Montserrat-Light",
+                                  fontSize: 25,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .headline2
+                                      .color)),
+                          trailing: Icon(
+                            Icons.chevron_right,
+                            color:
+                                Theme.of(context).textTheme.headline2.color,
+                            size: 25,
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),

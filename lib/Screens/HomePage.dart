@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin<HomePage> {
   Future _productsFuture;
   ScrollController _scrollController =
-      ScrollController(initialScrollOffset: 0.0);
+  ScrollController(initialScrollOffset: 0.0);
 
   Future _usersFuture;
   String result = "";
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage>
     _productsFuture = getProducts();
     _usersFuture = getUsers();
     if (_scrollController.hasClients) {
-       _scrollController.animateTo(
+      _scrollController.animateTo(
         0.0,
         curve: Curves.easeOut,
         duration: const Duration(milliseconds: 300),
@@ -72,40 +72,76 @@ class _HomePageState extends State<HomePage>
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
-                    color: Color(0xFFFFCB5F),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Color(0xFFFFCB5F),
+                    ),
                     height: 3,
-                    width: 110,
+                    width: 80,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 50),
+                  padding: const EdgeInsets.only(top: 6),
                   child: Center(
-                    child: Container(
-                      height: 150,
-                      width: 150,
-                      color: Color(0xFFFFCB5F),
-                      child: IconButton(
-                        icon: Icon(
-                          NavBarIcon.qrcode,
-                          size: 50,
-                        ),
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => QrScan()));
-                        },
-                      ),
+                    child: Column(
+                      children: [
+                        Text("More Tools", style: TextStyle(
+                            fontFamily: "Montserrat-Bold",
+                            fontSize: 20,
+                            color: Theme
+                                .of(context)
+                                .textTheme
+                                .headline2
+                                .color
+                        ) ,),
+                        SizedBox(height: 10,),
+                       ListTile(
+                         leading: Padding(
+                           padding: const EdgeInsets.all(8.0),
+                           child: Icon(
+                             NavBarIcon.qrcode,
+                             size: 30,
+                           ),
+                         ),
+                         title:Text(
+                           "Scan QR code",
+                           style: TextStyle(
+                             color: Theme
+                                 .of(context)
+                                 .textTheme
+                                 .headline2
+                                 .color,
+                             fontFamily: "Montserrat-Bold",
+                           ),
+                         ),
+                         subtitle: Text(
+                           "Scan QR code and get points ",
+                           style: TextStyle(
+                             color: Theme
+                                 .of(context)
+                                 .textTheme
+                                 .headline2
+                                 .color,
+                             fontFamily: "Montserrat-Light",
+                             fontSize: 12
+                           ),
+                         ),
+                         trailing: Icon(
+                           Icons.chevron_right,
+                           color:
+                           Theme.of(context).textTheme.headline2.color,
+                           size: 25,
+                         ),
+                         onTap: (){
+                           Navigator.of(context).push(MaterialPageRoute(
+                               builder: (BuildContext context) => QrScan()));
+                         },
+                       )
+                      ],
                     ),
                   ),
                 ),
-                Center(
-                  child: Text(
-                    "Scan QR code",
-                    style: TextStyle(
-                      color: Theme.of(context).textTheme.headline2.color,
-                      fontFamily: "Montserrat-Light",
-                    ),
-                  ),
-                )
+
               ],
             ),
           );
@@ -116,10 +152,14 @@ class _HomePageState extends State<HomePage>
   // ignore: must_call_super
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
+      backgroundColor: Theme
+          .of(context)
+          .backgroundColor,
       appBar: AppBar(
         title:
-        Theme.of(context).backgroundColor == Color(0xFF111111)
+        Theme
+            .of(context)
+            .backgroundColor == Color(0xFF121212)
             ? Image.asset(
           "assets/images/beel2.png",
           width: 100,
@@ -130,11 +170,14 @@ class _HomePageState extends State<HomePage>
           width: 100,
           height: 60,
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme
+            .of(context)
+            .backgroundColor,
         elevation: 0.0,
         actions: <Widget>[
           Consumer<Cart>(
-              builder: (_, cart, ch) => Padding(
+              builder: (_, cart, ch) =>
+                  Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: Badge(
                       child: ch,
@@ -144,7 +187,10 @@ class _HomePageState extends State<HomePage>
               child: Padding(
                 padding: const EdgeInsets.only(right: 2.0),
                 child: IconButton(
-                  icon: Icon(NavBarIcon.shoppingcart , color: Theme.of(context).iconTheme.color,),
+                  icon: Icon(NavBarIcon.shoppingcart, color: Theme
+                      .of(context)
+                      .iconTheme
+                      .color,),
                   color: Colors.black54,
                   iconSize: 20,
                   onPressed: () {
@@ -155,15 +201,23 @@ class _HomePageState extends State<HomePage>
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-          icon: Icon(Icons.add , color:  Theme.of(context).textTheme.headline2.color,),
+          icon: Icon(Icons.add, color: Theme
+              .of(context)
+              .textTheme
+              .headline2
+              .color,),
           onPressed: () {
             _onButtonPressed();
           },
           label: Text(
             "More",
             style: TextStyle(
-              fontFamily: "Montserrat-Bold",
-              color: Theme.of(context).textTheme.headline2.color
+                fontFamily: "Montserrat-Bold",
+                color: Theme
+                    .of(context)
+                    .textTheme
+                    .headline2
+                    .color
             ),
           )),
       body: RefreshIndicator(
@@ -177,9 +231,9 @@ class _HomePageState extends State<HomePage>
                   padding: const EdgeInsets.all(200),
                   child: Center(
                       child: SpinKitCircle(
-                    color: Color(0xFFFFCB5F),
-                    size: 12,
-                  )),
+                        color: Color(0xFFFFCB5F),
+                        size: 12,
+                      )),
                 );
               } else {
                 if (dataSnapshot.error != null) {
@@ -195,12 +249,17 @@ class _HomePageState extends State<HomePage>
                       //The Top Section
                       Container(
                         decoration: BoxDecoration(
-                            color:Theme.of(context).backgroundColor,
+                            color: Theme
+                                .of(context)
+                                .backgroundColor,
                             borderRadius: BorderRadius.only(
                                 bottomLeft: Radius.circular(20.0),
                                 bottomRight: Radius.circular(20.0))),
                         height: 200,
-                        width: MediaQuery.of(context).size.width,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width,
                         child: Column(
                           children: <Widget>[
                             Padding(
@@ -210,24 +269,32 @@ class _HomePageState extends State<HomePage>
                                   children: <Widget>[
                                     Center(
                                         child: Text(
-                                      "Hello there , ",
-                                      style: TextStyle(
-                                        color: Theme.of(context).textTheme.headline2.color,
-                                        fontFamily: "Montserrat-Light",
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                      ),
-                                    )),
+                                          "Hello there , ",
+                                          style: TextStyle(
+                                            color: Theme
+                                                .of(context)
+                                                .textTheme
+                                                .headline2
+                                                .color,
+                                            fontFamily: "Montserrat-Light",
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                          ),
+                                        )),
                                     Center(
                                         child: Text(
-                                      "Explore our latest products and get fashioned ! ",
-                                      style: TextStyle(
-                                        color: Theme.of(context).textTheme.headline2.color,
-                                        fontFamily: "Montserrat-Light",
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                      ),
-                                    )),
+                                          "Explore our latest products and get fashioned ! ",
+                                          style: TextStyle(
+                                            color: Theme
+                                                .of(context)
+                                                .textTheme
+                                                .headline2
+                                                .color,
+                                            fontFamily: "Montserrat-Light",
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 12,
+                                          ),
+                                        )),
                                   ],
                                 ),
                               ),
@@ -237,7 +304,11 @@ class _HomePageState extends State<HomePage>
                               child: Container(
                                 width: 350,
                                 height: 1,
-                                color: Theme.of(context).textTheme.headline2.color,
+                                color: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .headline2
+                                    .color,
                               ),
                             ),
                             Column(
@@ -246,73 +317,100 @@ class _HomePageState extends State<HomePage>
                                   padding: const EdgeInsets.all(8.0),
                                   child: Icon(
                                     Profile.wallet,
-                                    color: Theme.of(context).textTheme.headline2.color,
+                                    color: Theme
+                                        .of(context)
+                                        .textTheme
+                                        .headline2
+                                        .color,
                                     size: 30,
                                   ),
                                 ),
                                 Text("In your wallet you have",
                                     style: TextStyle(
-                                      color: Theme.of(context).textTheme.headline2.color,
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color,
                                       fontFamily: "Montserrat-Light",
                                       fontSize: 10,
                                     )),
                                 Consumer<WalletManager>(
-                                  builder: (_, wallet, ch) => Container(
-                                    padding: const EdgeInsets.only(
-                                        left: 30, right: 30, top: 22),
-                                    child: Row(
-                                      mainAxisAlignment:
+                                  builder: (_, wallet, ch) =>
+                                      Container(
+                                        padding: const EdgeInsets.only(
+                                            left: 30, right: 30, top: 22),
+                                        child: Row(
+                                          mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
-                                      children: <Widget>[
-                                        Row(
                                           children: <Widget>[
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 8),
-                                              child: Icon(
-                                                Profile.cash,
-                                                color: Theme.of(context).textTheme.headline2.color,
-                                                size: 25,
-                                              ),
-                                            ),
-                                            Text(
-                                              wallet.wallet[0].money
+                                            Row(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .only(
+                                                      right: 8),
+                                                  child: Icon(
+                                                    Profile.cash,
+                                                    color: Theme
+                                                        .of(context)
+                                                        .textTheme
+                                                        .headline2
+                                                        .color,
+                                                    size: 25,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  wallet.wallet[0].money
                                                       .toString() +
-                                                  " EGP",
-                                              style: TextStyle(
-                                                color: Theme.of(context).textTheme.headline2.color,
-                                                fontFamily: "Montserrat-Light",
-                                                fontSize: 22,
-                                              ),
+                                                      " EGP",
+                                                  style: TextStyle(
+                                                    color: Theme
+                                                        .of(context)
+                                                        .textTheme
+                                                        .headline2
+                                                        .color,
+                                                    fontFamily: "Montserrat-Light",
+                                                    fontSize: 22,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
+                                            Row(
+                                              children: <Widget>[
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .only(
+                                                      right: 8),
+                                                  child: Icon(
+                                                    Icons.star,
+                                                    color: Theme
+                                                        .of(context)
+                                                        .textTheme
+                                                        .headline2
+                                                        .color,
+                                                    size: 25,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  wallet.wallet[0].points
+                                                      .toString() +
+                                                      " Points",
+                                                  style: TextStyle(
+                                                    color: Theme
+                                                        .of(context)
+                                                        .textTheme
+                                                        .headline2
+                                                        .color,
+                                                    fontFamily: "Montserrat-Light",
+                                                    fontSize: 22,
+                                                  ),
+                                                ),
+                                              ],
+                                            )
                                           ],
                                         ),
-                                        Row(
-                                          children: <Widget>[
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 8),
-                                              child: Icon(
-                                                Icons.star,
-                                                color: Theme.of(context).textTheme.headline2.color,
-                                                size: 25,
-                                              ),
-                                            ),
-                                            Text(
-                                              wallet.wallet[0].points
-                                                      .toString() +
-                                                  " Points",
-                                              style: TextStyle(
-                                                color: Theme.of(context).textTheme.headline2.color,
-                                                fontFamily: "Montserrat-Light",
-                                                fontSize: 22,
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                  ),
+                                      ),
                                 ),
                               ],
                             ),
@@ -329,33 +427,43 @@ class _HomePageState extends State<HomePage>
                       //Featured Section
                       Padding(
                         padding:
-                            const EdgeInsets.only(top: 10, right: 10, left: 10),
-                        child: Container(
-                          height: 250,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Color(0xFFFFCB5F).withOpacity(0.9),
+                        const EdgeInsets.only(top: 10, right: 10, left: 10),
+                        child: Card(
+                          shape:  RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(top:8.0 , bottom: 8 , left: 8),
-                                child: Text(
-                                  "Featured Products",
-                                  style: TextStyle(
-                                    color: Theme.of(context).textTheme.headline2.color,
-                                    fontFamily: "Montserrat-Light",
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 20,
+                          child: Container(
+                            height: 250,
+                             decoration: Theme.of(context).backgroundColor == Color(0xFF121212) ? null : BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color(0xFFFFCB5F).withOpacity(0.9),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 8, left: 8),
+                                  child: Text(
+                                    "Featured Products",
+                                    style: TextStyle(
+                                      color: Theme
+                                          .of(context)
+                                          .textTheme
+                                          .headline2
+                                          .color,
+                                      fontFamily: "Montserrat-Light",
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Container(
-                                height: 200,
-                                child: TrendingSection(),
-                              ),
-                            ],
+                                Container(
+                                  height: 200,
+                                  child: TrendingSection(),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -366,8 +474,10 @@ class _HomePageState extends State<HomePage>
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border:
-                                Border.all(color: Color(0xFFFFCB5F), width: 1),
-                            color: Theme.of(context).backgroundColor,
+                            Border.all(color: Color(0xFFFFCB5F), width: 1),
+                            color: Theme
+                                .of(context)
+                                .backgroundColor,
                           ),
                           height: 570,
                           child: Column(
@@ -376,14 +486,18 @@ class _HomePageState extends State<HomePage>
                                 padding: const EdgeInsets.all(8.0),
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Align(
                                       alignment: Alignment.topLeft,
                                       child: Text(
                                         "Our Products",
                                         style: TextStyle(
-                                          color: Theme.of(context).textTheme.headline2.color,
+                                          color: Theme
+                                              .of(context)
+                                              .textTheme
+                                              .headline2
+                                              .color,
                                           fontFamily: "Montserrat-Light",
                                           fontWeight: FontWeight.bold,
                                           fontSize: 20,
@@ -396,7 +510,7 @@ class _HomePageState extends State<HomePage>
                                               MaterialPageRoute(
                                                   builder:
                                                       (BuildContext context) =>
-                                                          AllProducts()));
+                                                      AllProducts()));
                                         },
                                         child: Row(
                                           children: <Widget>[
@@ -421,10 +535,7 @@ class _HomePageState extends State<HomePage>
                                   ],
                                 ),
                               ),
-                              Container(
-                                height: 500,
-                                child: HomeProducts(),
-                              ),
+                              HomeProducts(),
                             ],
                           ),
                         ),

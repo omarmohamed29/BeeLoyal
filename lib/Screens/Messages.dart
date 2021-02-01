@@ -57,12 +57,6 @@ class _MessagesPageState extends State<MessagesPage> {
                     );
                   } else {
                     return Container(
-                      decoration: BoxDecoration(
-                          color: Theme.of(context).backgroundColor,
-                          borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(15),
-                              topLeft: Radius.circular(15)),
-                        ),
                       height: MediaQuery.of(context).size.height * 45 / 100,
                       child: Padding(
                         padding: const EdgeInsets.only(
@@ -156,7 +150,7 @@ class _MessagesPageState extends State<MessagesPage> {
                   fontWeight: FontWeight.bold,
                   fontFamily: "Montserrat-Bold",
                   fontSize: 20,
-                  color: Theme.of(context).textTheme.headline2.color),
+                  color:  Color(0xFFFFCB5F)),
             ),
             Text(
               'Messages',

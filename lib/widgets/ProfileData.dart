@@ -12,7 +12,7 @@ class ProfileData extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       color: Theme.of(context).backgroundColor,
       child: Padding(
-        padding: const EdgeInsets.only(left: 15.0, right: 15, bottom: 10),
+        padding: const EdgeInsets.only(bottom: 10 , top: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -28,7 +28,7 @@ class ProfileData extends StatelessWidget {
                           fontSize: 20,
                           fontFamily: "Montserrat-Light",
                           fontWeight: FontWeight.bold,
-                          color: Theme.of(context).textTheme.headline2.color,
+                          color: Color(0xFFFFCB5F),
                         ),
                       ),
                     ],

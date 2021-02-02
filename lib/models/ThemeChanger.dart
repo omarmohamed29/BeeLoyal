@@ -5,9 +5,7 @@ import 'DataBase.dart';
 class AppTheme {
   get myDarkTheme => ThemeData(
     primarySwatch: Colors.amber,
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor:  Color(0xFFFFCB5F),
-    ),
+
     appBarTheme: AppBarTheme(
       color: Color(0xFF111111),
       brightness: Brightness.dark,
@@ -33,7 +31,6 @@ class AppTheme {
     borderRadius: BorderRadius.circular(10),
     ),
     ),
-
     brightness: Brightness.dark,
     backgroundColor: Color(0xFF121212),
     iconTheme: IconThemeData(color: Colors.white),
@@ -46,8 +43,7 @@ class AppTheme {
       border: InputBorder.none,
     ),
 
-    textSelectionHandleColor:Color(0xFFFFCB5F) ,
-    accentIconTheme: IconThemeData(color: Colors.white),
+    textSelectionHandleColor:Color(0xFFFFCB5F),
     hoverColor: Colors.white.withOpacity(0.1),
     cursorColor: Color(0xFFFFCB5F),
     textSelectionColor: Color(0xFFFFCB5F),
@@ -55,9 +51,6 @@ class AppTheme {
 
   get myLightTheme => ThemeData(
       primarySwatch: Colors.amber,
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor:  Color(0xFFFFCB5F),
-      ),
       appBarTheme: AppBarTheme(
           brightness: Brightness.light,
           color:Colors.white,
@@ -85,7 +78,6 @@ class AppTheme {
       textTheme: TextTheme(
           headline2: TextStyle(color:Color(0xFF3F3C36)),
           headline6: TextStyle(color: Colors.black26)),
-      accentIconTheme: IconThemeData(color: Colors.black),
       hoverColor: Color(0xFFF2F5FA),
       cursorColor: Color(0xFFFFCB5F),
       textSelectionColor: Color(0xFFFFCB5F),
@@ -108,15 +100,15 @@ class ThemeNotifier with ChangeNotifier {
     notifyListeners();
   }
 
-  _loadFromPrefs() async {
-    DBProvider.db.printDB();
+  Future<bool> _loadFromPrefs() async {
     final _userData = await DBProvider.db.getUsers();
-    Map<String, String> newUser = {};
-    if (!newUser.containsKey('theme') && _userData != null) {
-      newUser = Map<String, String>.from(_userData);
-      _darkTheme = newUser['theme'] == "true" ? true : false;
-    } else
-      _darkTheme = true;
+    Map<String, String> newUser =  Map<String, String>.from(_userData);
+    print(newUser.containsKey('theme'));
+    print(newUser['theme']);
+    _darkTheme = newUser['theme'] == "true" ? true : false;
+    notifyListeners();
+    return _darkTheme;
+
   }
 
   _setPrefs() async {

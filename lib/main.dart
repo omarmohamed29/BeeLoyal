@@ -146,11 +146,11 @@ class _MyAppState extends State<MyApp> {
 
           ],
           child: Consumer<Auth>(
-            builder: (ctx, auth, _) => MaterialApp(
+            builder: (ctx, auth, _) => MaterialApp (
               title: 'Bee Loyal',
               debugShowCheckedModeBanner: false,
-              theme:  notifier.darkTheme
-                  ? AppTheme().myDarkTheme
+              theme:  notifier.darkTheme ?
+                   AppTheme().myDarkTheme
                   : AppTheme().myLightTheme,
               routes: <String, WidgetBuilder>{
                 '/welcome': (BuildContext context) => new Welcome(),

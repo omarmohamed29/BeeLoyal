@@ -67,7 +67,6 @@ class Auth with ChangeNotifier {
         },
       );
       prefs.setString('userData', userData);
-      print(userData);
     } catch (error) {
       throw error;
     }

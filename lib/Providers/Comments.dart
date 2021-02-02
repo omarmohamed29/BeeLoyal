@@ -76,7 +76,6 @@ class Comments with ChangeNotifier {
         'https://beel-6e17a.firebaseio.com/Comments/$prodId.json?auth=$token';
     try {
       final response = await http.get(url);
-      // print(jsonDecode(response.body));
       final allComments = json.decode(response.body) as Map<String, dynamic>;
       final List<Comment> retrievedComments = [];
 

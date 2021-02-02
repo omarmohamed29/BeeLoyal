@@ -471,6 +471,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1+7"
+  rxdart:
+    dependency: transitive
+    description:
+      name: rxdart
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.23.1"
   shared_preferences:
     dependency: "direct main"
     description:
@@ -560,6 +567,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.1"
+  streams_provider:
+    dependency: "direct main"
+    description:
+      name: streams_provider
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4+7"
   string_scanner:
     dependency: transitive
     description:
@@ -608,7 +622,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.7.4"
+    version: "1.7.4+1"
   xdg_directories:
     dependency: transitive
     description:

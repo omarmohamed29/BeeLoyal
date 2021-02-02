@@ -201,6 +201,8 @@ class _HomePageState extends State<HomePage>
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
+          backgroundColor:  Color(0xFFFFCB5F),
+
           icon: Icon(Icons.add, color: Theme
               .of(context)
               .textTheme

@@ -52,6 +52,8 @@ class DBProvider {
 
   update(String theme) async{
     final db = await database;
+    var databasesPath = await getDatabasesPath();
+    print(databasesPath );
     int count = await db.rawUpdate(
         'UPDATE users SET theme = ? WHERE id = ?',
         [theme, '1',]);

@@ -10,3 +10,5 @@ the application provides a new and great integrated capablilities to market such
 - scan your reciept any where no more waiting lines.
 - only scan the verified reciepts qr codes.
 - see all the history of transactions and more.
+- Dark theme added.
+- better business logic and better ui experience.

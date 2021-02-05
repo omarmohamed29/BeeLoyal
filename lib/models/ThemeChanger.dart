@@ -31,9 +31,10 @@ class AppTheme {
     borderRadius: BorderRadius.circular(10),
     ),
     ),
+
     brightness: Brightness.dark,
     backgroundColor: Color(0xFF121212),
-    iconTheme: IconThemeData(color: Colors.white),
+    iconTheme: IconThemeData(color: Colors.white ),
     textTheme: TextTheme(
         headline2: TextStyle(color: Colors.white),
         headline6: TextStyle(color: Colors.grey)),
@@ -47,6 +48,7 @@ class AppTheme {
     hoverColor: Colors.white.withOpacity(0.1),
     cursorColor: Color(0xFFFFCB5F),
     textSelectionColor: Color(0xFFFFCB5F),
+    unselectedWidgetColor: Color(0xFFFFCB5F),
   );
 
   get myLightTheme => ThemeData(

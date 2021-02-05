@@ -47,47 +47,82 @@ class _OfferCardState extends State<OfferCard> {
                   builder: (_, offer, ch) => offer.offers[0] != null &&
                           offer.offers[0].dueDate.day - DateTime.now().day >
                               0 &&
-                          offer.offers[0].dueDate.month == DateTime.now().month
-                              &&
-                          offer.offers[0].dueDate.year  == DateTime.now().year
-                      ? Column(
-                          children: <Widget>[
-                            Icon(
-                              Profile.offers,
-                              color: Color(0xFFFFCB5F),
-                              size: 25,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Text(offer.offers[0].title,
-                                  style: TextStyle(
-                                    color:  Color(0xFFFFCB5F),
-                                    fontFamily: "Montserrat-Light",
-                                    fontSize: 10,
-                                  )),
-                            ),
-                            Text(
-                              offer.offers[0].description,
-                              style: TextStyle(
-                                color: Theme.of(context).textTheme.headline2.color,
-                                fontFamily: "Montserrat-Light",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
+                          offer.offers[0].dueDate.month ==
+                              DateTime.now().month &&
+                          offer.offers[0].dueDate.year == DateTime.now().year
+                      ? Container(
+                          decoration: BoxDecoration(
+                            color: Color(0xFFFFCB5F),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          height: 300,
+                          width: 200,
+                          child: Stack(
+                            children: [
+                              Positioned(
+                                top: 0,
+                                left: 0,
+                                child: Icon(
+                                  Profile.offers,
+                                  color: Colors.black87.withOpacity(0.5),
+                                  size: 80,
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Text(
-                                  "Expires in : " +
-                                      DateFormat('dd/MM/yyy')
-                                          .format(offer.offers[0].dueDate),
-                                  style: TextStyle(
-                                    color: Theme.of(context).textTheme.headline2.color,
-                                    fontFamily: "Montserrat-Light",
-                                    fontSize: 10,
-                                  )),
-                            ),
-                          ],
+                              Positioned(
+                                bottom: 0,
+                                right: 0,
+                                child: Icon(
+                                  Profile.offers,
+                                  color: Colors.black87.withOpacity(0.5),
+                                  size: 80,
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(offer.offers[0].title,
+                                        style: TextStyle(
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .headline2
+                                              .color,
+                                          fontFamily: "Montserrat-Bold",
+                                          fontSize: 40,
+                                        )),
+                                    Text(
+                                      offer.offers[0].description,
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .textTheme
+                                            .headline2
+                                            .color,
+                                        fontFamily: "Montserrat-Light",
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top:10),
+                                      child: Text(
+                                          "Expires in : " +
+                                              DateFormat('dd/MM/yyy')
+                                                  .format(offer.offers[0].dueDate),
+                                          style: TextStyle(
+                                            color: Theme.of(context).textTheme.headline2.color,
+                                            fontFamily: "Montserrat-Light",
+                                            fontSize: 10,
+                                          )),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+                            ],
+                          ),
                         )
                       : Container());
             }

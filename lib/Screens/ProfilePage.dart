@@ -65,7 +65,9 @@ class _ProfilePageState extends State<ProfilePage>
                     builder: (ctx, dataSnapshot) {
                       if (dataSnapshot.connectionState ==
                           ConnectionState.waiting) {
-                        return Container();
+                        return Container(
+                          height: 20,
+                        );
                       } else {
                         if (dataSnapshot.error != null) {
                           Center(
@@ -89,7 +91,7 @@ class _ProfilePageState extends State<ProfilePage>
                       }
                     },
                   ),
-                SizedBox(height: 10,),
+                SizedBox(height: 30,),
                 ProfileTrailing(),
                 ],
               ),

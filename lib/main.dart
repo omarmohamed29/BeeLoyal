@@ -30,6 +30,7 @@ import 'Screens/Vouchers.dart';
 import 'Screens/WalletPage.dart';
 import 'Screens/Welcome.dart';
 import 'Screens/ShoppingCart.dart';
+import 'Screens/HomePage.dart';
 
 import 'models/Product.dart';
 import 'models/ThemeChanger.dart';
@@ -153,6 +154,7 @@ class _MyAppState extends State<MyApp> {
                    AppTheme().myDarkTheme
                   : AppTheme().myLightTheme,
               routes: <String, WidgetBuilder>{
+                '/HomePage': (BuildContext context) => HomePage(),
                 '/welcome': (BuildContext context) => new Welcome(),
                 ShoppingCart.routeName: (ctx) => ShoppingCart(),
                 ProfilePage.routeName: (ctx) => ProfilePage(),
@@ -168,7 +170,7 @@ class _MyAppState extends State<MyApp> {
                 '/wishList': (BuildContext context) => WishList(),
               },
               home: auth.isAuth
-                  ? BottomBar()
+                  ? HomePage()
                   : FutureBuilder(
                 future: auth.tryAutoLogin(),
                 builder: (ctx, authResultSnapshot) =>

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:loyalbee/Providers/Users.dart';
 import 'package:loyalbee/widgets/OfferCard.dart';
+import 'package:loyalbee/widgets/more_icons_icons.dart';
 import 'ScanQr.dart';
 import '../widgets/HomeProducts.dart';
 import '../widgets/TrendingSection.dart';
@@ -13,19 +15,24 @@ import 'AllProducts.dart';
 import '../Providers/Products.dart';
 import '../Providers/WalletManager.dart';
 import '../widgets/nav_bar_icon_icons.dart';
-import '../widgets/profile_icons.dart';
+import '../widgets/TopSection.dart';
+import '../widgets/Drawer.dart';
 
 class HomePage extends StatefulWidget {
+  static const routeName = '/HomePage';
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin<HomePage> {
-  Future _productsFuture;
+
+
   ScrollController _scrollController =
   ScrollController(initialScrollOffset: 0.0);
 
+  Future _productsFuture;
+  Future _walletFuture;
   Future _usersFuture;
   String result = "";
 
@@ -34,13 +41,18 @@ class _HomePageState extends State<HomePage>
   }
 
   getUsers() async {
-    return await Provider.of<WalletManager>(context, listen: false)
+    return await Provider.of<Users>(context, listen: false)
+        .retrieveUser();
+  }
+  getWallet()async{
+    return  await Provider.of<WalletManager>(context, listen: false)
         .retrieveWallet();
   }
 
   @override
   void initState() {
     _productsFuture = getProducts();
+    _walletFuture = getWallet();
     _usersFuture = getUsers();
     if (_scrollController.hasClients) {
       _scrollController.animateTo(
@@ -56,6 +68,7 @@ class _HomePageState extends State<HomePage>
     setState(() {
       _productsFuture = getProducts();
       _usersFuture = getUsers();
+      _walletFuture = getWallet();
     });
 
     return 'success';
@@ -156,6 +169,18 @@ class _HomePageState extends State<HomePage>
           .of(context)
           .backgroundColor,
       appBar: AppBar(
+        centerTitle: true,
+        leading: Builder(
+          builder: (BuildContext context){
+            return IconButton(
+              color: Theme.of(context).iconTheme.color,
+              icon: Icon(MoreIcons.drawer),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
+
         title:
         Theme
             .of(context)
@@ -200,6 +225,7 @@ class _HomePageState extends State<HomePage>
               )),
         ],
       ),
+      drawer: MyDrawer(),
       floatingActionButton: FloatingActionButton.extended(
           backgroundColor:  Color(0xFFFFCB5F),
 
@@ -243,205 +269,33 @@ class _HomePageState extends State<HomePage>
                     child: Text('An error occured'),
                   );
                 } else {
-                  return ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    controller: _scrollController,
-                    children: <Widget>[
-                      //The Top Section
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Theme
-                                .of(context)
-                                .backgroundColor,
-                            borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(20.0),
-                                bottomRight: Radius.circular(20.0))),
-                        height: 200,
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        child: Column(
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                child: Column(
-                                  children: <Widget>[
-                                    Center(
-                                        child: Text(
-                                          "Hello there , ",
-                                          style: TextStyle(
-                                            color: Theme
-                                                .of(context)
-                                                .textTheme
-                                                .headline2
-                                                .color,
-                                            fontFamily: "Montserrat-Light",
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                          ),
-                                        )),
-                                    Center(
-                                        child: Text(
-                                          "Explore our latest products and get fashioned ! ",
-                                          style: TextStyle(
-                                            color: Theme
-                                                .of(context)
-                                                .textTheme
-                                                .headline2
-                                                .color,
-                                            fontFamily: "Montserrat-Light",
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 12,
-                                          ),
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Container(
-                                width: 350,
-                                height: 1,
-                                color: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .headline2
-                                    .color,
-                              ),
-                            ),
-                            Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Icon(
-                                    Profile.wallet,
-                                    color: Theme
-                                        .of(context)
-                                        .textTheme
-                                        .headline2
-                                        .color,
-                                    size: 30,
-                                  ),
-                                ),
-                                Text("In your wallet you have",
-                                    style: TextStyle(
-                                      color: Theme
-                                          .of(context)
-                                          .textTheme
-                                          .headline2
-                                          .color,
-                                      fontFamily: "Montserrat-Light",
-                                      fontSize: 10,
-                                    )),
-                                Consumer<WalletManager>(
-                                  builder: (_, wallet, ch) =>
-                                      Container(
-                                        padding: const EdgeInsets.only(
-                                            left: 30, right: 30, top: 22),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            Row(
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .only(
-                                                      right: 8),
-                                                  child: Icon(
-                                                    Profile.cash,
-                                                    color: Theme
-                                                        .of(context)
-                                                        .textTheme
-                                                        .headline2
-                                                        .color,
-                                                    size: 25,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  wallet.wallet[0].money
-                                                      .toString() +
-                                                      " EGP",
-                                                  style: TextStyle(
-                                                    color: Theme
-                                                        .of(context)
-                                                        .textTheme
-                                                        .headline2
-                                                        .color,
-                                                    fontFamily: "Montserrat-Light",
-                                                    fontSize: 22,
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: <Widget>[
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .only(
-                                                      right: 8),
-                                                  child: Icon(
-                                                    Icons.star,
-                                                    color: Theme
-                                                        .of(context)
-                                                        .textTheme
-                                                        .headline2
-                                                        .color,
-                                                    size: 25,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  wallet.wallet[0].points
-                                                      .toString() +
-                                                      " Points",
-                                                  style: TextStyle(
-                                                    color: Theme
-                                                        .of(context)
-                                                        .textTheme
-                                                        .headline2
-                                                        .color,
-                                                    fontFamily: "Montserrat-Light",
-                                                    fontSize: 22,
-                                                  ),
-                                                ),
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
+                  return Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: ListView(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.vertical,
+                      controller: _scrollController,
+                      children: <Widget>[
+                        //The Top Section
+                        TopSection(),
+                        SizedBox(height: 15,),
+                        //offers Section
+                        OfferCard(),
 
-                      //offers Section
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: OfferCard(),
-                      ),
-
-                      //Featured Section
-                      Padding(
-                        padding:
-                        const EdgeInsets.only(top: 10, right: 10, left: 10),
-                        child: Card(
+                        //Featured Section
+                        SizedBox(height: 15,),
+                        Card(
                           shape:  RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),
                           child: Container(
                             height: 250,
-                             decoration: Theme.of(context).backgroundColor == Color(0xFF121212) ? null : BoxDecoration(
+                            decoration: Theme.of(context).backgroundColor == Color(0xFF121212) ? null : BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Color(0xFFFFCB5F).withOpacity(0.9),
                             ),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Padding(
                                   padding: const EdgeInsets.only(
@@ -468,11 +322,10 @@ class _HomePageState extends State<HomePage>
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 15, right: 10, left: 10, bottom: 10),
-                        child: Container(
+
+                        //All products
+                        SizedBox(height: 15,),
+                        Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                             border:
@@ -540,9 +393,11 @@ class _HomePageState extends State<HomePage>
                               HomeProducts(),
                             ],
                           ),
-                        ),
-                      )
-                    ],
+                        )
+
+
+                      ],
+                    ),
                   );
                 }
                 return Padding(

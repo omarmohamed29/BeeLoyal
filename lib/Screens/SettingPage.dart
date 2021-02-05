@@ -177,6 +177,7 @@ class _SettingPageState extends State<SettingPage> {
                     Column(
                       children: <Widget>[
                         ListTile(
+                          onTap: (){},
                           leading: Icon(
                             Setting.rateus,
                             color: Theme.of(context).iconTheme.color,
@@ -190,6 +191,14 @@ class _SettingPageState extends State<SettingPage> {
                                       .textTheme
                                       .headline2
                                       .color)),
+                          subtitle: Text(
+                            'Give us 5 stars',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Montserrat-Light",
+                                color: Colors.grey,
+                                fontSize: 11),
+                          ),
                           trailing: Icon(
                             Icons.chevron_right,
                             color:
@@ -202,6 +211,7 @@ class _SettingPageState extends State<SettingPage> {
                           height: 8,
                         ),
                         ListTile(
+                          onTap: (){},
                           leading: Icon(
                             Setting.socialize,
                             color: Theme.of(context).iconTheme.color,
@@ -215,6 +225,14 @@ class _SettingPageState extends State<SettingPage> {
                                       .textTheme
                                       .headline2
                                       .color)),
+                          subtitle: Text(
+                            'Call us any time if you need help',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Montserrat-Light",
+                                color: Colors.grey,
+                                fontSize: 11),
+                          ),
                           trailing: Icon(
                             Icons.chevron_right,
                             color:
@@ -227,6 +245,7 @@ class _SettingPageState extends State<SettingPage> {
                           height: 8,
                         ),
                         ListTile(
+                          onTap: (){},
                           leading: Icon(
                             Setting.licence,
                             color: Theme.of(context).iconTheme.color,
@@ -240,6 +259,14 @@ class _SettingPageState extends State<SettingPage> {
                                       .textTheme
                                       .headline2
                                       .color)),
+                         subtitle: Text(
+                            'Read our license , Know your rights',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Montserrat-Light",
+                                color: Colors.grey,
+                                fontSize: 11),
+                          ),
                           trailing: Icon(
                             Icons.chevron_right,
                             color:
@@ -252,29 +279,72 @@ class _SettingPageState extends State<SettingPage> {
                           height: 8,
                         ),
                         ListTile(
-                          onTap: () {
-                            Provider.of<Auth>(context, listen: false)
-                                .logout();
-                          },
                           leading: Icon(
-                            Setting.logout,
-                            color: Theme.of(context).iconTheme.color,
+                            Icons.share,
+                            color: Theme.of(context).textTheme.headline2.color,
                             size: 30,
                           ),
-                          title: Text("Logout",
-                              style: TextStyle(
-                                  fontFamily: "Montserrat-Light",
-                                  fontSize: 25,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .headline2
-                                      .color)),
+                          title: Text(
+                            'Tell a friend',
+                            style: TextStyle(
+                                fontFamily: "Montserrat-Light",
+                                fontSize: 25,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headline2
+                                    .color)
+                          ),
                           trailing: Icon(
-                            Icons.chevron_right,
-                            color:
-                                Theme.of(context).textTheme.headline2.color,
+                            Icons.chevron_right_rounded,
                             size: 25,
                           ),
+                          subtitle: Text(
+                            'Tell your friends about us ',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Montserrat-Light",
+                                color: Colors.grey,
+                                fontSize: 11),
+                          ),
+                          onTap: () {},
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          height: 8,
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.help,
+                            color: Theme.of(context).textTheme.headline2.color,
+                            size: 30,
+                          ),
+                          title: Text(
+                            'About us',
+                            style: TextStyle(
+                                fontFamily: "Montserrat-Light",
+                                fontSize: 25,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .headline2
+                                    .color),
+                          ),
+                          trailing: Icon(
+                            Icons.chevron_right_rounded,
+                            size: 25,
+                          ),
+                          subtitle: Text(
+                            'Know more about us',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontFamily: "Montserrat-Light",
+                                color: Colors.grey,
+                                fontSize: 11),
+                          ),
+                          onTap: () {},
+                        ),
+                        Divider(
+                          thickness: 1.0,
+                          height: 8,
                         ),
                       ],
                     )
